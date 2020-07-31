@@ -19,5 +19,7 @@ namespace KonoFandom.Models
         public int Rarity { get; set; }
 
         public string ImagePath { get; set; }
+
+        public Character Character { get; set; }
     }
 }
