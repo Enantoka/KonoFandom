@@ -20,6 +20,7 @@ namespace KonoFandom.Models
 
         public string ImagePath { get; set; }
 
+        public int CharacterID { get; set; }
         public Character Character { get; set; }
     }
 }
