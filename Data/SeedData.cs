@@ -13,10 +13,10 @@ namespace KonoFandom.Models
         {
             using (var context = new KonoFandomContext(serviceProvider.GetRequiredService < DbContextOptions<KonoFandomContext>>()))
             {
-                if (context.Character.Any())
-                {
-                    return; // Db Seeded
-                }
+                //if (context.Character.Any())
+                //{
+                  //  return; // Db Seeded
+                //}
 
                 context.Character.AddRange(
                     new Character
