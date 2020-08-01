@@ -27,7 +27,8 @@ namespace KonoFandom
         {
             services.AddControllersWithViews();
             services.AddDbContext<KonoFandomContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("KonoFandomContext")));
+                options.UseNpgsql(Configuration.GetConnectionString("KonoFandomContext"))
+                       .UseSnakeCaseNamingConvention());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
