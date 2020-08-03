@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using KonoFandom.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,7 @@ namespace KonoFandom
         {
             services.AddControllersWithViews();
             services.AddDbContext<KonoFandomContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("KonoFandomContext"))
+                            options.UseNpgsql(Configuration["KonoFandom:ConnectionString"])
                        .UseSnakeCaseNamingConvention());
         }
 
