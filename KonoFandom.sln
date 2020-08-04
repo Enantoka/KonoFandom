@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonoFandom", "KonoFandom.csproj", "{0536175B-842E-4D39-A8F2-FF130A40B6C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonoFandom.XUnitTest", "..\KonoFandom.XUnitTest\KonoFandom.XUnitTest.csproj", "{236B0400-D4CD-4C71-81A4-4FDAF22712A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonoFandom.XUnitTest", "..\KonoFandom.XUnitTest\KonoFandom.XUnitTest.csproj", "{236B0400-D4CD-4C71-81A4-4FDAF22712A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
