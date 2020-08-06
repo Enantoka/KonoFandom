@@ -23,6 +23,7 @@ namespace KonoFandom.Models
         public string Biography { get; set; }
 
         [Required]
+        [EnumDataType(typeof(Weapon))]
         public Weapon Weapon { get; set; }
 
         public ICollection<Card> Cards { get; set; }
