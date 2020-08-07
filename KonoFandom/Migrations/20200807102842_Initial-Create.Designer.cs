@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KonoFandom.Migrations
 {
     [DbContext(typeof(KonoFandomContext))]
-    [Migration("20200801091012_InitialCreate")]
+    [Migration("20200807102842_Initial-Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,54 +24,75 @@ namespace KonoFandom.Migrations
                 {
                     b.Property<int>("CardID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("card_id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("CharacterID")
+                        .HasColumnName("character_id")
                         .HasColumnType("integer");
 
                     b.Property<string>("ImagePath")
+                        .HasColumnName("image_path")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
                     b.Property<int>("Rarity")
+                        .HasColumnName("rarity")
                         .HasColumnType("integer");
 
-                    b.HasKey("CardID");
+                    b.HasKey("CardID")
+                        .HasName("pk_card");
 
-                    b.HasIndex("CharacterID");
+                    b.HasIndex("CharacterID")
+                        .HasName("ix_card_character_id");
 
-                    b.ToTable("Card");
+                    b.ToTable("card");
                 });
 
             modelBuilder.Entity("KonoFandom.Models.Character", b =>
                 {
                     b.Property<int>("CharacterID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("character_id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Biography")
+                        .HasColumnName("biography")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CharacterImagePath")
+                        .HasColumnName("character_image_path")
                         .HasColumnType("text");
 
                     b.Property<string>("FirstMidName")
+                        .HasColumnName("first_mid_name")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
+                    b.Property<string>("IconImagePath")
+                        .HasColumnName("icon_image_path")
+                        .HasColumnType("text");
+
                     b.Property<string>("LastName")
+                        .HasColumnName("last_name")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
                     b.Property<int>("Weapon")
+                        .HasColumnName("weapon")
                         .HasColumnType("integer");
 
-                    b.HasKey("CharacterID");
+                    b.HasKey("CharacterID")
+                        .HasName("pk_character");
 
-                    b.ToTable("Character");
+                    b.ToTable("character");
                 });
 
             modelBuilder.Entity("KonoFandom.Models.Card", b =>
@@ -79,6 +100,7 @@ namespace KonoFandom.Migrations
                     b.HasOne("KonoFandom.Models.Character", "Character")
                         .WithMany("Cards")
                         .HasForeignKey("CharacterID")
+                        .HasConstraintName("fk_card_character_character_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
