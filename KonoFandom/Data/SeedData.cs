@@ -13,15 +13,14 @@ namespace KonoFandom.Models
         {
             using (var context = new KonoFandomContext(serviceProvider.GetRequiredService < DbContextOptions<KonoFandomContext>>()))
             {
-                if (context.Character.Any())
-                {
-                    return; // Db Seeded
-                }
+                // if (context.Character.Any())
+                //{
+                //return; // Db Seeded
+                //}
 
                 context.Character.AddRange(
                     new Character
                     {
-                        CharacterID = 1,
                         FirstMidName = "Kazuma",
                         LastName = "Satou",
                         Biography = "1",
@@ -30,7 +29,6 @@ namespace KonoFandom.Models
 
                     new Character
                     {
-                        CharacterID = 2,
                         FirstMidName = "Aqua",
                         LastName = "",
                         Biography = "2",
@@ -39,7 +37,6 @@ namespace KonoFandom.Models
 
                     new Character
                     {
-                        CharacterID = 3,
                         FirstMidName = "Megumin",
                         LastName = "",
                         Biography = "3",
