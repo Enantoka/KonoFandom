@@ -22,6 +22,10 @@ namespace KonoFandom.Models
 
         public string Biography { get; set; }
 
+        public string IconImagePath { get; set; }
+
+        public string CharacterImagePath { get; set; }
+
         [Required]
         public Weapon Weapon { get; set; }
 
