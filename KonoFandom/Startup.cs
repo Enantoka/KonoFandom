@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using KonoFandom.Areas.Identity.Data;
+using KonoFandom.Data;
 using KonoFandom.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,14 @@ namespace KonoFandom
             services.AddDbContext<KonoFandomContext>(options =>
                             options.UseNpgsql(Configuration["KonoFandom:ConnectionString"])
                        .UseSnakeCaseNamingConvention());
+
+            services.AddDbContext<IdentityContext>(options =>
+                            options.UseNpgsql(Configuration["KonoMegami:ConnectionString"])
+                        .UseSnakeCaseNamingConvention());
+            services.AddDefaultIdentity<KonoFandomUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                        .AddEntityFrameworkStores<IdentityContext>();
+
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +60,12 @@ namespace KonoFandom
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
