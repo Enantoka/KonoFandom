@@ -11,37 +11,125 @@ namespace KonoFandom.Models
     {
         public static void Intialize(IServiceProvider serviceProvider)
         {
-            using (var context = new KonoFandomContext(serviceProvider.GetRequiredService <DbContextOptions<KonoFandomContext>>()))
+            using (var context = new KonoFandomContext(serviceProvider.GetRequiredService < DbContextOptions<KonoFandomContext>>()))
             {
-                if (context.Character.Any())
-                {
-                    return; // Db Seeded
-                }
-                else
+                if (!context.Character.Any())
                 {
                     context.Character.AddRange(
                         new Character
                         {
                             FirstMidName = "Kazuma",
                             LastName = "Satou",
-                            Biography = "1",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
                             FirstMidName = "Aqua",
-                            LastName = "",
-                            Biography = "2",
                             Weapon = Weapon.Rod
                         },
 
                         new Character
                         {
                             FirstMidName = "Megumin",
-                            LastName = "",
-                            Biography = "3",
                             Weapon = Weapon.Staff
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Darkness",
+                            Weapon = Weapon.Sword
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Wiz",
+                            Weapon = Weapon.Staff
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Yunyun",
+                            Weapon = Weapon.Staff
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Arue",
+                            Weapon = Weapon.Staff
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Chris",
+                            Weapon = Weapon.Dagger
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Iris",
+                            Weapon = Weapon.Sword
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Cecily",
+                            Weapon = Weapon.Rod
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Kyouya",
+                            LastName = "Mitsurugi",
+                            Weapon = Weapon.Sword
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Dust",
+                            Weapon = Weapon.Sword
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Rin",
+                            Weapon = Weapon.Staff
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Lia",
+                            Weapon = Weapon.Spear
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Cielo",
+                            Weapon = Weapon.Rod
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Erika",
+                            Weapon = Weapon.Dagger
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Melissa",
+                            Weapon = Weapon.Dagger
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Mia",
+                            Weapon = Weapon.Spear
+                        },
+
+                        new Character
+                        {
+                            FirstMidName = "Amy",
+                            Weapon = Weapon.Rod
                         }
                     );
                     context.SaveChanges();

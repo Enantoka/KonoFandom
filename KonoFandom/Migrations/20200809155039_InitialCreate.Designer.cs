@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KonoFandom.Migrations
 {
     [DbContext(typeof(KonoFandomContext))]
-    [Migration("20200807102842_Initial-Create")]
+    [Migration("20200809155039_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
