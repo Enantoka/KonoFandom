@@ -35,11 +35,11 @@ namespace KonoFandom.Areas.Identity.Data
                         
                     };
 
-                    // Hash our temporary password.
-                    User.PasswordHash = ph.HashPassword(User, "admin");
-
                     // Assign Admin role to the user.
                     UserManager.AddToRoleAsync(User, nameof(Role.Admin));
+
+                    // Hash our temporary password.
+                    User.PasswordHash = ph.HashPassword(User, "admin");
 
                     // Add to user to the database and save.
                     context.KonoFandomUser.Add(User);
