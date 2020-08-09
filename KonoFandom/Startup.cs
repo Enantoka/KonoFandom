@@ -9,6 +9,7 @@ using KonoFandom.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +37,7 @@ namespace KonoFandom
             services.AddDbContext<IdentityContext>(options =>
                             options.UseNpgsql(Configuration["KonoMegami:ConnectionString"])
                         .UseSnakeCaseNamingConvention());
-            services.AddDefaultIdentity<KonoFandomUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<KonoFandomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                         .AddEntityFrameworkStores<IdentityContext>();
 
             services.AddRazorPages();
