@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.Areas.Identity.Data
 {
+    // If required, add more roles here.
     public enum Role
     {
         Admin, Moderator
@@ -21,6 +22,7 @@ namespace KonoFandom.Areas.Identity.Data
         public static void CreateDefaultAdministrator(IServiceProvider serviceProvider)
         {
             var UserManager = serviceProvider.GetRequiredService<UserManager<KonoFandomUser>>();
+            PasswordHasher<KonoFandomUser> ph = new PasswordHasher<KonoFandomUser>();
 
             using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>()))
             {
@@ -29,11 +31,17 @@ namespace KonoFandom.Areas.Identity.Data
                     var User = new KonoFandomUser
                     {
                         UserName = "admin",
-                        PasswordHash = "admin",
+                        EmailConfirmed = true
+                        
                     };
 
+                    // Hash our temporary password.
+                    User.PasswordHash = ph.HashPassword(User, "admin");
+
+                    // Assign Admin role to the user.
                     UserManager.AddToRoleAsync(User, nameof(Role.Admin));
 
+                    // Add to user to the database and save.
                     context.KonoFandomUser.Add(User);
                     context.SaveChanges();
                 }

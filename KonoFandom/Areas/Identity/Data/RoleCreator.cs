@@ -12,13 +12,17 @@ namespace KonoFandom.Areas.Identity.Data
         public static async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            IdentityResult roleResult;
 
             foreach (string r in Enum.GetNames(typeof(Role)))
             {
                 if (!await RoleManager.RoleExistsAsync(r))
                 {
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(r));
+                    IdentityResult result = RoleManager.CreateAsync(new IdentityRole(r)).Result;
+
+                    if (result.Succeeded)
+                    {
+                        await RoleManager.CreateAsync(new IdentityRole(r));
+                    }
                 }
             }
         }
