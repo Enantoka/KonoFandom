@@ -5,12 +5,6 @@
     <UserSecretsId>5b5d7493-8b2d-4ae6-978b-bc1e9556aacb</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Areas\Test\**" />
-    <Content Remove="Areas\Test\**" />
-    <EmbeddedResource Remove="Areas\Test\**" />
-    <None Remove="Areas\Test\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />

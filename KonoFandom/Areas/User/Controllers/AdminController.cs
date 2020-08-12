@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KonoFandom.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("User")]
     public class AdminController : Controller
     {
         // GET: AdminController

@@ -72,7 +72,7 @@ namespace KonoFandom
                 endpoints.MapRazorPages();
 
                 endpoints.MapControllerRoute(
-                    name: "Admin",
+                    name: "User",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
