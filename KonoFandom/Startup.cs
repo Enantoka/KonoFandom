@@ -37,7 +37,10 @@ namespace KonoFandom
             services.AddDbContext<IdentityContext>(options =>
                             options.UseNpgsql(Configuration["KonoMegami:ConnectionString"])
                         .UseSnakeCaseNamingConvention());
+
             services.AddIdentity<KonoFandomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                        .AddDefaultTokenProviders()
+                        .AddDefaultUI()
                         .AddEntityFrameworkStores<IdentityContext>();
 
             services.AddRazorPages();
