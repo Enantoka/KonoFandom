@@ -11,12 +11,6 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.Areas.Identity.Data
 {
-    // If required, add more roles here.
-    public enum Role
-    {
-        Admin, Moderator
-    }
-
     public class SeedIdentityData
     {
         public static void CreateDefaultAdministrator(IServiceProvider serviceProvider)
