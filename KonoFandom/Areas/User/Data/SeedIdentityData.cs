@@ -1,4 +1,4 @@
-﻿using KonoFandom.Data;
+﻿using KonoFandom.Areas.User.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KonoFandom.Areas.Identity.Data
+namespace KonoFandom.Areas.User.Data
 {
     public class SeedIdentityData
     {

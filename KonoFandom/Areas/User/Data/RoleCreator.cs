@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using KonoFandom.Areas.User.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KonoFandom.Areas.Identity.Data
+namespace KonoFandom.Areas.User.Data
 {
     public class RoleCreator
     {

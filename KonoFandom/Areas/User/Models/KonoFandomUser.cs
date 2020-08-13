@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace KonoFandom.Areas.Identity.Data
+namespace KonoFandom.Areas.User.Models
 {
     // If required, add more roles here.
     public enum Role
