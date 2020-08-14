@@ -34,9 +34,22 @@ namespace KonoFandom.Areas.Admin.Controllers
         }
 
         // GET: AdminController/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(string? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.KonoFandomUser
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
 
         // GET: AdminController/Create
@@ -63,45 +76,102 @@ namespace KonoFandom.Areas.Admin.Controllers
         }
 
         // GET: AdminController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.KonoFandomUser.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
         }
 
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(string id, [Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, " +
+                                                      "SecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, " +
+                                                      "LockoutEnd, LockoutEnabled, AccessFailedCount")] KonoFandomUser user)
         {
-            try
+            if (id != user.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(user);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    foreach (var entry in ex.Entries)
+                    {
+                        if (entry.Entity is KonoFandomUser)
+                        {
+                            var proposedValues = entry.CurrentValues;
+                            var dbValues = entry.GetDatabaseValues();
+
+                            foreach (var property in proposedValues.Properties)
+                            {
+                                Console.WriteLine("CURRENT >>>>>" + proposedValues[property]);
+                                Console.WriteLine("DB >>>>>> " + dbValues[property]);
+                            }
+                        }
+                    }
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(user);
         }
 
         // GET: AdminController/Delete/5
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(string? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.KonoFandomUser
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if ( user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
 
         // POST: AdminController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var user = await _context.KonoFandomUser.FindAsync(id);
+            _context.KonoFandomUser.Remove(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool UserExists(string id)
+        {
+            return _context.KonoFandomUser.Any(e => e.Id == id);
         }
     }
 }
