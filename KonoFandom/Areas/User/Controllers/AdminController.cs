@@ -68,6 +68,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 user.PasswordHash = new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash);
+                user.NormalizedUserName = user.UserName.ToUpper();
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,7 +95,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, " +
+        public async Task<IActionResult> Edit(string id, string concurrencyStamp, [Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, " +
                                                       "SecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, " +
                                                       "LockoutEnd, LockoutEnabled, AccessFailedCount")] KonoFandomUser user)
         {
@@ -107,25 +108,17 @@ namespace KonoFandom.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    foreach (var entry in ex.Entries)
+                    if (concurrencyStamp == user.ConcurrencyStamp)
                     {
-                        if (entry.Entity is KonoFandomUser)
-                        {
-                            var proposedValues = entry.CurrentValues;
-                            var dbValues = entry.GetDatabaseValues();
-
-                            foreach (var property in proposedValues.Properties)
-                            {
-                                Console.WriteLine("CURRENT >>>>>" + proposedValues[property]);
-                                Console.WriteLine("DB >>>>>> " + dbValues[property]);
-                            }
-                        }
+                        var dbUser = await _context.KonoFandomUser.FindAsync(id);
+                        dbUser.UserName = user.UserName;
+                        dbUser.Email = user.Email;
+                        dbUser.ConcurrencyStamp = Guid.NewGuid().ToString();
+                        await _context.SaveChangesAsync();
                     }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
                     if (!UserExists(user.Id))
                     {
                         return NotFound();
@@ -141,7 +134,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         }
 
         // GET: AdminController/Delete/5
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
