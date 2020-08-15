@@ -16,8 +16,8 @@ namespace KonoFandom.Areas.User.Models
     // Add profile data for application users by adding properties to the KonoFandomUser class
     public class KonoFandomUser : IdentityUser
     {
-        //[Required]
-        //[EnumDataType(typeof(Role))]
-        //public Role Role { get; set; }
+        [Required]
+        [EnumDataType(typeof(Role))]
+        public Role Role { get; set; }
     }
 }
