@@ -63,14 +63,16 @@ namespace KonoFandom.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, " +
                                                       "SecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, " +
-                                                      "LockoutEnd, LockoutEnabled, AccessFailedCount")] KonoFandomUser user)
+                                                      "LockoutEnd, LockoutEnabled, AccessFailedCount, Role")] KonoFandomUser user)
         {
             if (ModelState.IsValid)
             {
-                user.PasswordHash = new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash);
-                user.NormalizedUserName = user.UserName.ToUpper();
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                // Create new user
+                await _userManager.CreateAsync(user, new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash));
+
+                // Assign user a role
+                await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(Role), user.Role));
+
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -95,9 +97,9 @@ namespace KonoFandom.Areas.Admin.Controllers
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, string concurrencyStamp, [Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, " +
-                                                      "SecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, " +
-                                                      "LockoutEnd, LockoutEnabled, AccessFailedCount")] KonoFandomUser user)
+        public async Task<IActionResult> Edit(string id, int role, [Bind("Id, UserName, NormalizedUserName, Email, NormalizedEmail, " +
+                                                      "EmailConfirmed, PasswordHash, SecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed" +
+                                                      ", TwoFactorEnabled, LockoutEnd, LockoutEnabled, AccessFailedCount, Role")] KonoFandomUser user)
         {
             if (id != user.Id)
             {
@@ -108,14 +110,18 @@ namespace KonoFandom.Areas.Admin.Controllers
             {
                 try
                 {
-                    if (concurrencyStamp == user.ConcurrencyStamp)
-                    {
-                        var dbUser = await _context.KonoFandomUser.FindAsync(id);
-                        dbUser.UserName = user.UserName;
-                        dbUser.Email = user.Email;
-                        dbUser.ConcurrencyStamp = Guid.NewGuid().ToString();
-                        await _context.SaveChangesAsync();
-                    }
+                    var dbUser = await _userManager.FindByIdAsync(id);
+
+                    // Remove existing role from user
+                    await _userManager.RemoveFromRoleAsync(dbUser, Enum.GetName(typeof(Role), dbUser.Role));
+
+                    // Assign user a role
+                    dbUser.Role = user.Role;
+                    await _userManager.AddToRoleAsync(dbUser, Enum.GetName(typeof(Role), user.Role));
+
+                    // Update required fields
+                    await _userManager.SetUserNameAsync(dbUser, user.UserName);
+                    await _userManager.SetEmailAsync(dbUser, user.Email);
                 }
                 catch (DbUpdateConcurrencyException)
                 {

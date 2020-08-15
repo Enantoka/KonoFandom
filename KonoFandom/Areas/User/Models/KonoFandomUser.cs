@@ -10,7 +10,7 @@ namespace KonoFandom.Areas.User.Models
     // If required, add more roles here.
     public enum Role
     {
-        Admin, Moderator
+        User, Admin, Moderator
     }
 
     // Add profile data for application users by adding properties to the KonoFandomUser class
