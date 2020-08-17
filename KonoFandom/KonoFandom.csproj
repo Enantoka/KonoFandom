@@ -5,6 +5,20 @@
     <UserSecretsId>5b5d7493-8b2d-4ae6-978b-bc1e9556aacb</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\20200817134527_CreateIdentitySchema.cs" />
+    <Compile Include="Migrations\20200817134527_CreateIdentitySchema.Designer.cs" />
+    <Compile Include="Migrations\IdentityContextModelSnapshot.cs" />
+    <Compile Include="Migrations\KonoFandom\20200817134541_InitialCreate.cs" />
+    <Compile Include="Migrations\KonoFandom\20200817134541_InitialCreate.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />

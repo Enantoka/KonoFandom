@@ -2,17 +2,15 @@
 using KonoFandom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace KonoFandom.Migrations
+namespace KonoFandom.Migrations.KonoFandom
 {
     [DbContext(typeof(KonoFandomContext))]
-    [Migration("20200809155039_InitialCreate")]
-    partial class InitialCreate
+    partial class KonoFandomContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,17 +69,12 @@ namespace KonoFandom.Migrations
                         .HasColumnName("character_image_path")
                         .HasColumnType("text");
 
-                    b.Property<string>("FirstMidName")
-                        .HasColumnName("first_mid_name")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
-
                     b.Property<string>("IconImagePath")
                         .HasColumnName("icon_image_path")
                         .HasColumnType("text");
 
-                    b.Property<string>("LastName")
-                        .HasColumnName("last_name")
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 

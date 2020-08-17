@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace KonoFandom.Migrations
+namespace KonoFandom.Migrations.KonoFandom
 {
     public partial class InitialCreate : Migration
     {
@@ -13,8 +13,7 @@ namespace KonoFandom.Migrations
                 {
                     character_id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    first_mid_name = table.Column<string>(maxLength: 20, nullable: true),
-                    last_name = table.Column<string>(maxLength: 20, nullable: true),
+                    name = table.Column<string>(maxLength: 20, nullable: true),
                     biography = table.Column<string>(nullable: true),
                     icon_image_path = table.Column<string>(nullable: true),
                     character_image_path = table.Column<string>(nullable: true),

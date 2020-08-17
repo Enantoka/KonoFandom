@@ -25,12 +25,10 @@ namespace KonoFandom.Areas.User.Data
                     var User = new KonoFandomUser
                     {
                         UserName = "admin",
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        Role = Role.Admin
                         
                     };
-
-                    // Assign Admin role to the user.
-                    UserManager.AddToRoleAsync(User, nameof(Role.Admin));
 
                     // Hash our temporary password.
                     User.PasswordHash = ph.HashPassword(User, "admin");
@@ -38,6 +36,9 @@ namespace KonoFandom.Areas.User.Data
                     // Add to user to the database and save.
                     context.KonoFandomUser.Add(User);
                     context.SaveChanges();
+
+                    // Assign Admin role to the user.
+                    UserManager.AddToRoleAsync(User, Enum.GetName(typeof(Role), Role.Admin)).Wait();
                 }
             }
         }

@@ -15,10 +15,7 @@ namespace KonoFandom.Models
         public int CharacterID { get; set; }
         
         [StringLength(20)]
-        public string FirstMidName { get; set; }
-
-        [StringLength(20)]
-        public string LastName { get; set; }
+        public string Name { get; set; }
 
         public string Biography { get; set; }
 
