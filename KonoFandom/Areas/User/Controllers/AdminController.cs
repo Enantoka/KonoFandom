@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SQLitePCL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KonoFandom.Areas.Admin.Controllers
 {
     [Area("User")]
+    [Authorize(Roles = "Admin, Moderator")]
     public class AdminController : Controller
     {
         private readonly UserManager<KonoFandomUser> _userManager;
@@ -33,8 +35,9 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(_context.KonoFandomUser.ToList());
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdminController/Details/5
-        public async Task<IActionResult> Details(string? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -52,12 +55,14 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdminController/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -68,7 +73,10 @@ namespace KonoFandom.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 // Create new user
-                await _userManager.CreateAsync(user, new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash));
+                //await _userManager.CreateAsync(user, user.PasswordHash);
+                user.PasswordHash = new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash);
+                _context.KonoFandomUser.Add(user);
+                await _context.SaveChangesAsync();
 
                 // Assign user a role
                 await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(Role), user.Role));
@@ -78,6 +86,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdminController/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -94,6 +103,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: AdminController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -139,6 +149,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: AdminController/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -157,6 +168,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: AdminController/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
