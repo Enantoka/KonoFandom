@@ -11,7 +11,7 @@ namespace KonoFandom.Models
     {
         public static void Intialize(IServiceProvider serviceProvider)
         {
-            using (var context = new KonoFandomContext(serviceProvider.GetRequiredService < DbContextOptions<KonoFandomContext>>()))
+            using (var context = new KonoFandomContext(serviceProvider.GetRequiredService<DbContextOptions<KonoFandomContext>>()))
             {
                 if (!context.Character.Any())
                 {
