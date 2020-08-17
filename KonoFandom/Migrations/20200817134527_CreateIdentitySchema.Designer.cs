@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace KonoFandom.Migrations.Identity
+namespace KonoFandom.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20200808141254_CreateIdentitySchema")]
+    [Migration("20200817134527_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace KonoFandom.Migrations.Identity
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("KonoFandom.Areas.Identity.Data.KonoFandomUser", b =>
+            modelBuilder.Entity("KonoFandom.Areas.User.Models.KonoFandomUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnName("id")
@@ -74,6 +74,10 @@ namespace KonoFandom.Migrations.Identity
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnName("phone_number_confirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<int>("Role")
+                        .HasColumnName("role")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnName("security_stamp")
@@ -196,13 +200,11 @@ namespace KonoFandom.Migrations.Identity
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnName("login_provider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
                         .HasColumnName("provider_key")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnName("provider_display_name")
@@ -249,13 +251,11 @@ namespace KonoFandom.Migrations.Identity
 
                     b.Property<string>("LoginProvider")
                         .HasColumnName("login_provider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasColumnName("name")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnName("value")
@@ -279,7 +279,7 @@ namespace KonoFandom.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("KonoFandom.Areas.Identity.Data.KonoFandomUser", null)
+                    b.HasOne("KonoFandom.Areas.User.Models.KonoFandomUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_claims_asp_net_users_kono_fandom_user_id")
@@ -289,7 +289,7 @@ namespace KonoFandom.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("KonoFandom.Areas.Identity.Data.KonoFandomUser", null)
+                    b.HasOne("KonoFandom.Areas.User.Models.KonoFandomUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_logins_asp_net_users_kono_fandom_user_id")
@@ -306,7 +306,7 @@ namespace KonoFandom.Migrations.Identity
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KonoFandom.Areas.Identity.Data.KonoFandomUser", null)
+                    b.HasOne("KonoFandom.Areas.User.Models.KonoFandomUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_roles_asp_net_users_kono_fandom_user_id")
@@ -316,7 +316,7 @@ namespace KonoFandom.Migrations.Identity
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("KonoFandom.Areas.Identity.Data.KonoFandomUser", null)
+                    b.HasOne("KonoFandom.Areas.User.Models.KonoFandomUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_tokens_asp_net_users_kono_fandom_user_id")

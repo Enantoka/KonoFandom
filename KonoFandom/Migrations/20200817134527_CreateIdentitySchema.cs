@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace KonoFandom.Migrations.Identity
+namespace KonoFandom.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
@@ -40,7 +40,8 @@ namespace KonoFandom.Migrations.Identity
                     two_factor_enabled = table.Column<bool>(nullable: false),
                     lockout_end = table.Column<DateTimeOffset>(nullable: true),
                     lockout_enabled = table.Column<bool>(nullable: false),
-                    access_failed_count = table.Column<int>(nullable: false)
+                    access_failed_count = table.Column<int>(nullable: false),
+                    role = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,8 +94,8 @@ namespace KonoFandom.Migrations.Identity
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    login_provider = table.Column<string>(maxLength: 128, nullable: false),
-                    provider_key = table.Column<string>(maxLength: 128, nullable: false),
+                    login_provider = table.Column<string>(nullable: false),
+                    provider_key = table.Column<string>(nullable: false),
                     provider_display_name = table.Column<string>(nullable: true),
                     user_id = table.Column<string>(nullable: false)
                 },
@@ -138,8 +139,8 @@ namespace KonoFandom.Migrations.Identity
                 columns: table => new
                 {
                     user_id = table.Column<string>(nullable: false),
-                    login_provider = table.Column<string>(maxLength: 128, nullable: false),
-                    name = table.Column<string>(maxLength: 128, nullable: false),
+                    login_provider = table.Column<string>(nullable: false),
+                    name = table.Column<string>(nullable: false),
                     value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

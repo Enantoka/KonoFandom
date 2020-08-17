@@ -18,117 +18,134 @@ namespace KonoFandom.Models
                     context.Character.AddRange(
                         new Character
                         {
-                            FirstMidName = "Kazuma",
-                            LastName = "Satou",
+                            CharacterID = 1,
+                            Name = "Kazuma",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
-                            FirstMidName = "Aqua",
+                            CharacterID = 2,
+                            Name = "Aqua",
                             Weapon = Weapon.Rod
                         },
 
                         new Character
                         {
-                            FirstMidName = "Megumin",
+                            CharacterID = 3,
+                            Name = "Megumin",
                             Weapon = Weapon.Staff
                         },
 
                         new Character
                         {
-                            FirstMidName = "Darkness",
+                            CharacterID = 4,
+                            Name = "Darkness",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
-                            FirstMidName = "Wiz",
+                            CharacterID = 5,
+                            Name = "Wiz",
                             Weapon = Weapon.Staff
                         },
 
                         new Character
                         {
-                            FirstMidName = "Yunyun",
+                            CharacterID = 6,
+                            Name = "Yunyun",
                             Weapon = Weapon.Staff
                         },
 
                         new Character
                         {
-                            FirstMidName = "Arue",
+                            CharacterID = 7,
+                            Name = "Arue",
                             Weapon = Weapon.Staff
                         },
 
                         new Character
                         {
-                            FirstMidName = "Chris",
+                            CharacterID = 8,
+                            Name = "Chris",
                             Weapon = Weapon.Dagger
                         },
 
                         new Character
                         {
-                            FirstMidName = "Iris",
+                            CharacterID = 9,
+                            Name = "Iris",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
-                            FirstMidName = "Cecily",
+                            CharacterID = 10,
+                            Name = "Cecily",
                             Weapon = Weapon.Rod
                         },
 
                         new Character
                         {
-                            FirstMidName = "Kyouya",
-                            LastName = "Mitsurugi",
+                            CharacterID = 11,
+                            Name = "Mitsurugi",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
-                            FirstMidName = "Dust",
+                            CharacterID = 12,
+                            Name = "Dust",
                             Weapon = Weapon.Sword
                         },
 
                         new Character
                         {
-                            FirstMidName = "Rin",
+                            CharacterID = 13,
+                            Name = "Rin",
                             Weapon = Weapon.Staff
                         },
 
                         new Character
                         {
-                            FirstMidName = "Lia",
+                            CharacterID = 14,
+                            Name = "Lia",
                             Weapon = Weapon.Spear
                         },
 
                         new Character
                         {
-                            FirstMidName = "Cielo",
+                            CharacterID = 15,
+                            Name = "Cielo",
                             Weapon = Weapon.Rod
                         },
 
                         new Character
                         {
-                            FirstMidName = "Erika",
+                            CharacterID = 16,
+                            Name = "Erika",
                             Weapon = Weapon.Dagger
                         },
 
                         new Character
                         {
-                            FirstMidName = "Melissa",
+                            CharacterID = 17,
+                            Name = "Melissa",
                             Weapon = Weapon.Dagger
                         },
 
                         new Character
                         {
-                            FirstMidName = "Mia",
+                            CharacterID = 18,
+                            Name = "Mia",
                             Weapon = Weapon.Spear
                         },
 
                         new Character
                         {
-                            FirstMidName = "Amy",
+                            CharacterID = 19,
+                            Name = "Amy",
                             Weapon = Weapon.Rod
                         }
                     );
