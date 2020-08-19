@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KonoFandom.Areas.User.Models.KonoFandomUser>
+﻿@model KonoFandom.Models.AllViewModel
 
 @{
     ViewData["Title"] = "Admin";
@@ -13,36 +13,97 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
+            <th> 
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Role)
+                @Html.DisplayNameFor(model => model.Users.FirstOrDefault().Role)
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model.Users != null)
         {
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h1>Characters</h1>
+
+<p>
+    <a asp-area="" asp-controller="Characters" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().Biography)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().IconImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().CharacterImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().Weapon)
+            </th>
+            <th></th>
         </tr>
+    </thead>
+    <tbody>
+        @if (Model.Characters != null)
+        {
+            @foreach (var item in Model.Characters)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Biography)
+                    </td>
+                    <td>
+                        <img src=@Html.DisplayFor(modelItem => item.IconImagePath)>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CharacterImagePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weapon)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
