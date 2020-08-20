@@ -2,58 +2,27 @@
 
 @{
     ViewData["Title"] = "Index";
+    var count = 0;
 }
 
-<h1>Index</h1>
+<h1>Character List</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Biography)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IconImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CharacterImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.OrderBy(c => c.CharacterID)) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Biography)
-            </td>
-            <td>
+
+<div class="row">
+    @foreach (var item in Model.OrderBy(c => c.CharacterID))
+    {
+        @if (count % 4 == 0)
+        {
+            @:</div>
+            @:<div class="row">
+        }
+        count++;
+
+        <div class="col">
+            <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID" alt="@item.Name">
                 <img src=@Html.DisplayFor(modelItem => item.IconImagePath)>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CharacterImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Weapon)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </a>
+        </div>
+    }
+</div>
+

@@ -98,9 +98,9 @@
                         @Html.DisplayFor(modelItem => item.Weapon)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
+                        <a asp-area="" asp-controller="Characters" asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
+                        <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
+                        <a asp-area="" asp-controller="Characters" asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
                     </td>
                 </tr>
             }
