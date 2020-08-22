@@ -36,6 +36,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             AllViewModel allViewModel = new AllViewModel();
             allViewModel.Users = _identityContext.KonoFandomUser.ToList();
             allViewModel.Characters = _konoFandomContext.Character.ToList();
+            allViewModel.Cards = _konoFandomContext.Card.ToList();
             return View(allViewModel);
         }
 

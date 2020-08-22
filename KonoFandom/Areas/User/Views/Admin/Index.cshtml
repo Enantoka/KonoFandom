@@ -13,7 +13,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th> 
+            <th>
                 @Html.DisplayNameFor(model => model.Users.FirstOrDefault().UserName)
             </th>
             <th>
@@ -73,7 +73,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Characters.FirstOrDefault().Weapon)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -101,6 +100,58 @@
                         <a asp-area="" asp-controller="Characters" asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
                         <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
                         <a asp-area="" asp-controller="Characters" asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h1>Cards</h1>
+
+<p>
+    <a asp-area="" asp-controller="Cards" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().Rarity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().Character)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Cards != null)
+        {
+            @foreach (var item in Model.Cards)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rarity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Character.CharacterID)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Cards" asp-action="Edit" asp-route-id="@item.CardID">Edit</a> |
+                        <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">Details</a> |
+                        <a asp-area="" asp-controller="Cards" asp-action="Delete" asp-route-id="@item.CardID">Delete</a>
                     </td>
                 </tr>
             }
