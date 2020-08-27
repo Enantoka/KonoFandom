@@ -31,12 +31,12 @@ namespace KonoFandom.Areas.Admin.Controllers
         }
 
         // GET: AdminController
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             AllViewModel allViewModel = new AllViewModel();
-            allViewModel.Users = _identityContext.KonoFandomUser.ToList();
-            allViewModel.Characters = _konoFandomContext.Character.ToList();
-            allViewModel.Cards = _konoFandomContext.Card.ToList();
+            allViewModel.Users = await _identityContext.KonoFandomUser.ToListAsync();
+            allViewModel.Characters = await _konoFandomContext.Character.ToListAsync();
+            allViewModel.Cards = await _konoFandomContext.Card.ToListAsync();
             return View(allViewModel);
         }
 
