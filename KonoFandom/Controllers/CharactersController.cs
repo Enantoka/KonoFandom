@@ -33,6 +33,7 @@ namespace KonoFandom.Controllers
             }
 
             var character = await _context.Character
+                .Include(c => c.Cards)
                 .FirstOrDefaultAsync(m => m.CharacterID == id);
             if (character == null)
             {
