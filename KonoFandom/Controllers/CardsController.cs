@@ -9,22 +9,23 @@ using KonoFandom.Models;
 
 namespace KonoFandom.Controllers
 {
-    public class CharactersController : Controller
+    public class CardsController : Controller
     {
         private readonly KonoFandomContext _context;
 
-        public CharactersController(KonoFandomContext context)
+        public CardsController(KonoFandomContext context)
         {
             _context = context;
         }
 
-        // GET: Characters
+        // GET: Cards
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Character.ToListAsync());
+            var konoFandomContext = _context.Card.Include(c => c.Character);
+            return View(await konoFandomContext.ToListAsync());
         }
 
-        // GET: Characters/Details/5
+        // GET: Cards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,40 +33,42 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var character = await _context.Character
-                .Include(c => c.Cards)
-                .FirstOrDefaultAsync(m => m.CharacterID == id);
-            if (character == null)
+            var card = await _context.Card
+                .Include(c => c.Character)
+                .FirstOrDefaultAsync(m => m.CardID == id);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            return View(character);
+            return View(card);
         }
 
-        // GET: Characters/Create
+        // GET: Cards/Create
         public IActionResult Create()
         {
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
             return View();
         }
 
-        // POST: Characters/Create
+        // POST: Cards/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CharacterID,Name,Biography,IconImagePath,CharacterImagePath,Weapon")] Character character)
+        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID")] Card card)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(character);
+                _context.Add(card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(character);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
+            return View(card);
         }
 
-        // GET: Characters/Edit/5
+        // GET: Cards/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +76,23 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var character = await _context.Character.FindAsync(id);
-            if (character == null)
+            var card = await _context.Card.FindAsync(id);
+            if (card == null)
             {
                 return NotFound();
             }
-            return View(character);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
+            return View(card);
         }
 
-        // POST: Characters/Edit/5
+        // POST: Cards/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CharacterID,Name,Biography,IconImagePath,CharacterImagePath,Weapon")] Character character)
+        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID")] Card card)
         {
-            if (id != character.CharacterID)
+            if (id != card.CardID)
             {
                 return NotFound();
             }
@@ -97,12 +101,12 @@ namespace KonoFandom.Controllers
             {
                 try
                 {
-                    _context.Update(character);
+                    _context.Update(card);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CharacterExists(character.CharacterID))
+                    if (!CardExists(card.CardID))
                     {
                         return NotFound();
                     }
@@ -113,10 +117,11 @@ namespace KonoFandom.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(character);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
+            return View(card);
         }
 
-        // GET: Characters/Delete/5
+        // GET: Cards/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +129,31 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var character = await _context.Character
-                .FirstOrDefaultAsync(m => m.CharacterID == id);
-            if (character == null)
+            var card = await _context.Card
+                .Include(c => c.Character)
+                .FirstOrDefaultAsync(m => m.CardID == id);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            return View(character);
+            return View(card);
         }
 
-        // POST: Characters/Delete/5
+        // POST: Cards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var character = await _context.Character.FindAsync(id);
-            _context.Character.Remove(character);
+            var card = await _context.Card.FindAsync(id);
+            _context.Card.Remove(card);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CharacterExists(int id)
+        private bool CardExists(int id)
         {
-            return _context.Character.Any(e => e.CharacterID == id);
+            return _context.Card.Any(e => e.CardID == id);
         }
     }
 }

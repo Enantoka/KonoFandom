@@ -205,7 +205,7 @@ namespace KonoFandom.Models
                             Name = "Starter",
                             Rarity = 1,
                             ImagePath = "",
-                            CharacterID = 1
+                            CharacterID = 3
                         },
 
                         new Card
@@ -213,7 +213,7 @@ namespace KonoFandom.Models
                             Name = "Plain Clothed",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 1
+                            CharacterID = 3
                         },
 
                         new Card

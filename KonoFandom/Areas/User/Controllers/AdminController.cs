@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SQLitePCL;
 using Microsoft.AspNetCore.Authorization;
+using KonoFandom.Models;
 
 namespace KonoFandom.Areas.Admin.Controllers
 {
@@ -19,20 +20,24 @@ namespace KonoFandom.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<KonoFandomUser> _userManager;
-        private readonly IdentityContext _context;
+        private readonly IdentityContext _identityContext;
+        private readonly KonoFandomContext _konoFandomContext;
 
-        public AdminController(UserManager<KonoFandomUser> userManager, IdentityContext context)
+        public AdminController(UserManager<KonoFandomUser> userManager, IdentityContext identityContext, KonoFandomContext konoFandomContext)
         {
             _userManager = userManager;
-            _context = context;
+            _identityContext = identityContext;
+            _konoFandomContext = konoFandomContext;
         }
 
         // GET: AdminController
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            _context.KonoFandomUser.ToList();
-            //var users = _userManager.Users;
-            return View(_context.KonoFandomUser.ToList());
+            AllViewModel allViewModel = new AllViewModel();
+            allViewModel.Users = await _identityContext.KonoFandomUser.ToListAsync();
+            allViewModel.Characters = await _konoFandomContext.Character.ToListAsync();
+            allViewModel.Cards = await _konoFandomContext.Card.ToListAsync();
+            return View(allViewModel);
         }
 
         [Authorize(Roles = "Admin")]
@@ -44,7 +49,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var user = await _context.KonoFandomUser
+            var user = await _identityContext.KonoFandomUser
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (user == null)
@@ -75,8 +80,8 @@ namespace KonoFandom.Areas.Admin.Controllers
                 // Create new user
                 //await _userManager.CreateAsync(user, user.PasswordHash);
                 user.PasswordHash = new PasswordHasher<KonoFandomUser>().HashPassword(user, user.PasswordHash);
-                _context.KonoFandomUser.Add(user);
-                await _context.SaveChangesAsync();
+                _identityContext.KonoFandomUser.Add(user);
+                await _identityContext.SaveChangesAsync();
 
                 // Assign user a role
                 await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(Role), user.Role));
@@ -95,7 +100,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var user = await _context.KonoFandomUser.FindAsync(id);
+            var user = await _identityContext.KonoFandomUser.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -158,7 +163,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var user = await _context.KonoFandomUser
+            var user = await _identityContext.KonoFandomUser
                 .FirstOrDefaultAsync(m => m.Id == id);
             if ( user == null)
             {
@@ -174,15 +179,15 @@ namespace KonoFandom.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var user = await _context.KonoFandomUser.FindAsync(id);
-            _context.KonoFandomUser.Remove(user);
-            await _context.SaveChangesAsync();
+            var user = await _identityContext.KonoFandomUser.FindAsync(id);
+            _identityContext.KonoFandomUser.Remove(user);
+            await _identityContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UserExists(string id)
         {
-            return _context.KonoFandomUser.Any(e => e.Id == id);
+            return _identityContext.KonoFandomUser.Any(e => e.Id == id);
         }
     }
 }
