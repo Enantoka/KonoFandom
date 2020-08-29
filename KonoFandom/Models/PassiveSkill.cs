@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.Models
 {
-    public class Ultimate : Skill
+    public class PassiveSkill : Skill
     {
+        public ICollection<Card> Cards { get; set; }
     }
 }

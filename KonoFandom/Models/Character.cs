@@ -28,5 +28,7 @@ namespace KonoFandom.Models
         public Weapon Weapon { get; set; }
 
         public ICollection<Card> Cards { get; set; }
+
+        public UltimateSkill UltimateSkill { get; set; }
     }
 }

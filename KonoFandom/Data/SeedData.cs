@@ -150,14 +150,72 @@ namespace KonoFandom.Models
                         }
                     );
                     context.SaveChanges();
+                }
 
+                if (!context.Skill.Any())
+                {
+                    context.AddRange(
+                        new UltimateSkill
+                        {
+                            Name = "Ult1",
+                            Description = "Desc1",
+                            CharacterID = 1
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Ult2",
+                            Description = "Desc2",
+                            CharacterID = 2
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Ult3",
+                            Description = "Desc3",
+                            CharacterID = 3
+                        },
+
+                        new PassiveSkill
+                        {
+                            Name = "Passive1",
+                            Description = "Desc1"
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
+                if (!context.BasicSkill.Any())
+                {
+                    context.BasicSkill.AddRange(
+                        new BasicSkill
+                        {
+                            Name = "Basic1",
+                            Description = "Desc1"
+                        }
+                    );
+                    context.SaveChanges();
+
+                    context.CardBasicSkill.AddRange(
+                        new CardBasicSkill
+                        {
+                            CardID = 2,
+                            BasicSkillID = 9
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
+                if (!context.Card.Any())
+                {
                     context.Card.AddRange(
                         new Card
                         {
                             Name = "Starter",
                             Rarity = 1,
                             ImagePath = "",
-                            CharacterID = 1
+                            CharacterID = 1,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -165,7 +223,8 @@ namespace KonoFandom.Models
                             Name = "Construction Site",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 1
+                            CharacterID = 1,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -173,7 +232,8 @@ namespace KonoFandom.Models
                             Name = "Adventurer",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 1
+                            CharacterID = 1,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -181,7 +241,8 @@ namespace KonoFandom.Models
                             Name = "Starter",
                             Rarity = 1,
                             ImagePath = "",
-                            CharacterID = 2
+                            CharacterID = 2,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -189,7 +250,8 @@ namespace KonoFandom.Models
                             Name = "Construction Site",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 2
+                            CharacterID = 2,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -197,7 +259,8 @@ namespace KonoFandom.Models
                             Name = "Arc Priest",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 2
+                            CharacterID = 2,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -205,7 +268,8 @@ namespace KonoFandom.Models
                             Name = "Starter",
                             Rarity = 1,
                             ImagePath = "",
-                            CharacterID = 3
+                            CharacterID = 3,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -213,7 +277,8 @@ namespace KonoFandom.Models
                             Name = "Plain Clothed",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 3
+                            CharacterID = 3,
+                            PassiveSkillID = 8
                         },
 
                         new Card
@@ -221,7 +286,8 @@ namespace KonoFandom.Models
                             Name = "Arc Wizard",
                             Rarity = 2,
                             ImagePath = "",
-                            CharacterID = 3
+                            CharacterID = 3,
+                            PassiveSkillID = 8
                         }
                     );
                     context.SaveChanges();

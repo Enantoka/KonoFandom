@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.Models
 {
-    public class Basic : Skill
+    public class BasicSkill : Skill
     {
+        public ICollection<CardBasicSkill> CardBasicSkills { get; set; }
     }
 }
