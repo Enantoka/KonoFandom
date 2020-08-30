@@ -14,8 +14,14 @@
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.cs" />
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.Designer.cs" />
     <Compile Include="Migrations\IdentityContextModelSnapshot.cs" />
-    <Compile Include="Migrations\KonoFandom\20200817134541_InitialCreate.cs" />
-    <Compile Include="Migrations\KonoFandom\20200817134541_InitialCreate.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200828151752_Initial.cs" />
+    <Compile Include="Migrations\KonoFandom\20200828151752_Initial.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200828154649_Inheritance.cs" />
+    <Compile Include="Migrations\KonoFandom\20200828154649_Inheritance.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200829130905_UpdateUltSkillRelation.cs" />
+    <Compile Include="Migrations\KonoFandom\20200829130905_UpdateUltSkillRelation.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200829145300_UpdateBasicAndPassiveSkillRelation.cs" />
+    <Compile Include="Migrations\KonoFandom\20200829145300_UpdateBasicAndPassiveSkillRelation.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>

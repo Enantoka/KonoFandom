@@ -56,7 +56,7 @@ namespace KonoFandom.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID")] Card card)
+        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace KonoFandom.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID")] Card card)
+        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
         {
             if (id != card.CardID)
             {

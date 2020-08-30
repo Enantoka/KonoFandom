@@ -21,6 +21,12 @@ namespace KonoFandom.Models
         public string ImagePath { get; set; }
 
         public int CharacterID { get; set; }
+
         public Character Character { get; set; }
+
+        public ICollection<CardBasicSkill> CardBasicSkills { get; set; }
+
+        public int PassiveSkillID { get; set; }
+        public PassiveSkill PassiveSkill { get; set; }
     }
 }
