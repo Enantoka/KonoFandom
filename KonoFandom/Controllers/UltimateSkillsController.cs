@@ -9,23 +9,23 @@ using KonoFandom.Models;
 
 namespace KonoFandom.Controllers
 {
-    public class CardsController : Controller
+    public class UltimateSkillsController : Controller
     {
         private readonly KonoFandomContext _context;
 
-        public CardsController(KonoFandomContext context)
+        public UltimateSkillsController(KonoFandomContext context)
         {
             _context = context;
         }
 
-        // GET: Cards
+        // GET: UltimateSkills
         public async Task<IActionResult> Index()
         {
-            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
+            var konoFandomContext = _context.UltimateSkill.Include(u => u.Character);
             return View(await konoFandomContext.ToListAsync());
         }
 
-        // GET: Cards/Details/5
+        // GET: UltimateSkills/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +33,42 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card
-                .Include(c => c.Character)
-                .Include(c => c.PassiveSkill)
-                .FirstOrDefaultAsync(m => m.CardID == id);
-            if (card == null)
+            var ultimateSkill = await _context.UltimateSkill
+                .Include(u => u.Character)
+                .FirstOrDefaultAsync(m => m.SkillID == id);
+            if (ultimateSkill == null)
             {
                 return NotFound();
             }
 
-            return View(card);
+            return View(ultimateSkill);
         }
 
-        // GET: Cards/Create
+        // GET: UltimateSkills/Create
         public IActionResult Create()
         {
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
             return View();
         }
 
-        // POST: Cards/Create
+        // POST: UltimateSkills/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Create([Bind("CharacterID,SkillID,Name,Description,ImagePath")] UltimateSkill ultimateSkill)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(card);
+                _context.Add(ultimateSkill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
+            return View(ultimateSkill);
         }
 
-        // GET: Cards/Edit/5
+        // GET: UltimateSkills/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +76,23 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card.FindAsync(id);
-            if (card == null)
+            var ultimateSkill = await _context.UltimateSkill.FindAsync(id);
+            if (ultimateSkill == null)
             {
                 return NotFound();
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
+            return View(ultimateSkill);
         }
 
-        // POST: Cards/Edit/5
+        // POST: UltimateSkills/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Edit(int id, [Bind("CharacterID,SkillID,Name,Description,ImagePath")] UltimateSkill ultimateSkill)
         {
-            if (id != card.CardID)
+            if (id != ultimateSkill.SkillID)
             {
                 return NotFound();
             }
@@ -105,12 +101,12 @@ namespace KonoFandom.Controllers
             {
                 try
                 {
-                    _context.Update(card);
+                    _context.Update(ultimateSkill);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CardExists(card.CardID))
+                    if (!UltimateSkillExists(ultimateSkill.SkillID))
                     {
                         return NotFound();
                     }
@@ -121,12 +117,11 @@ namespace KonoFandom.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
+            return View(ultimateSkill);
         }
 
-        // GET: Cards/Delete/5
+        // GET: UltimateSkills/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +129,31 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card
-                .Include(c => c.Character)
-                .Include(c => c.PassiveSkill)
-                .FirstOrDefaultAsync(m => m.CardID == id);
-            if (card == null)
+            var ultimateSkill = await _context.UltimateSkill
+                .Include(u => u.Character)
+                .FirstOrDefaultAsync(m => m.SkillID == id);
+            if (ultimateSkill == null)
             {
                 return NotFound();
             }
 
-            return View(card);
+            return View(ultimateSkill);
         }
 
-        // POST: Cards/Delete/5
+        // POST: UltimateSkills/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var card = await _context.Card.FindAsync(id);
-            _context.Card.Remove(card);
+            var ultimateSkill = await _context.UltimateSkill.FindAsync(id);
+            _context.UltimateSkill.Remove(ultimateSkill);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CardExists(int id)
+        private bool UltimateSkillExists(int id)
         {
-            return _context.Card.Any(e => e.CardID == id);
+            return _context.UltimateSkill.Any(e => e.SkillID == id);
         }
     }
 }

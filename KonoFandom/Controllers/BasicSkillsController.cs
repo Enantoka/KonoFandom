@@ -9,23 +9,22 @@ using KonoFandom.Models;
 
 namespace KonoFandom.Controllers
 {
-    public class CardsController : Controller
+    public class BasicSkillsController : Controller
     {
         private readonly KonoFandomContext _context;
 
-        public CardsController(KonoFandomContext context)
+        public BasicSkillsController(KonoFandomContext context)
         {
             _context = context;
         }
 
-        // GET: Cards
+        // GET: BasicSkills
         public async Task<IActionResult> Index()
         {
-            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
-            return View(await konoFandomContext.ToListAsync());
+            return View(await _context.BasicSkill.ToListAsync());
         }
 
-        // GET: Cards/Details/5
+        // GET: BasicSkills/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +32,39 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card
-                .Include(c => c.Character)
-                .Include(c => c.PassiveSkill)
-                .FirstOrDefaultAsync(m => m.CardID == id);
-            if (card == null)
+            var basicSkill = await _context.BasicSkill
+                .FirstOrDefaultAsync(m => m.SkillID == id);
+            if (basicSkill == null)
             {
                 return NotFound();
             }
 
-            return View(card);
+            return View(basicSkill);
         }
 
-        // GET: Cards/Create
+        // GET: BasicSkills/Create
         public IActionResult Create()
         {
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
             return View();
         }
 
-        // POST: Cards/Create
+        // POST: BasicSkills/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Create([Bind("SkillID,Name,Description,ImagePath")] BasicSkill basicSkill)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(card);
+                _context.Add(basicSkill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            return View(basicSkill);
         }
 
-        // GET: Cards/Edit/5
+        // GET: BasicSkills/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +72,22 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card.FindAsync(id);
-            if (card == null)
+            var basicSkill = await _context.BasicSkill.FindAsync(id);
+            if (basicSkill == null)
             {
                 return NotFound();
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            return View(basicSkill);
         }
 
-        // POST: Cards/Edit/5
+        // POST: BasicSkills/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Edit(int id, [Bind("SkillID,Name,Description,ImagePath")] BasicSkill basicSkill)
         {
-            if (id != card.CardID)
+            if (id != basicSkill.SkillID)
             {
                 return NotFound();
             }
@@ -105,12 +96,12 @@ namespace KonoFandom.Controllers
             {
                 try
                 {
-                    _context.Update(card);
+                    _context.Update(basicSkill);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CardExists(card.CardID))
+                    if (!BasicSkillExists(basicSkill.SkillID))
                     {
                         return NotFound();
                     }
@@ -121,12 +112,10 @@ namespace KonoFandom.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            return View(basicSkill);
         }
 
-        // GET: Cards/Delete/5
+        // GET: BasicSkills/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +123,30 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card
-                .Include(c => c.Character)
-                .Include(c => c.PassiveSkill)
-                .FirstOrDefaultAsync(m => m.CardID == id);
-            if (card == null)
+            var basicSkill = await _context.BasicSkill
+                .FirstOrDefaultAsync(m => m.SkillID == id);
+            if (basicSkill == null)
             {
                 return NotFound();
             }
 
-            return View(card);
+            return View(basicSkill);
         }
 
-        // POST: Cards/Delete/5
+        // POST: BasicSkills/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var card = await _context.Card.FindAsync(id);
-            _context.Card.Remove(card);
+            var basicSkill = await _context.BasicSkill.FindAsync(id);
+            _context.BasicSkill.Remove(basicSkill);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CardExists(int id)
+        private bool BasicSkillExists(int id)
         {
-            return _context.Card.Any(e => e.CardID == id);
+            return _context.BasicSkill.Any(e => e.SkillID == id);
         }
     }
 }
