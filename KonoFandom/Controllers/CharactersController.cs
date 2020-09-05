@@ -34,6 +34,11 @@ namespace KonoFandom.Controllers
 
             var character = await _context.Character
                 .Include(c => c.Cards)
+                    .ThenInclude(c => c.PassiveSkill)
+                .Include(c => c.Cards)
+                    .ThenInclude(c => c.CardBasicSkills)
+                    .ThenInclude(c => c.BasicSkill)
+                .Include(c => c.UltimateSkill)
                 .FirstOrDefaultAsync(m => m.CharacterID == id);
             if (character == null)
             {

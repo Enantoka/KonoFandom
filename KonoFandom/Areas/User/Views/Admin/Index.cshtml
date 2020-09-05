@@ -158,3 +158,147 @@
         }
     </tbody>
 </table>
+
+<h1>Basic Skills</h1>
+
+<p>
+    <a asp-area="" asp-controller="BasicSkills" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.BasicSkills != null)
+        {
+            @foreach (var item in Model.BasicSkills)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="BasicSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="" asp-controller="BasicSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="" asp-controller="BasicSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h1>Passive Skills</h1>
+
+<p>
+    <a asp-area="" asp-controller="PassiveSkills" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PassiveSkills != null)
+        {
+            @foreach (var item in Model.PassiveSkills)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h1>Ultimate Skills</h1>
+
+<p>
+    <a asp-area="" asp-controller="UltimateSkills" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimateSkills.FirstOrDefault().Character)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimateSkills.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimateSkills.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UltimateSkills.FirstOrDefault().ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PassiveSkills != null)
+        {
+            @foreach (var item in Model.UltimateSkills)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Character.CharacterID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

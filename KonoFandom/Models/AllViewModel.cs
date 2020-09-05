@@ -11,5 +11,8 @@ namespace KonoFandom.Models
         public IEnumerable<KonoFandomUser> Users;
         public IEnumerable<Character> Characters;
         public IEnumerable<Card> Cards;
+        public IEnumerable<BasicSkill> BasicSkills;
+        public IEnumerable<PassiveSkill> PassiveSkills;
+        public IEnumerable<UltimateSkill> UltimateSkills;
     }
 }

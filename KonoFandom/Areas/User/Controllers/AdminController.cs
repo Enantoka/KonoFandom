@@ -37,6 +37,9 @@ namespace KonoFandom.Areas.Admin.Controllers
             allViewModel.Users = await _identityContext.KonoFandomUser.ToListAsync();
             allViewModel.Characters = await _konoFandomContext.Character.ToListAsync();
             allViewModel.Cards = await _konoFandomContext.Card.ToListAsync();
+            allViewModel.BasicSkills = await _konoFandomContext.BasicSkill.ToListAsync();
+            allViewModel.PassiveSkills = await _konoFandomContext.PassiveSkill.ToListAsync();
+            allViewModel.UltimateSkills = await _konoFandomContext.UltimateSkill.ToListAsync();
             return View(allViewModel);
         }
 
