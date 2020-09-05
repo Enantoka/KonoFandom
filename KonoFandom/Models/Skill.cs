@@ -19,5 +19,11 @@ namespace KonoFandom.Models
         public string Description { get; set; }
 
         public string ImagePath { get; set; }
+
+        public int? BuffEffectID { get; set; }
+        public BuffEffect BuffEffect { get; set; }
+        public int? DebuffEffectID { get; set; }
+        public DebuffEffect DebuffEffect { get; set; }
+        public ICollection<SkillStatusEffect> SkillStatusEffects { get; set; }
     }
 }

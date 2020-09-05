@@ -3,15 +3,17 @@ using System;
 using KonoFandom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace KonoFandom.Migrations.KonoFandom
 {
     [DbContext(typeof(KonoFandomContext))]
-    partial class KonoFandomContextModelSnapshot : ModelSnapshot
+    [Migration("20200905145433_Element")]
+    partial class Element
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -300,25 +302,6 @@ namespace KonoFandom.Migrations.KonoFandom
                     b.HasDiscriminator<string>("Discriminator").HasValue("Skill");
                 });
 
-            modelBuilder.Entity("KonoFandom.Models.SkillStatusEffect", b =>
-                {
-                    b.Property<int>("SkillID")
-                        .HasColumnName("skill_id")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StatusEffectID")
-                        .HasColumnName("status_effect_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("SkillID", "StatusEffectID")
-                        .HasName("pk_skill_status_effect");
-
-                    b.HasIndex("StatusEffectID")
-                        .HasName("ix_skill_status_effect_status_effect_id");
-
-                    b.ToTable("skill_status_effect");
-                });
-
             modelBuilder.Entity("KonoFandom.Models.BuffEffect", b =>
                 {
                     b.HasBaseType("KonoFandom.Models.Effect");
@@ -331,13 +314,6 @@ namespace KonoFandom.Migrations.KonoFandom
                     b.HasBaseType("KonoFandom.Models.Effect");
 
                     b.HasDiscriminator().HasValue("DebuffEffect");
-                });
-
-            modelBuilder.Entity("KonoFandom.Models.StatusEffect", b =>
-                {
-                    b.HasBaseType("KonoFandom.Models.Effect");
-
-                    b.HasDiscriminator().HasValue("StatusEffect");
                 });
 
             modelBuilder.Entity("KonoFandom.Models.BasicSkill", b =>
@@ -435,23 +411,6 @@ namespace KonoFandom.Migrations.KonoFandom
                         .WithMany("Skills")
                         .HasForeignKey("DebuffEffectID")
                         .HasConstraintName("fk_skill_effect_debuff_effect_id");
-                });
-
-            modelBuilder.Entity("KonoFandom.Models.SkillStatusEffect", b =>
-                {
-                    b.HasOne("KonoFandom.Models.Skill", "Skill")
-                        .WithMany("SkillStatusEffects")
-                        .HasForeignKey("SkillID")
-                        .HasConstraintName("fk_skill_status_effect_skill_skill_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KonoFandom.Models.StatusEffect", "StatusEffect")
-                        .WithMany("SkillStatusEffects")
-                        .HasForeignKey("StatusEffectID")
-                        .HasConstraintName("fk_skill_status_effect_effect_status_effect_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("KonoFandom.Models.UltimateSkill", b =>

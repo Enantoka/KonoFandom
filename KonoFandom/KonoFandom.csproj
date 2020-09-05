@@ -22,6 +22,16 @@
     <Compile Include="Migrations\KonoFandom\20200829130905_UpdateUltSkillRelation.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20200829145300_UpdateBasicAndPassiveSkillRelation.cs" />
     <Compile Include="Migrations\KonoFandom\20200829145300_UpdateBasicAndPassiveSkillRelation.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905135029_Update.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905135029_Update.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905143216_BuffAndDeBuffEffects.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905143216_BuffAndDeBuffEffects.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905143713_UpdateSkill.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905143713_UpdateSkill.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905145433_Element.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905145433_Element.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.cs" />
+    <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
