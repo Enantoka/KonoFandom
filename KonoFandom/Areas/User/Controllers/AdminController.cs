@@ -40,6 +40,9 @@ namespace KonoFandom.Areas.Admin.Controllers
             allViewModel.BasicSkills = await _konoFandomContext.BasicSkill.ToListAsync();
             allViewModel.PassiveSkills = await _konoFandomContext.PassiveSkill.ToListAsync();
             allViewModel.UltimateSkills = await _konoFandomContext.UltimateSkill.ToListAsync();
+            allViewModel.BuffEffects = await _konoFandomContext.BuffEffect.ToListAsync();
+            allViewModel.DebuffEffects = await _konoFandomContext.DebuffEffect.ToListAsync();
+            allViewModel.StatusEffects = await _konoFandomContext.StatusEffect.ToListAsync();
             return View(allViewModel);
         }
 
