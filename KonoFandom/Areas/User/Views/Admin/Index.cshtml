@@ -377,24 +377,70 @@
     </thead>
     <tbody>
         @if (Model.DebuffEffects != null)
-        @foreach (var item in Model.DebuffEffects)
+            @foreach (var item in Model.DebuffEffects)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+<h1>Status Effects</h1>
+
+<p>
+    <a asp-area="" asp-controller="StatusEffects" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusEffects.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusEffects.FirstOrDefault().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusEffects.FirstOrDefault().ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.StatusEffects != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImagePath)
-                </td>
-                <td>
-                    <a asp-area="" asp-controller="DebuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                    <a asp-area="" asp-controller="DebuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
-                    <a asp-area="" asp-controller="DebuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
-                </td>
-            </tr>
+            @foreach (var item in Model.StatusEffects)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="StatusEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="" asp-controller="StatusEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="" asp-controller="StatusEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

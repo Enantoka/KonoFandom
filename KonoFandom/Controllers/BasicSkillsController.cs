@@ -73,7 +73,8 @@ namespace KonoFandom.Controllers
             }
 
             var basicSkill = await _context.BasicSkill
-                .Include(bs => bs.CardBasicSkills).ThenInclude(bs => bs.Card)
+                .Include(bs => bs.CardBasicSkills)
+                    .ThenInclude(bs => bs.Card)
                 .FirstOrDefaultAsync(m => m.SkillID == id);
 
             if (basicSkill == null)
@@ -122,7 +123,8 @@ namespace KonoFandom.Controllers
 
                     // Update many to many relationship
                     var skillToUpdate = await _context.BasicSkill
-                                        .Include(bs => bs.CardBasicSkills).ThenInclude(bs => bs.Card)
+                                        .Include(bs => bs.CardBasicSkills)
+                                            .ThenInclude(bs => bs.Card)
                                         .FirstOrDefaultAsync(m => m.SkillID == id);
 
                     UpdateCardBasicSkills(selectedCards, skillToUpdate);
