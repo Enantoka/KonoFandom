@@ -17,5 +17,6 @@ namespace KonoFandom.Models
         public IEnumerable<BuffEffect> BuffEffects;
         public IEnumerable<DebuffEffect> DebuffEffects;
         public IEnumerable<StatusEffect> StatusEffects;
+        public IEnumerable<Element> Elements;
     }
 }

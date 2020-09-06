@@ -43,6 +43,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             allViewModel.BuffEffects = await _konoFandomContext.BuffEffect.ToListAsync();
             allViewModel.DebuffEffects = await _konoFandomContext.DebuffEffect.ToListAsync();
             allViewModel.StatusEffects = await _konoFandomContext.StatusEffect.ToListAsync();
+            allViewModel.Elements = await _konoFandomContext.Element.ToListAsync();
             return View(allViewModel);
         }
 

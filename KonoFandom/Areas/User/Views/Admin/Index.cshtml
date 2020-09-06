@@ -444,3 +444,44 @@
         }
     </tbody>
 </table>
+
+<h1>Elements</h1>
+
+<p>
+    <a asp-area="" asp-controller="Elements" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Elements.FirstOrDefault().Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Elements.FirstOrDefault().ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Elements != null)
+        {
+
+            @foreach (var item in Model.Elements)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Elements" asp-action="Edit" asp-route-id="@item.ElementID">Edit</a> |
+                        <a asp-area="" asp-controller="Elements" asp-action="Details" asp-route-id="@item.ElementID">Details</a> |
+                        <a asp-area="" asp-controller="Elements" asp-action="Delete" asp-route-id="@item.ElementID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
