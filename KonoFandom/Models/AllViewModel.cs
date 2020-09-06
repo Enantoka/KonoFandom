@@ -14,5 +14,9 @@ namespace KonoFandom.Models
         public IEnumerable<BasicSkill> BasicSkills;
         public IEnumerable<PassiveSkill> PassiveSkills;
         public IEnumerable<UltimateSkill> UltimateSkills;
+        public IEnumerable<BuffEffect> BuffEffects;
+        public IEnumerable<DebuffEffect> DebuffEffects;
+        public IEnumerable<StatusEffect> StatusEffects;
+        public IEnumerable<Element> Elements;
     }
 }

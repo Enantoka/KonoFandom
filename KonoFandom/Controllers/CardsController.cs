@@ -79,14 +79,38 @@ namespace KonoFandom.Controllers
                 return NotFound();
             }
 
-            var card = await _context.Card.FindAsync(id);
+            // var card = await _context.Card.FindAsync(id);
+            var card = await _context.Card
+                        .Include(c => c.CardElements)
+                            .ThenInclude(c => c.Element)
+                        .FirstOrDefaultAsync(m => m.CardID == id);
+
             if (card == null)
             {
                 return NotFound();
             }
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+            PopulateCardElementData(card);
             return View(card);
+        }
+
+        private void PopulateCardElementData(Card card)
+        {
+            var elements = _context.Element;
+            var cardElements = new HashSet<int>(card.CardElements.Select(e => e.ElementID));
+            var viewModel = new List<AssignedElementData>();
+
+            foreach (var element in elements)
+            {
+                viewModel.Add(new AssignedElementData
+                {
+                    ElementID = element.ElementID,
+                    Type = element.Type,
+                    Assigned = cardElements.Contains(element.ElementID)
+                });
+            }
+            ViewData["Elements"] = viewModel;
         }
 
         // POST: Cards/Edit/5
@@ -94,7 +118,7 @@ namespace KonoFandom.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Edit(int id, string[] selectedElements, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
         {
             if (id != card.CardID)
             {
@@ -106,6 +130,14 @@ namespace KonoFandom.Controllers
                 try
                 {
                     _context.Update(card);
+
+                    // Update many to many relationship
+                    var cardToUpdate = await _context.Card
+                                        .Include(c => c.CardElements)
+                                            .ThenInclude(c => c.Element)
+                                        .FirstOrDefaultAsync(m => m.CardID == id);
+
+                    UpdateCardElements(selectedElements, cardToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -124,6 +156,41 @@ namespace KonoFandom.Controllers
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
             return View(card);
+        }
+
+        private void UpdateCardElements(string[] selectedElements, Card cardToUpdate)
+        {
+            if (selectedElements == null)
+            {
+                cardToUpdate.CardElements = new List<CardElement>();
+                return;
+            }
+
+            var selectedElementsHS = new HashSet<string>(selectedElements);
+            var cardElements = new HashSet<int>(cardToUpdate.CardElements.Select(e => e.Element.ElementID));
+
+            foreach (var element in _context.Element)
+            {
+                if (selectedElementsHS.Contains(element.ElementID.ToString()))
+                {
+                    if (!cardElements.Contains(element.ElementID))
+                    {
+                        cardToUpdate.CardElements.Add(new CardElement
+                        {
+                            ElementID = element.ElementID,
+                            CardID = cardToUpdate.CardID
+                        });
+                    }
+                }
+                else
+                {
+                    if (cardElements.Contains(element.ElementID))
+                    {
+                        CardElement elementToRemove = cardToUpdate.CardElements.FirstOrDefault(e => e.ElementID == element.ElementID);
+                        _context.Remove(elementToRemove);
+                    }
+                }
+            }
         }
 
         // GET: Cards/Delete/5
