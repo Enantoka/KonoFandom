@@ -8,22 +8,21 @@
 
 <h1>Character List</h1>
 
-
 <div class="row">
-    @foreach (var item in Model.OrderBy(c => c.CharacterID))
-    {
-        @if (count % 4 == 0)
+    @{
+        int counter = 0;
+        
+        foreach (var item in Model.OrderBy(c => c.CharacterID))
         {
-            @:</div>
-            @:<div class="row">
+            @if (counter++ % 4 == 0)
+            {
+                <div class="w-100 d-none d-md-block"></div>
+            }
+            <div class="col-3 col-xs-3">
+                <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
+                    <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
+                </a>
+            </div> 
         }
-        count++;
-
-        <div class="col">
-            <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID" alt="@item.Name">
-                <img src=@Html.DisplayFor(modelItem => item.IconImagePath)>
-            </a>
-        </div>
     }
 </div>
-

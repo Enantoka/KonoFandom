@@ -78,7 +78,7 @@
     <tbody>
         @if (Model.Characters != null)
         {
-            @foreach (var item in Model.Characters.OrderBy(c => c.CharacterID)
+            @foreach (var item in Model.Characters.OrderBy(c => c.CharacterID))
             {
                 <tr>
                     <td>
@@ -88,7 +88,7 @@
                         @Html.DisplayFor(modelItem => item.Biography)
                     </td>
                     <td>
-                        <img src=@Html.DisplayFor(modelItem => item.IconImagePath)>
+                        <img src=@Html.DisplayFor(modelItem => item.IconImagePath) width="112" height="128">
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CharacterImagePath)
