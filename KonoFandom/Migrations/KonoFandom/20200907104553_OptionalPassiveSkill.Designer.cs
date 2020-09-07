@@ -3,15 +3,17 @@ using System;
 using KonoFandom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace KonoFandom.Migrations.KonoFandom
 {
     [DbContext(typeof(KonoFandomContext))]
-    partial class KonoFandomContextModelSnapshot : ModelSnapshot
+    [Migration("20200907104553_OptionalPassiveSkill")]
+    partial class OptionalPassiveSkill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

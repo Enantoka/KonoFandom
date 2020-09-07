@@ -32,6 +32,8 @@
     <Compile Include="Migrations\KonoFandom\20200905145433_Element.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.cs" />
     <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.cs" />
+    <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>

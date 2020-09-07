@@ -78,7 +78,7 @@
     <tbody>
         @if (Model.Characters != null)
         {
-            @foreach (var item in Model.Characters)
+            @foreach (var item in Model.Characters.OrderBy(c => c.CharacterID)
             {
                 <tr>
                     <td>
