@@ -3,22 +3,21 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var count = 0;
 }
 
 <h1>Character List</h1>
 
 <div class="row">
     @{
-        int counter = 0;
+        int count = 0;
         
         foreach (var item in Model.OrderBy(c => c.CharacterID))
         {
-            @if (counter++ % 4 == 0)
+            @if (count++ % 4 == 0)
             {
                 <div class="w-100 d-none d-md-block"></div>
             }
-            <div class="col-3 col-xs-3">
+            <div class="col-3">
                 <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
                     <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
                 </a>

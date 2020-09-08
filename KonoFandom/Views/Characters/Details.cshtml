@@ -4,103 +4,79 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="container align-content-center">
+    <div class="row">
+        <div class="col-6">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1>@Html.DisplayFor(model => model.Name)</h1>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5>@Html.DisplayNameFor(model => model.Biography)</h5>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <p>@Html.DisplayFor(model => model.Biography)</p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h5>@Html.DisplayNameFor(model => model.Weapon)</h5>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <p>@Html.DisplayFor(model => model.Weapon)</p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 text-center border border-bottom-0">
+                            <h5>@Html.DisplayNameFor(model => model.UltimateSkill) - @Html.DisplayFor(model => model.UltimateSkill.Name)</h5>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-4 border border-right-0">
+                            <img src=@Html.DisplayFor(model => model.UltimateSkill.ImagePath) class="img-fluid mx-auto d-block">
+                        </div>
+                        <div class="col-8 border">
+                            <p>@Html.DisplayFor(model => model.UltimateSkill.Description)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <img src=@Html.DisplayFor(model => model.CharacterImagePath) class="img-fluid mx-auto d-block">
+        </div>
+    </div>
 
-<div>
-    <h4>Character</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IconImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IconImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CharacterImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CharacterImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Weapon)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Weapon)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UltimateSkill)
-        </dt>
-        <dd class="col-sm-5">
-            @Html.DisplayFor(model => model.UltimateSkill.Name)
-        </dd>
-        <dd class="col-sm-5">
-            @Html.DisplayFor(model => model.UltimateSkill.Description)
-        </dd>
-    </dl>
-</div>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().Rarity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().PassiveSkill)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cards.FirstOrDefault().CardBasicSkills.FirstOrDefault().BasicSkill)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Cards != null)
-        {
-            @foreach (var item in Model.Cards)
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h1>Cards</h1>
+        </div>
+        @{
+            if (Model.Cards != null)
             {
-        <tr>
-            <td>
-                <img src=@Html.DisplayFor(modelItem => item.ImagePath)>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rarity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PassiveSkill.Name)
-            </td>
-            <td>
-                @foreach (var assignedSkill in item.CardBasicSkills)
+                int count = 0;
+
+                foreach (var item in Model.Cards.OrderByDescending(c => c.Rarity))
                 {
-                    @Html.DisplayFor(modelItem => assignedSkill.BasicSkill.Name) <hr />
+                    @if (count++ % 4 == 0)
+                    {
+                        <div class="w-100 d-none d-md-block"></div>
+                    }
+                    <div class="col-3">
+                        <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">
+                            <img src=@Html.DisplayFor(modelItem => item.ImagePath) class="img-fluid" alt="@item.Name">
+                        </a>
+                    </div>
                 }
-            </td>
-        </tr>
             }
         }
-    </tbody>
-</table>
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CharacterID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    </div>
 </div>
