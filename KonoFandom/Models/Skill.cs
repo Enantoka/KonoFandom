@@ -11,11 +11,11 @@ namespace KonoFandom.Models
         public int SkillID { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(255)]
         public string Description { get; set; }
 
         public string ImagePath { get; set; }

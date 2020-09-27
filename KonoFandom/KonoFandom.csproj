@@ -34,7 +34,12 @@
     <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.cs" />
     <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.cs" />
+    <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\cream-embossed-diamond.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
@@ -48,5 +53,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 </Project>
