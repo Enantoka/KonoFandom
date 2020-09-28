@@ -11,6 +11,9 @@
     <None Remove="Migrations\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.cs" />
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.Designer.cs" />
     <Compile Include="Migrations\IdentityContextModelSnapshot.cs" />
@@ -39,7 +42,7 @@
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="wwwroot\cream-embossed-diamond.png" />
+    <None Include="compilerconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
@@ -53,8 +56,5 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 </Project>
