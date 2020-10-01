@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SQLitePCL;
 using Microsoft.AspNetCore.Authorization;
 using KonoFandom.Models;
+using KonoFandom.Areas.GameData.Models;
 
 namespace KonoFandom.Areas.Admin.Controllers
 {

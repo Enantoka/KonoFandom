@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using KonoFandom.Areas.User.Models;
 using KonoFandom.Areas.User.Data;
-using KonoFandom.Models;
+using KonoFandom.Areas.GameData.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -73,6 +73,10 @@ namespace KonoFandom
 
                 endpoints.MapControllerRoute(
                     name: "User",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "GameData",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(

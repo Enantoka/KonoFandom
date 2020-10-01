@@ -1,4 +1,5 @@
-﻿using KonoFandom.Areas.User.Models;
+﻿using KonoFandom.Areas.GameData.Models;
+using KonoFandom.Areas.User.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
