@@ -5,11 +5,10 @@
 <partial name="_HeadPartial" />
 
 <body>
-    <!-- Home Page-->
     @if (ViewData["IsHome"] != null && (bool)ViewData["IsHome"])
     {
-        <!-- Navigation -->
         <div class="background-visual">
+            <!-- Navigation -->
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark fixed-top">
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KonoFandom</a>
@@ -39,13 +38,8 @@
                     </div>
                 </div>
             </nav>
-            <div class="container h-100">
-                <div class="row justify-content-center align-items-center h-100">
-                    <main role="main" class="pb-3">
-                        @RenderBody()
-                    </main>
-                </div>
-            </div>
+            <!-- Home Page-->
+            @RenderBody()
         </div>
     }
 
