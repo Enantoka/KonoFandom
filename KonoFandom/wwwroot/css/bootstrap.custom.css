@@ -7028,6 +7028,17 @@ a.text-dark:hover, a.text-dark:focus {
   background-size: cover;
   height: 100vh; }
 
+.home-top-bg {
+  background: linear-gradient(135deg, #729dca 60%, white 60%);
+  background-size: cover; }
+
+@media (min-width: 897px) {
+  .home-top-bg {
+    min-height: 100vh; } }
+
+.orange-bg {
+  background-color: orange; }
+
 .carousel-indicators li {
   width: 1em;
   height: 1em;

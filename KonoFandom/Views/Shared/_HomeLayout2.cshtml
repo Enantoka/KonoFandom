@@ -4,13 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KonoFandom</title>
-    @*@<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="~/css/bootstrap.custom.min.css" asp-append-version="true" />
 
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark ">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KonoFandom</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,18 +17,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="_AdminPartial" />
-                <ul class="navbar-nav flex-grow-1">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="GameData" asp-controller="Characters" asp-action="Index">Characters</a>
+                        <a href="#" class="nav-link text-light">UPDATES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="GameData" asp-controller="Cards" asp-action="Index">Cards</a>
+                        <a class="nav-link text-light" asp-area="GameData" asp-controller="Characters" asp-action="Index">CHARACTERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <a class="nav-link text-light" asp-area="GameData" asp-controller="Cards" asp-action="Index">CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light">TUTORIAL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light">STORY</a>
                     </li>
                 </ul>
+                <partial name="_AdminPartial" />
             </div>
         </div>
     </nav>
