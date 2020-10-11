@@ -4,78 +4,100 @@
     ViewData["Title"] = "Details";
 }
 
+<div id="main-bg">
+    <div class="container" id="main-content">
+        <h1>@Html.DisplayNameFor(model => model.Biography)</h1>
+        <table class="table table-borderless text-center m-auto w-50">
+            <tbody>
+                <tr>
+                    <th class="align-middle">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <td class="align-middle">
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                    <td rowspan="4">
+                        <img src=@Html.DisplayFor(model => model.CharacterImagePath) class="img-fluid mx-auto d-block" style="height: 500px" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="align-middle">
+                        CV
+                    </th>
+                    <td class="align-middle">
+                        CV's Name'
+                    </td>
+                </tr>
+                <tr>
+                    <th class="align-middle">
+                        Birthday
+                    </th>
+                    <td class="align-middle">
+                        Birthday Date
+                    </td>
+                </tr>
+                <tr>
+                    <th class="align-middle">
+                        @Html.DisplayNameFor(model => model.Weapon)
+                    </th>
+                    <td class="align-middle">
+                        @Html.DisplayFor(model => model.Weapon)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <p>
+                            @Html.DisplayFor(model => model.Biography)
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-<div class="row align-content-center">
-    <div class="col-6">
-        <div class="row mb-4">
-            <div class="col-12">
-                <h1>@Html.DisplayFor(model => model.Name)</h1>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <h5>@Html.DisplayNameFor(model => model.Biography)</h5>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <p>@Html.DisplayFor(model => model.Biography)</p>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <h5>@Html.DisplayNameFor(model => model.Weapon)</h5>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12">
-                <p>@Html.DisplayFor(model => model.Weapon)</p>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <div class="row">
-                    <div class="col-12 border border-bottom-0">
-                        <h5>@Html.DisplayNameFor(model => model.UltimateSkill) - @Html.DisplayFor(model => model.UltimateSkill.Name)</h5>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <div class="row">
+                            <div class="col-12 border border-bottom-0">
+                                <h5>@Html.DisplayNameFor(model => model.UltimateSkill) - @Html.DisplayFor(model => model.UltimateSkill.Name)</h5>
+                            </div>
+                        </div>
+                        <div class="row mb-4 border align-items-center">
+                            <div class="col-4 border-right">
+                                <img src=@Html.DisplayFor(model => model.UltimateSkill.ImagePath) class="img-fluid mx-auto d-block">
+                            </div>
+                            <div class="col-8">
+                                <span>@Html.DisplayFor(model => model.UltimateSkill.Description)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row mb-4 border align-items-center">
-                    <div class="col-4 border-right">
-                        <img src=@Html.DisplayFor(model => model.UltimateSkill.ImagePath) class="img-fluid mx-auto d-block">
-                    </div>
-                    <div class="col-8">
-                        <span>@Html.DisplayFor(model => model.UltimateSkill.Description)</span>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="col-3">
-        <img src=@Html.DisplayFor(model => model.CharacterImagePath) class="img-fluid mx-auto d-block">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 mb-4">
-        <h1>Cards</h1>
-    </div>
-    @{
-        if (Model.Cards != null)
-        {
-            int count = 0;
-
-            foreach (var item in Model.Cards.OrderByDescending(c => c.Rarity))
-            {
-                @if (count++ % 4 == 0)
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h1>Cards</h1>
+            </div>
+            @{
+                if (Model.Cards != null)
                 {
-                    <div class="w-100 d-none d-md-block"></div>
+                    int count = 0;
+
+                    foreach (var item in Model.Cards.OrderByDescending(c => c.Rarity))
+                    {
+                        @if (count++ % 4 == 0)
+                        {
+                            <div class="w-100 d-none d-md-block"></div>
+                        }
+                        <div class="col-3">
+                            <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">
+                                <img src=@Html.DisplayFor(modelItem => item.ImagePath) class="img-fluid" alt="@item.Name">
+                            </a>
+                        </div>
+                    }
                 }
-                <div class="col-3">
-                    <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">
-                        <img src=@Html.DisplayFor(modelItem => item.ImagePath) class="img-fluid" alt="@item.Name">
-                    </a>
-                </div>
             }
-        }
-    }
+        </div>
+    </div>
 </div>

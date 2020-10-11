@@ -7039,6 +7039,16 @@ a.text-dark:hover, a.text-dark:focus {
 .orange-bg {
   background-color: orange; }
 
+#main-bg {
+  background: #ece9e6;
+  height: 100vh; }
+
+#main-content {
+  background-color: white;
+  border: groove;
+  min-height: 100vh;
+  padding: 50px, 50px, 0px, 50px; }
+
 .carousel-indicators li {
   width: 1em;
   height: 1em;

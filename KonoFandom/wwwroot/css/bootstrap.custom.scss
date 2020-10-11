@@ -33,11 +33,27 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     background-color: orange;
 }
 
+#main-bg {
+    background: #ece9e6;
+    height: 100vh;
+}
+
+// Container for main content
+#main-content {
+    background-color: white;
+    border: groove;
+    min-height: 100vh;
+    padding: 50px, 50px, 0px, 50px;
+}
 
 // Carousel
 .carousel-indicators li {
     width: 1em;
     height: 1em;
     border-radius: 100%;
+}
+
+.table-data {
+
 }
 
