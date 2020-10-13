@@ -16,15 +16,50 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     height: 100vh;
 }
 
-// Home Top Background
-.home-top-bg {
+// Home Top
+#home-top {
     background: linear-gradient(135deg, #729dca 60%, white 60%);
     background-size: cover;
+    min-width: 100vw;
 }
 
-@media (min-width: 897px) {
-    .home-top-bg {
-        min-height: 100vh;
+.wrapper{
+    position: relative;
+}
+
+#home-top2 {
+
+    .background-top {
+        background: linear-gradient(135deg, #729dca 60%, white 60%);
+        position: relative;
+        z-index: -2;
+    }
+
+    .welcome-msg {
+        position: relative;
+        text-align: center;
+    }
+
+    .ksfd-logo {
+        position: relative;
+    }
+
+    .appstore-top {
+        position: relative;
+        left: 3%;
+        top: 25%;
+
+        a {
+            display: inline-block;
+        }
+    }
+
+    .pic {
+        margin: auto;
+        position: relative;
+        left: -4%;
+        top: 4%;
+        z-index: -1;
     }
 }
 
@@ -35,7 +70,7 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 
 #main-bg {
     background: #ece9e6;
-    height: 100vh;
+    height: 100%;
 }
 
 // Container for main content
