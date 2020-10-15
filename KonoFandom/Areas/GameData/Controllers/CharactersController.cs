@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
 using KonoFandom.Areas.GameData.Models;
+using KonoFandom.Areas.GameData.PageModels;
 
 namespace KonoFandom.Areas.GameData.Controllers
 {
@@ -42,12 +43,17 @@ namespace KonoFandom.Areas.GameData.Controllers
                     .ThenInclude(c => c.BasicSkill)
                 .Include(c => c.UltimateSkill)
                 .FirstOrDefaultAsync(m => m.CharacterID == id);
+            
             if (character == null)
             {
                 return NotFound();
             }
 
-            return View(character);
+            CharacterDetails cdvm = new CharacterDetails();
+            cdvm.Character = character;
+            cdvm.Characters = await _context.Character.ToListAsync();
+
+            return View(cdvm);
         }
 
         // GET: Characters/Create
