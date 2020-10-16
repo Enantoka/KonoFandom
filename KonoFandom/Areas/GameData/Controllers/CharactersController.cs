@@ -51,7 +51,7 @@ namespace KonoFandom.Areas.GameData.Controllers
 
             CharacterDetails cdvm = new CharacterDetails();
             cdvm.Character = character;
-            cdvm.Characters = await _context.Character.ToListAsync();
+            cdvm.Characters = await _context.Character.OrderBy(c => c.CharacterID).ToListAsync();
 
             return View(cdvm);
         }

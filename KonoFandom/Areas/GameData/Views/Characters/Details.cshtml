@@ -5,54 +5,42 @@
 }
 
 <div id="main-bg">
-    <div class="container" id="main-content">
-        <!-- Character Nav Carousel -->
-        <div class="container">
-            <div id="characterNav" class="carousel slide">
-                <ol class="carousel-indicators">
-
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
+    <!-- Character Nav Carousel -->
+    <div class="container">
+        <div id="characterNav" class="carousel slide">
+            <div class="carousel-inner">
+             @{
+                var i = 0;
+                while (i < Model.Characters.Count())
+                {
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
                         <div class="row">
-                            <div class="col">
-                                <img src="/assets/img/app-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col">
-                                <img src="/assets/img/app-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col">
-                                <img src="/assets/img/app-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
+                            @do {
+                                <div class="col-2">
+                                    <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id=" @Model.Characters.ElementAt(i).CharacterID">
+                                        <img src=@Model.Characters.ElementAt(i).IconImagePath class="img-fluid" alt=" @Model.Characters.ElementAt(i).Name">
+                                    </a>
+                                </div>
+                                i++;
+                            } while (i % 6 != 0 && i < Model.Characters.Count());
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col">
-                                <img src="/assets/img/play-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col">
-                                <img src="/assets/img/play-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="col">
-                                <img src="/assets/img/play-store-logo.png" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#characterNav" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#characterNav" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                }
+            }
             </div>
+            <a class="carousel-control-prev" href="#characterNav" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#characterNav" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+    </div>
 
+    <!-- Character Info -->
+    <div class="container" id="main-content">
         <h1>@Html.DisplayNameFor(model => model.Character.Biography)</h1>
         <table class="table table-borderless text-center m-auto w-50">
             <tbody>
