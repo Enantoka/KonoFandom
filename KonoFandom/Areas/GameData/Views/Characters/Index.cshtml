@@ -2,26 +2,28 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Character List</h1>
+<section class="chara-bg">
+    <h1>Character List</h1>
+    <div class="container">
+        <div class="row">
+            @{
+                int count = 0;
 
-<div class="row">
-@{
-    int count = 0;
-        
-    foreach (var item in Model.OrderBy(c => c.CharacterID))
-    {
-        @if (count++ % 4 == 0)
-        {
-            <div class="w-100 d-none d-md-block"></div>
-        }
-        <div class="col-3">
-            <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
-                <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
-            </a>
-        </div> 
-    }
-}
-</div>
+                foreach (var item in Model.OrderBy(c => c.CharacterID))
+                {
+                    @if (count++ % 4 == 0)
+                    {
+                        <div class="w-100 d-none d-md-block"></div>
+                    }
+                    <div class="col-3">
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
+                            <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

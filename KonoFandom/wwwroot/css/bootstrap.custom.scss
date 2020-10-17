@@ -7,6 +7,10 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 
 @import "../lib/bootstrap/scss/bootstrap";
 
+.bg-brown {
+    background-color: #40170d;
+}
+
 // Wrapper
 .wrapper{
     position: relative;
@@ -58,6 +62,12 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     }
 }
 
+.chara-bg {
+    background: url(../assets/img/bg_01.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 // Orange Background
 .orange-bg {
     background-color: orange;
@@ -83,8 +93,12 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     border-radius: 100%;
 }
 
-.table-data {
+.carousel-control-prev {
+    left: -10%;
+}
 
+.carousel-control-next {
+    right: -10%;
 }
 
 // Home Background Visual
