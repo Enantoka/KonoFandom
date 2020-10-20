@@ -7021,34 +7021,31 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-.bg-brown {
-  background-color: #40170d; }
-
 .wrapper {
   position: relative;
   left: 3%;
   top: 10%; }
 
-#home-top2 .background-top {
+#home-top .background-top {
   background: linear-gradient(135deg, #729dca 60%, white 60%);
   position: relative;
   z-index: -2; }
 
-#home-top2 .welcome-msg {
+#home-top .welcome-msg {
   text-align: center; }
-  #home-top2 .welcome-msg p {
+  #home-top .welcome-msg p {
     margin-bottom: 0em; }
     @media (max-width: 575px) {
-      #home-top2 .welcome-msg p {
+      #home-top .welcome-msg p {
         font-size: 0.7rem; } }
 
-#home-top2 .ksfd-logo img {
+#home-top .ksfd-logo img {
   width: 50%; }
 
-#home-top2 .appstore-top a {
+#home-top .appstore-top a {
   display: inline-block; }
 
-#home-top2 .pic {
+#home-top .pic {
   margin: auto;
   position: relative;
   left: -4%;
@@ -7058,18 +7055,16 @@ a.text-dark:hover, a.text-dark:focus {
 .chara-bg {
   background: url(../assets/img/bg_01.jpg);
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-attachment: fixed; }
 
 .orange-bg {
   background-color: orange; }
 
-#main-bg {
-  background: #ece9e6;
-  height: 100%; }
-
 #main-content {
-  background-color: white;
-  border: groove;
+  background-color: #fbf0e0;
+  border-left: groove brown;
+  border-right: groove brown;
   min-height: 100vh;
   padding: 50px, 50px, 0px, 50px; }
 
@@ -7091,7 +7086,7 @@ a.text-dark:hover, a.text-dark:focus {
   background-size: cover;
   height: 100vh; }
 
-#home-top {
+#home-top2 {
   background: linear-gradient(135deg, #729dca 60%, white 60%);
   background-size: cover;
   min-width: 100vw; }
