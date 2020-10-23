@@ -9,24 +9,25 @@
     <div class="container">
         <div id="characterNav" class="carousel slide" data-interval="false">
             <div class="carousel-inner">
-             @{
-                var i = 0;
-                while (i < Model.Characters.Count())
-                {
-                    <div class="carousel-item @(i == 0 ? "active" : "")">
-                        <div class="row">
-                            @do {
-                                <div class="col-2">
-                                    <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id=" @Model.Characters.ElementAt(i).CharacterID">
-                                        <img src=@Model.Characters.ElementAt(i).IconImagePath class="img-fluid" alt=" @Model.Characters.ElementAt(i).Name">
-                                    </a>
-                                </div>
-                                i++;
-                            } while (i % 6 != 0 && i < Model.Characters.Count());
+                @{
+                    var i = 0;
+                    while (i < Model.Characters.Count())
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="row">
+                                @do
+                                {
+                                    <div class="col-2">
+                                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id=" @Model.Characters.ElementAt(i).CharacterID">
+                                            <img src=@Model.Characters.ElementAt(i).IconImagePath class="img-fluid" alt=" @Model.Characters.ElementAt(i).Name">
+                                        </a>
+                                    </div>
+                                    i++;
+                                } while (i % 6 != 0 && i < Model.Characters.Count());
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
             </div>
             <a class="carousel-control-prev" href="#characterNav" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -110,29 +111,119 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 mb-4">
-                <h1>Cards</h1>
-            </div>
-            @{
-                if (Model.Character.Cards != null)
-                {
-                    int count = 0;
 
-                    foreach (var item in Model.Character.Cards.OrderByDescending(c => c.Rarity))
+        <h1>Cards</h1>
+        <div class="row" id="cardGallery" data-toggle="modal" data-target="#cardModal">
+        @{
+            if (Model.Character.Cards != null)
+            {
+                int count = 0;
+
+                foreach (var item in Model.Character.Cards.OrderByDescending(c => c.Rarity))
+                {
+                    @if (count++ % 4 == 0)
                     {
-                        @if (count++ % 4 == 0)
-                        {
-                            <div class="w-100 d-none d-md-block"></div>
-                        }
-                        <div class="col-3">
-                            <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">
-                                <img src=@Html.DisplayFor(modelItem => item.ImagePath) class="img-fluid" alt="@item.Name">
-                            </a>
-                        </div>
+                        <div class="w-100 d-none d-md-block"></div>
                     }
+                    <div class="col-3">
+                            <img src=@Html.DisplayFor(modelItem => item.ImagePath) class="img-fluid" data-target="#cardCarousel" alt="@item.Name">
+                    </div>
                 }
             }
+        }
+        </div>
+        <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="cardCarousel" class="carousel slide" data-interval="false">
+                            <div class="carousel-inner">
+                                @for (int j = 0; j < Model.Character.Cards.Count(); j++)
+                                {
+                                    <div class="carousel-item @(j == 0 ? "active" : "")">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <img src="@Model.Character.Cards.ElementAt(j).ImagePath" class="img-fluid" alt="@Model.Character.Cards.ElementAt(j).Name" />
+                                                </div>
+                                                <div class="col-8">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).HealthPoints)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).HealthPoints
+                                                        </div>
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalDefense)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).PhysicalDefense
+                                                        </div>
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Dexterity)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).Dexterity
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalAttack)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).PhysicalAttack
+                                                        </div>
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicDefense)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).MagicDefense
+                                                        </div>
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Luck)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).Luck
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicAttack)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).MagicAttack
+                                                        </div>
+                                                        <div class="col">
+                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Agility)
+                                                        </div>
+                                                        <div class="col">
+                                                            @Model.Character.Cards.ElementAt(j).Agility
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <a class="carousel-control-prev" href="#cardCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#cardCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
