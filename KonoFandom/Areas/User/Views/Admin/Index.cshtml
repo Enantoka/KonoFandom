@@ -53,7 +53,7 @@
 <h1>Characters</h1>
 
 <p>
-    <a asp-area="" asp-controller="Characters" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="Characters" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -97,9 +97,9 @@
                         @Html.DisplayFor(modelItem => item.Weapon)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="Characters" asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
-                        <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
-                        <a asp-area="" asp-controller="Characters" asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
                     </td>
                 </tr>
             }
@@ -110,7 +110,7 @@
 <h1>Cards</h1>
 
 <p>
-    <a asp-area="" asp-controller="Cards" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="Cards" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -149,9 +149,9 @@
                         @Html.DisplayFor(modelItem => item.Character.CharacterID)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="Cards" asp-action="Edit" asp-route-id="@item.CardID">Edit</a> |
-                        <a asp-area="" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">Details</a> |
-                        <a asp-area="" asp-controller="Cards" asp-action="Delete" asp-route-id="@item.CardID">Delete</a>
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Edit" asp-route-id="@item.CardID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">Details</a> |
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Delete" asp-route-id="@item.CardID">Delete</a>
                     </td>
                 </tr>
             }
@@ -162,7 +162,7 @@
 <h1>Basic Skills</h1>
 
 <p>
-    <a asp-area="" asp-controller="BasicSkills" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="BasicSkills" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -176,7 +176,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().ImagePath)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().BuffEffectID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().DebuffEffectID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasicSkills.FirstOrDefault().Cooldown)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -201,9 +209,12 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="BasicSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
-                        <a asp-area="" asp-controller="BasicSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
-                        <a asp-area="" asp-controller="BasicSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                        @Html.DisplayFor(modelItem => item.Cooldown)
+                    </td>
+                    <td>
+                        <a asp-area="GameData" asp-controller="BasicSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="BasicSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="GameData" asp-controller="BasicSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
                     </td>
                 </tr>
             }
@@ -214,7 +225,7 @@
 <h1>Passive Skills</h1>
 
 <p>
-    <a asp-area="" asp-controller="PassiveSkills" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="PassiveSkills" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -247,9 +258,9 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
-                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
-                        <a asp-area="" asp-controller="PassiveSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                        <a asp-area="GameData" asp-controller="PassiveSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="PassiveSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="GameData" asp-controller="PassiveSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
                     </td>
                 </tr>
             }
@@ -260,7 +271,7 @@
 <h1>Ultimate Skills</h1>
 
 <p>
-    <a asp-area="" asp-controller="UltimateSkills" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="UltimateSkills" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -299,9 +310,9 @@
                         <img src=@Html.DisplayFor(modelItem => item.ImagePath)>
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
-                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
-                        <a asp-area="" asp-controller="UltimateSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
+                        <a asp-area="GameData" asp-controller="UltimateSkills" asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="UltimateSkills" asp-action="Details" asp-route-id="@item.SkillID">Details</a> |
+                        <a asp-area="GameData" asp-controller="UltimateSkills" asp-action="Delete" asp-route-id="@item.SkillID">Delete</a>
                     </td>
                 </tr>
             }
@@ -312,7 +323,7 @@
 <h1>Buff Effects</h1>
 
 <p>
-    <a asp-area="" asp-controller="BuffEffects" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -345,9 +356,9 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="BuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                        <a asp-area="" asp-controller="BuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
-                        <a asp-area="" asp-controller="BuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
                     </td>
                 </tr>
             }
@@ -358,7 +369,7 @@
 <h1>Debuff Effects</h1>
 
 <p>
-    <a asp-area="" asp-controller="DebuffEffects" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="DebuffEffects" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -390,9 +401,9 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
-                        <a asp-area="" asp-controller="DebuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                        <a asp-area="GameData" asp-controller="DebuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="DebuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="GameData" asp-controller="DebuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
                     </td>
                 </tr>
             }
@@ -402,7 +413,7 @@
 <h1>Status Effects</h1>
 
 <p>
-    <a asp-area="" asp-controller="StatusEffects" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="StatusEffects" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -435,9 +446,9 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="StatusEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                        <a asp-area="" asp-controller="StatusEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
-                        <a asp-area="" asp-controller="StatusEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                        <a asp-area="GameData" asp-controller="StatusEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="StatusEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="GameData" asp-controller="StatusEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
                     </td>
                 </tr>
             }
@@ -448,7 +459,7 @@
 <h1>Elements</h1>
 
 <p>
-    <a asp-area="" asp-controller="Elements" asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="Elements" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -476,9 +487,9 @@
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
                     <td>
-                        <a asp-area="" asp-controller="Elements" asp-action="Edit" asp-route-id="@item.ElementID">Edit</a> |
-                        <a asp-area="" asp-controller="Elements" asp-action="Details" asp-route-id="@item.ElementID">Details</a> |
-                        <a asp-area="" asp-controller="Elements" asp-action="Delete" asp-route-id="@item.ElementID">Delete</a>
+                        <a asp-area="GameData" asp-controller="Elements" asp-action="Edit" asp-route-id="@item.ElementID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="Elements" asp-action="Details" asp-route-id="@item.ElementID">Details</a> |
+                        <a asp-area="GameData" asp-controller="Elements" asp-action="Delete" asp-route-id="@item.ElementID">Delete</a>
                     </td>
                 </tr>
             }

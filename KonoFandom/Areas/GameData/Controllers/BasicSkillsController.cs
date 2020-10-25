@@ -55,7 +55,7 @@ namespace KonoFandom.Areas.GameData.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SkillID,Name,Description,ImagePath")] BasicSkill basicSkill)
+        public async Task<IActionResult> Create([Bind("SkillID,Name,Description,ImagePath,Cooldown")] BasicSkill basicSkill)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace KonoFandom.Areas.GameData.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedCards, [Bind("SkillID,Name,Description,ImagePath")] BasicSkill basicSkill)
+        public async Task<IActionResult> Edit(int id, string[] selectedCards, [Bind("SkillID,Name,Description,ImagePath,Cooldown")] BasicSkill basicSkill)
         {
             if (id != basicSkill.SkillID)
             {

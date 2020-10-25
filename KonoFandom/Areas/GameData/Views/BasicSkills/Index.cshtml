@@ -25,7 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ImagePath)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cooldown)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +44,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cooldown)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SkillID">Edit</a> |

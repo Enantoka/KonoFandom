@@ -30,9 +30,14 @@
                 <span asp-validation-for="ImagePath" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Cooldown" class="control-label"></label>
+                <input asp-for="Cooldown" class="form-control" />
+                <span asp-validation-for="Cooldown" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <table class="table table-borderless">
                     <tr>
-                        @{ 
+                        @{
                             int count = 0;
                             List<KonoFandom.Areas.GameData.Models.AssignedBasicSkillData> cards = ViewBag.Cards;
                             if (cards != null)
@@ -41,23 +46,23 @@
                                 {
                                     if (count++ % 5 == 0)
                                     {
-                                        @:</tr><tr>
+                                    @:</tr><tr>
                                     }
                                     @:<td>
-                                        <input type="checkbox" name="selectedCards" value="@card.CardID" 
-                                                @(Html.Raw(card.Assigned ? "checked=\"checked\"" : "")) />
-                                                @card.CardID @: @card.Name 
+                                        <input type="checkbox" name="selectedCards" value="@card.CardID"
+                                               @(Html.Raw(card.Assigned ? "checked=\"checked\"" : "")) />
+                                        @card.CardID @: @card.Name
                                     @:</td>
                                 }
-                                @:</tr>
-                            }
+                            @:</tr>
                         }
-                </table>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                        }
+                    </table>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 
