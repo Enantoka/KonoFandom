@@ -162,5 +162,11 @@ namespace KonoFandom.Areas.GameData.Controllers
         {
             return _context.Character.Any(e => e.CharacterID == id);
         }
+
+        // GET: Characters
+        public async Task<IActionResult> Main()
+        {
+            return View(await _context.Character.ToListAsync());
+        }
     }
 }

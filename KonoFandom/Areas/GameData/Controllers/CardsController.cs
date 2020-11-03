@@ -230,5 +230,12 @@ namespace KonoFandom.Areas.GameData.Controllers
         {
             return _context.Card.Any(e => e.CardID == id);
         }
+
+        // GET: Cards
+        public async Task<IActionResult> Main()
+        {
+            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
+            return View(await konoFandomContext.ToListAsync());
+        }
     }
 }
