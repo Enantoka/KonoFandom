@@ -22,30 +22,18 @@ namespace KonoFandom.Areas.Admin.Controllers
     {
         private readonly UserManager<KonoFandomUser> _userManager;
         private readonly IdentityContext _identityContext;
-        private readonly KonoFandomContext _konoFandomContext;
-
-        public AdminController(UserManager<KonoFandomUser> userManager, IdentityContext identityContext, KonoFandomContext konoFandomContext)
+        public AdminController(UserManager<KonoFandomUser> userManager, IdentityContext identityContext)
         {
             _userManager = userManager;
             _identityContext = identityContext;
-            _konoFandomContext = konoFandomContext;
         }
 
         // GET: AdminController
         public async Task<IActionResult> Index()
         {
-            AllViewModel allViewModel = new AllViewModel();
-            allViewModel.Users = await _identityContext.KonoFandomUser.ToListAsync();
-            allViewModel.Characters = await _konoFandomContext.Character.ToListAsync();
-            allViewModel.Cards = await _konoFandomContext.Card.ToListAsync();
-            allViewModel.BasicSkills = await _konoFandomContext.BasicSkill.ToListAsync();
-            allViewModel.PassiveSkills = await _konoFandomContext.PassiveSkill.ToListAsync();
-            allViewModel.UltimateSkills = await _konoFandomContext.UltimateSkill.ToListAsync();
-            allViewModel.BuffEffects = await _konoFandomContext.BuffEffect.ToListAsync();
-            allViewModel.DebuffEffects = await _konoFandomContext.DebuffEffect.ToListAsync();
-            allViewModel.StatusEffects = await _konoFandomContext.StatusEffect.ToListAsync();
-            allViewModel.Elements = await _konoFandomContext.Element.ToListAsync();
-            return View(allViewModel);
+            var users = await _identityContext.KonoFandomUser.ToListAsync();
+
+            return View(users);
         }
 
         [Authorize(Roles = "Admin")]
@@ -196,6 +184,11 @@ namespace KonoFandom.Areas.Admin.Controllers
         private bool UserExists(string id)
         {
             return _identityContext.KonoFandomUser.Any(e => e.Id == id);
+        }
+
+        public IActionResult Main()
+        {
+            return View();
         }
     }
 }

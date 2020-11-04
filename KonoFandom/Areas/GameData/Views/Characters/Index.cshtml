@@ -4,26 +4,59 @@
     ViewData["Title"] = "Index";
 }
 
-<section class="chara-bg">
-    <h1 class="text-center text-white">Characters</h1>
-    <div class="container">
-        <div class="row">
-            @{
-                int count = 0;
+<h1>Characters</h1>
 
-                foreach (var item in Model.OrderBy(c => c.CharacterID))
-                {
-                    @if (count++ % 4 == 0)
-                    {
-                        <div class="w-100 d-none d-md-block"></div>
-                    }
-                    <div class="col-3">
-                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
-                            <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
-                        </a>
-                    </div>
-                }
+<p>
+    <a asp-area="GameData" asp-controller="Characters" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Biography)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IconImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CharacterImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weapon)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.OrderBy(c => c.CharacterID))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Biography)
+                    </td>
+                    <td>
+                        <img src=@Html.DisplayFor(modelItem => item.IconImagePath) width="112" height="128">
+                    </td>
+                    <td>
+                        <img src=@Html.DisplayFor(modelItem => item.CharacterImagePath) width="112" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weapon)
+                    </td>
+                    <td>
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
+                        <a asp-area="GameData" asp-controller="Characters" asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
+                    </td>
+                </tr>
             }
-        </div>
-    </div>
-</section>
+        }
+    </tbody>
+</table>

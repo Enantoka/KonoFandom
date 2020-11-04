@@ -2,13 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Buff Effects</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -26,23 +26,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
-            </td>
-        </tr>
-}
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td>
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                        <a asp-area="GameData" asp-controller="BuffEffects" asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>

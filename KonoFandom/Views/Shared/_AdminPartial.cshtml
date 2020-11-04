@@ -13,7 +13,7 @@
         @if (User.IsInRole(nameof(Role.Admin)) || User.IsInRole(nameof(Role.Moderator)))
         {
             <li class="nav-item">
-                <a class="nav-link text-light" asp-area="User" asp-controller="Admin" asp-action="Index">Database</a>
+                <a class="nav-link text-light" asp-area="User" asp-controller="Admin" asp-action="Main">Database</a>
             </li>
         }
         <li class="nav-item">

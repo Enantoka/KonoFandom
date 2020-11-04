@@ -1,25 +1,57 @@
 ﻿@model IEnumerable<KonoFandom.Areas.GameData.Models.Card>
 
 @{
-    var count = 0;
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Card List</h1>
+<h1>Cards</h1>
 
-<div class="row">
-    @foreach (var item in Model.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
-    {
-        @if (count % 4 == 0)
+<p>
+    <a asp-area="GameData" asp-controller="Cards" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rarity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Character)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
         {
-            @:</div>
-            @:<div class="row">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rarity)
+                    </td>
+                    <td>
+                        <img src=@Html.DisplayFor(modelItem => item.ImagePath)>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Character.CharacterID)
+                    </td>
+                    <td>
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Edit" asp-route-id="@item.CardID">Edit</a> |
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Details" asp-route-id="@item.CardID">Details</a> |
+                        <a asp-area="GameData" asp-controller="Cards" asp-action="Delete" asp-route-id="@item.CardID">Delete</a>
+                    </td>
+                </tr>
+            }
         }
-        count++;
-
-        <div class="col">
-            <img src=@Html.DisplayFor(modelItem => item.ImagePath) width="250" height="125">
-        </div>
-    }
-</div>
+    </tbody>
+</table>
