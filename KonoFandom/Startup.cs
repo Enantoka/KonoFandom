@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using KonoFandom.Areas.User.Models;
-using KonoFandom.Areas.User.Data;
-using KonoFandom.Areas.GameData.Models;
+using KonoFandom.Data;
+using KonoFandom.Areas.Admin.Data;
+using KonoFandom.Areas.Admin.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -72,14 +72,8 @@ namespace KonoFandom
             {
                 endpoints.MapRazorPages();
 
-                endpoints.MapAreaControllerRoute(
-                    name: "admin_route",
-                    areaName: "Admin",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapAreaControllerRoute(
-                    name: "data_route",
-                    areaName: "GameData",
+                endpoints.MapControllerRoute(
+                    name: "main_route",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(

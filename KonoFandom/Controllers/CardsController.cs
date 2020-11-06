@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using KonoFandom.Models;
-using KonoFandom.Areas.GameData.Models;
+using KonoFandom.Data;
 
 namespace KonoFandom.Controllers
 {

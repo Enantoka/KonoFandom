@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KonoFandom.Areas.User.Models;
+using KonoFandom.Areas.Admin.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace KonoFandom.Areas.User.Data
+namespace KonoFandom.Areas.Admin.Data
 {
     public class IdentityContext : IdentityDbContext<KonoFandomUser>
     {
