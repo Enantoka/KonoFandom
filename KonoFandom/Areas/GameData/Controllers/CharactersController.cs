@@ -36,12 +36,6 @@ namespace KonoFandom.Areas.GameData.Controllers
             }
 
             var character = await _context.Character
-                .Include(c => c.Cards)
-                    .ThenInclude(c => c.PassiveSkill)
-                .Include(c => c.Cards)
-                    .ThenInclude(c => c.CardBasicSkills)
-                    .ThenInclude(c => c.BasicSkill)
-                .Include(c => c.UltimateSkill)
                 .FirstOrDefaultAsync(m => m.CharacterID == id);
             
             if (character == null)
@@ -49,11 +43,7 @@ namespace KonoFandom.Areas.GameData.Controllers
                 return NotFound();
             }
 
-            CharacterDetails cdvm = new CharacterDetails();
-            cdvm.Character = character;
-            cdvm.Characters = await _context.Character.OrderBy(c => c.CharacterID).ToListAsync();
-
-            return View(cdvm);
+            return View(character);
         }
 
         // GET: Characters/Create

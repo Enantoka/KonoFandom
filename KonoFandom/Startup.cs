@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KonoFandom
 {
@@ -71,12 +72,14 @@ namespace KonoFandom
             {
                 endpoints.MapRazorPages();
 
-                endpoints.MapControllerRoute(
-                    name: "User",
+                endpoints.MapAreaControllerRoute(
+                    name: "admin_route",
+                    areaName: "Admin",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
-                    name: "GameData",
+                endpoints.MapAreaControllerRoute(
+                    name: "data_route",
+                    areaName: "GameData",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(

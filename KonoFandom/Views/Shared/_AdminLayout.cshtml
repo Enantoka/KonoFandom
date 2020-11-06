@@ -32,7 +32,7 @@
                         @if (User.IsInRole(nameof(Role.Admin)) || User.IsInRole(nameof(Role.Moderator)))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="User" asp-controller="Admin" asp-action="Index">Database</a>
+                                <a class="nav-link text-light" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Database</a>
                             </li>
                         }
                         <li class="nav-item">
@@ -46,12 +46,13 @@
         </div>
     </nav>
 
+    <!-- Sidebar Navigation -->
     <ul class="nav flex-column vh-100 text-center position-fixed" style="width:240px;">
         <li class="nav-item">
-            <a class="nav-link" asp-area="User" asp-controller="Admin" asp-action="Main">Dashboard Home</a>
+            <a class="nav-link" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-area="User" asp-controller="Admin" asp-action="Index">Users</a>
+            <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" asp-area="GameData" asp-controller="Characters" asp-action="Index">Characters</a>

@@ -20,7 +20,6 @@ namespace KonoFandom.Controllers
 
         public IActionResult Index()
         {
-            ViewData["IsHome"] = true;
             return View();
         }
 

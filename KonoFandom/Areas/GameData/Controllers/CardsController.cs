@@ -23,7 +23,7 @@ namespace KonoFandom.Areas.GameData.Controllers
         // GET: Cards
         public async Task<IActionResult> Index()
         {
-            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
+            var konoFandomContext = _context.Card;
             return View(await konoFandomContext.ToListAsync());
         }
 
