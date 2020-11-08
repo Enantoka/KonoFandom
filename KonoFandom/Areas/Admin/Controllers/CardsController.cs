@@ -62,7 +62,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,Weapon,ImagePath,CharacterID,PassiveSkillID")] Card card)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +110,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 viewModel.Add(new AssignedElementData
                 {
                     ElementID = element.ElementID,
-                    Type = element.Type,
+                    Type = element.Name,
                     Assigned = cardElements.Contains(element.ElementID)
                 });
             }
@@ -122,7 +122,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedElements, [Bind("CardID,Name,Rarity,ImagePath,CharacterID,PassiveSkillID")] Card card)
+        public async Task<IActionResult> Edit(int id, string[] selectedElements, [Bind("CardID,Name,Rarity,Weapon,ImagePath,CharacterID,PassiveSkillID")] Card card)
         {
             if (id != card.CardID)
             {

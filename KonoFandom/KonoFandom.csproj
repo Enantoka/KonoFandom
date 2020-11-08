@@ -39,6 +39,10 @@
     <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.cs" />
     <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20201108111041_UpdateModelSchema.cs" />
+    <Compile Include="Migrations\KonoFandom\20201108111041_UpdateModelSchema.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20201108114120_UpdateModelDisplayName.cs" />
+    <Compile Include="Migrations\KonoFandom\20201108114120_UpdateModelDisplayName.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>

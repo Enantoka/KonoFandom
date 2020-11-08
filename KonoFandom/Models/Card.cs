@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace KonoFandom.Models 
-{ 
+namespace KonoFandom.Models
+{
+    public enum Weapon
+    {
+        Sword, Dagger, Rod, Staff, Spear
+    }
+
     public class Card
     {
+        [Display(Name = "ID")]
         public int CardID { get; set; }
         
         [Required]
@@ -18,6 +22,11 @@ namespace KonoFandom.Models
         [Range(1,5)]
         public int Rarity { get; set; }
 
+        [Required]
+        [EnumDataType(typeof(Weapon))]
+        public Weapon Weapon { get; set; }
+
+        [Display(Name = "Image URL")]
         public string ImagePath { get; set; }
 
         public int CharacterID { get; set; }
@@ -32,15 +41,17 @@ namespace KonoFandom.Models
         // Stats attributes
         [Display(Name = "HP")]
         public int HealthPoints { get; set; }
-        [Display(Name = "Physical Atk")]
+        [Display(Name = "P.Atk")]
         public int PhysicalAttack { get; set; }
-        [Display(Name = "Magic Attack")]
+        [Display(Name = "M.Atk")]
         public int MagicAttack { get; set; }
-        [Display(Name = "Physical Defense")]
+        [Display(Name = "P.Def")]
         public int PhysicalDefense { get; set; }
-        [Display(Name = "Magic Defense")]
+        [Display(Name = "M.Def")]
         public int MagicDefense { get; set; }
+        [Display(Name = "Agi")]
         public int Agility { get; set; }
+        [Display(Name = "Dex")]
         public int Dexterity { get; set; }
         public int Luck { get; set; }
 
