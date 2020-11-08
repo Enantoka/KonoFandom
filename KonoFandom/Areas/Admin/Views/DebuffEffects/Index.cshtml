@@ -1,0 +1,49 @@
+﻿@model IEnumerable<KonoFandom.Models.DebuffEffect>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Debuff Effects</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover" id="index">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        { 
+            @foreach (var item in Model)
+            {
+                <tr data-url="@Url.Action("Details", "DebuffEffects", new { id = item.EffectID })">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImagePath)
+                    </td>
+                    <td data-action="delete">
+                        <a asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

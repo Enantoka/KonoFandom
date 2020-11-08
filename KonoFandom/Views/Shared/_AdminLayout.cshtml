@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using KonoFandom.Areas.Admin.Models
+
+@inject SignInManager<KonoFandomUser> SignInManager
+@inject UserManager<KonoFandomUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KonoFandom</title>
+    <link rel="stylesheet" href="~/css/bootstrap.custom.min.css" asp-append-version="true" />
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark ">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KonoFandom</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                        </li>
+                        @if (User.IsInRole(nameof(Role.Admin)) || User.IsInRole(nameof(Role.Moderator)))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-controller="Dashboard" asp-action="Index">Database</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-light">Logout</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <ul class="nav flex-column vh-100 text-center position-fixed" style="width:240px;">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Dashboard" asp-action="Index">Dashboard Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="User" asp-action="Index">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Characters" asp-action="Index">Characters</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Cards" asp-action="Index">Cards</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Elements" asp-action="Index">Elements</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="BasicSkills" asp-action="Index">Basic</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="PassiveSkills" asp-action="Index">Passive</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="UltimateSkills" asp-action="Index">Ultimate</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="BuffEffects" asp-action="Index">Buff</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="DebuffEffects" asp-action="Index">Debuff</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="StatusEffects" asp-action="Index">Status</a>
+        </li>
+    </ul>
+    <main role="main" style="padding-left:240px;">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

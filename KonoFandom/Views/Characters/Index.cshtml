@@ -1,29 +1,29 @@
 ﻿@model IEnumerable<KonoFandom.Models.Character>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var count = 0;
+    ViewData["Title"] = "Characters";
 }
 
-<h1>Character List</h1>
+<section class="chara-bg">
+    <h1 class="text-center text-white">Characters</h1>
+    <div class="container">
+        <div class="row">
+            @{
+                int count = 0;
 
-
-<div class="row">
-    @foreach (var item in Model.OrderBy(c => c.CharacterID))
-    {
-        @if (count % 4 == 0)
-        {
-            @:</div>
-            @:<div class="row">
-        }
-        count++;
-
-        <div class="col">
-            <a asp-area="" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID" alt="@item.Name">
-                <img src=@Html.DisplayFor(modelItem => item.IconImagePath)>
-            </a>
+                foreach (var item in Model.OrderBy(c => c.CharacterID))
+                {
+                    @if (count++ % 4 == 0)
+                    {
+                        <div class="w-100 d-none d-md-block"></div>
+                    }
+                    <div class="col-3">
+                        <a asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterID">
+                            <img src=@Html.DisplayFor(modelItem => item.IconImagePath) class="img-fluid" alt="@item.Name">
+                        </a>
+                    </div>
+                }
+            }
         </div>
-    }
-</div>
-
+    </div>
+</section>

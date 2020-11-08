@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KonoFandom.Models
-{
+namespace KonoFandom.Models 
+{ 
     public class Card
     {
         public int CardID { get; set; }
@@ -24,7 +24,7 @@ namespace KonoFandom.Models
 
         public Character Character { get; set; }
 
-        public int PassiveSkillID { get; set; }
+        public int? PassiveSkillID { get; set; }
         public PassiveSkill PassiveSkill { get; set; }
         public ICollection<CardBasicSkill> CardBasicSkills { get; set; }
         public ICollection<CardElement> CardElements { get; set; }

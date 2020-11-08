@@ -11,6 +11,9 @@
     <None Remove="Migrations\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.cs" />
     <Compile Include="Migrations\20200817134527_CreateIdentitySchema.Designer.cs" />
     <Compile Include="Migrations\IdentityContextModelSnapshot.cs" />
@@ -32,7 +35,22 @@
     <Compile Include="Migrations\KonoFandom\20200905145433_Element.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.cs" />
     <Compile Include="Migrations\KonoFandom\20200905150052_StatusEffect.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.cs" />
+    <Compile Include="Migrations\KonoFandom\20200907104553_OptionalPassiveSkill.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.cs" />
+    <Compile Include="Migrations\KonoFandom\20200912171845_UpdateSkill_1.0.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />

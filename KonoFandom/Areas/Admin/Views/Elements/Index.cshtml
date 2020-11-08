@@ -1,0 +1,39 @@
+﻿@model IEnumerable<KonoFandom.Models.Element>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover" id="index"> 
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr data-url="@Url.Action("Details", "Elements", new { id = item.ElementID })">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImagePath)
+                </td>
+                <td data-action="delete">
+                    <a asp-action="Delete" asp-route-id="@item.ElementID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
