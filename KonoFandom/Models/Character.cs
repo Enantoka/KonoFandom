@@ -15,7 +15,7 @@ namespace KonoFandom.Models
 
         public string Biography { get; set; }
 
-        [Display(Name = "CV")]
+        [Display(Name = "Character Voice")]
         public string CharacterVoice { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM}")]

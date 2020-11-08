@@ -51,7 +51,7 @@
                     <td class="align-middle">
                         @Html.DisplayFor(model => model.Character.Name)
                     </td>
-                    <td rowspan="4">
+                    <td rowspan="3">
                         <img src=@Html.DisplayFor(model => model.Character.CharacterImagePath) class="img-fluid mx-auto d-block" style="height: 500px" />
                     </td>
                 </tr>
@@ -233,13 +233,13 @@
                                                         <div class="col-2">
                                                             @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Dexterity)
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             @Model.Character.Cards.ElementAt(j).Dexterity
                                                         </div>
                                                         <div class="col-2">
                                                             @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Luck)
                                                         </div>
-                                                        <div class="col-2">
+                                                        <div class="col-1">
                                                             @Model.Character.Cards.ElementAt(j).Luck
                                                         </div>
                                                         <div class="col-2">

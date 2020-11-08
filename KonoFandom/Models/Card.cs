@@ -41,13 +41,13 @@ namespace KonoFandom.Models
         // Stats attributes
         [Display(Name = "HP")]
         public int HealthPoints { get; set; }
-        [Display(Name = "P. Atk")]
+        [Display(Name = "P.Atk")]
         public int PhysicalAttack { get; set; }
-        [Display(Name = "M. Atk")]
+        [Display(Name = "M.Atk")]
         public int MagicAttack { get; set; }
-        [Display(Name = "P. Def")]
+        [Display(Name = "P.Def")]
         public int PhysicalDefense { get; set; }
-        [Display(Name = "M. Def")]
+        [Display(Name = "M.Def")]
         public int MagicDefense { get; set; }
         [Display(Name = "Agi")]
         public int Agility { get; set; }
