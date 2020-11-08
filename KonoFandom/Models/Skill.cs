@@ -8,6 +8,7 @@ namespace KonoFandom.Models
 {
     public abstract class Skill
     {
+        [Display(Name = "ID")]
         public int SkillID { get; set; }
 
         [Required]
@@ -18,6 +19,7 @@ namespace KonoFandom.Models
         [StringLength(255)]
         public string Description { get; set; }
 
+        [Display(Name = "Image URL")]
         public string ImagePath { get; set; }
 
         public int? BuffEffectID { get; set; }

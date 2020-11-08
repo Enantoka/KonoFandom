@@ -7,7 +7,7 @@ namespace KonoFandom.Models
 {
     public class BasicSkill : Skill
     {
-        public int Cooldown { get; set; }
+        public int ChargeTime { get; set; }
         public ICollection<CardBasicSkill> CardBasicSkills { get; set; }
     }
 }

@@ -21,134 +21,115 @@ namespace KonoFandom.Areas.Admin.Models
                         new Character
                         {
                             CharacterID = 1,
-                            Name = "Kazuma",
-                            Weapon = Weapon.Sword
+                            Name = "Kazuma"
                         },
 
                         new Character
                         {
                             CharacterID = 2,
-                            Name = "Aqua",
-                            Weapon = Weapon.Rod
+                            Name = "Aqua"
                         },
 
                         new Character
                         {
                             CharacterID = 3,
-                            Name = "Megumin",
-                            Weapon = Weapon.Staff
+                            Name = "Megumin"
                         },
 
                         new Character
                         {
                             CharacterID = 4,
-                            Name = "Darkness",
-                            Weapon = Weapon.Sword
+                            Name = "Darkness"
                         },
 
                         new Character
                         {
                             CharacterID = 5,
-                            Name = "Wiz",
-                            Weapon = Weapon.Staff
+                            Name = "Wiz"
                         },
 
                         new Character
                         {
                             CharacterID = 6,
-                            Name = "Yunyun",
-                            Weapon = Weapon.Staff
+                            Name = "Yunyun"
                         },
 
                         new Character
                         {
                             CharacterID = 7,
-                            Name = "Arue",
-                            Weapon = Weapon.Staff
+                            Name = "Arue"
                         },
 
                         new Character
                         {
                             CharacterID = 8,
-                            Name = "Chris",
-                            Weapon = Weapon.Dagger
+                            Name = "Chris"
                         },
 
                         new Character
                         {
                             CharacterID = 9,
-                            Name = "Iris",
-                            Weapon = Weapon.Sword
+                            Name = "Iris"
                         },
 
                         new Character
                         {
                             CharacterID = 10,
-                            Name = "Cecily",
-                            Weapon = Weapon.Rod
+                            Name = "Cecily"
                         },
 
                         new Character
                         {
                             CharacterID = 11,
-                            Name = "Mitsurugi",
-                            Weapon = Weapon.Sword
+                            Name = "Mitsurugi"
                         },
 
                         new Character
                         {
                             CharacterID = 12,
-                            Name = "Dust",
-                            Weapon = Weapon.Sword
+                            Name = "Dust"
                         },
 
                         new Character
                         {
                             CharacterID = 13,
-                            Name = "Rin",
-                            Weapon = Weapon.Staff
+                            Name = "Rin"
                         },
 
                         new Character
                         {
                             CharacterID = 14,
-                            Name = "Lia",
-                            Weapon = Weapon.Spear
+                            Name = "Lia"
                         },
 
                         new Character
                         {
                             CharacterID = 15,
-                            Name = "Cielo",
-                            Weapon = Weapon.Rod
+                            Name = "Cielo"
                         },
 
                         new Character
                         {
                             CharacterID = 16,
-                            Name = "Erika",
-                            Weapon = Weapon.Dagger
+                            Name = "Erika"
                         },
 
                         new Character
                         {
                             CharacterID = 17,
-                            Name = "Melissa",
-                            Weapon = Weapon.Dagger
+                            Name = "Melissa"
                         },
 
                         new Character
                         {
                             CharacterID = 18,
-                            Name = "Mia",
-                            Weapon = Weapon.Spear
+                            Name = "Mia"
                         },
 
                         new Character
                         {
                             CharacterID = 19,
-                            Name = "Amy",
-                            Weapon = Weapon.Rod
+                            Name = "Amy"
                         }
                     );
                     context.SaveChanges();
