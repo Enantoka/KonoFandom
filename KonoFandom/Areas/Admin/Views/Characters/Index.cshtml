@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-hover" id="index">
     <thead>
         <tr>
             <th>
@@ -34,7 +34,7 @@
         {
             @foreach (var item in Model.OrderBy(c => c.CharacterID))
             {
-                <tr>
+                <tr data-url="@Url.Action("Details", "Characters", new { id = item.CharacterID })">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -50,9 +50,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Weapon)
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CharacterID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.CharacterID">Details</a> |
+                    <td data-action="delete">
                         <a asp-action="Delete" asp-route-id="@item.CharacterID">Delete</a>
                     </td>
                 </tr>

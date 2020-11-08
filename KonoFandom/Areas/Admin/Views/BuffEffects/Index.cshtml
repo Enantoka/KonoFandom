@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-hover" id="index">
     <thead>
         <tr>
             <th>
@@ -29,7 +29,7 @@
         {
             @foreach (var item in Model)
             {
-                <tr>
+                <tr data-url="@Url.Action("Details", "BuffEffects", new { id = item.EffectID })">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -39,9 +39,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ImagePath)
                     </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.EffectID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.EffectID">Details</a> |
+                    <td data-action="delete">
                         <a asp-action="Delete" asp-route-id="@item.EffectID">Delete</a>
                     </td>
                 </tr>
