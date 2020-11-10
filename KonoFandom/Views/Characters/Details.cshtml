@@ -137,121 +137,127 @@
                                 @for (int j = 0; j < Model.Character.Cards.Count(); j++)
                                 {
                                     <div class="carousel-item @(j == 0 ? "active" : "")">
-                                        <div class="container">
+                                        <div class="container text-center">
                                             <div class="row">
                                                 <div class="col-5">
                                                     <img src="@Model.Character.Cards.ElementAt(j).ImagePath" class="img-fluid" alt="@Model.Character.Cards.ElementAt(j).Name" />
                                                 </div>
                                                 <div class="col-7">
-                                                    <div class="row text-center">
-                                                        <div class="col-6">
-                                                            Stats
-                                                        </div>
-                                                        <div class="col-6">
-                                                            Resistances
-                                                        </div>
-                                                    </div>
-                                                    <div class="row text-center">
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).HealthPoints)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).HealthPoints
-                                                        </div>
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Agility)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).Agility
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Fire
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Wind
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                    </div>
-                                                    <div class="row text-center">
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalAttack)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).PhysicalAttack
-                                                        </div>
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalDefense)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).PhysicalDefense
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Water
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Light
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                    </div>
-                                                    <div class="row text-center">
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicAttack)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).MagicAttack
-                                                        </div>
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicDefense)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).MagicDefense
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Thunder
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Dark
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                    </div>
-                                                    <div class="row text-center">
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Dexterity)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).Dexterity
-                                                        </div>
-                                                        <div class="col-2">
-                                                            @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Luck)
-                                                        </div>
-                                                        <div class="col-1">
-                                                            @Model.Character.Cards.ElementAt(j).Luck
-                                                        </div>
-                                                        <div class="col-2">
-                                                            Earth
-                                                        </div>
-                                                        <div class="col-1">
-                                                            0
-                                                        </div>
-                                                    </div>
+                                                    <table class="table-bordered w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="4">
+                                                                    Stats
+                                                                </th>
+                                                                <th colspan="4">
+                                                                    Resistances
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).HealthPoints)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).HealthPoints
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Agility)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).Agility
+                                                                </td>
+                                                                <td>
+                                                                    Fire
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).FireResistance
+                                                                </td>
+                                                                <td>
+                                                                    Wind
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).WindResistance
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalAttack)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).PhysicalAttack
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).PhysicalDefense)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).PhysicalDefense
+                                                                </td>
+                                                                <td>
+                                                                    Water
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).WaterResistance
+                                                                </td>
+                                                                <td>
+                                                                    Light
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).LightResistance
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicAttack)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).MagicAttack
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).MagicDefense)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).MagicDefense
+                                                                </td>
+                                                                <td>
+                                                                    Thunder
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).LightningResistance
+                                                                </td>
+                                                                <td>
+                                                                    Dark
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).DarkResistance
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Dexterity)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).Dexterity
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayNameFor(model => model.Character.Cards.ElementAt(j).Luck)
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).Luck
+                                                                </td>
+                                                                <td>
+                                                                    Earth
+                                                                </td>
+                                                                <td>
+                                                                    @Model.Character.Cards.ElementAt(j).EarthResistance
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row mt-2">
                                             @{
                                                 var count = 0;
 
@@ -261,30 +267,30 @@
                                                     if (count % 2 == 0)
                                                     {
                                                         @:</div>
-                                                        @:<div class="row">
+                                                        @:<div class="row mt-2">
                                                     }
                                                     count++;
 
                                                     <div class="col-6">
-                                                        <table>
+                                                        <table class="table-bordered">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>
+                                                                    <th colspan="2">
                                                                         @Html.DisplayFor(modelItem => skill.BasicSkill.Name)
                                                                     </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td rowspan="2">
+                                                                    <td rowspan="2" style="width:30%">
                                                                         <img src="@Html.DisplayFor(modelItem => skill.BasicSkill.ImagePath)" class="img-fluid">
                                                                     </td>
-                                                                    <td>
+                                                                    <td style="width:70%">
                                                                         Charge Time: @Html.DisplayFor(modelItem => skill.BasicSkill.ChargeTime)
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>
+                                                                    <td style="width:70%">
                                                                         @Html.DisplayFor(modelItem => skill.BasicSkill.Description)
                                                                     </td>
                                                                 </tr>
@@ -295,20 +301,21 @@
                                                     @if (count > 2)
                                                     {
                                                         <div class="col-6">
-                                                            <table>
+                                                            <table class="table-bordered">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>
+                                                                        <th colspan="2">
                                                                             @Html.DisplayFor(model => model.Character.Cards.ElementAt(j).PassiveSkill.Name)
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td rowspan="2">
+                                                                        <td rowspan="2" style="width:30%">
                                                                             <img src="@Html.DisplayFor(model => model.Character.Cards.ElementAt(j).PassiveSkill.ImagePath)" class="img-fluid">
                                                                         </td>
                                                                         <td>
+                                                                            Passive
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -321,7 +328,7 @@
                                                         </div>
                                                     }
                                                 }
-                                            }
+                                            }  
                                             </div>
                                         </div>
                                     </div>  
