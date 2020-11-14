@@ -56,19 +56,19 @@ namespace KonoFandom.Models
         public int Luck { get; set; }
 
         // Elemental Resistances
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal FireResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal WaterResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal LightningResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal EarthResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal WindResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal LightResistance { get; set; }
-        [DisplayFormat(DataFormatString = "{0:P2}")]
+        [DisplayFormat(DataFormatString = "{0:P0}")]
         public decimal DarkResistance { get; set; }
     }
 }
