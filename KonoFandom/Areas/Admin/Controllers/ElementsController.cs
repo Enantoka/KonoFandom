@@ -57,7 +57,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ElementID,Type,ImagePath")] Element element)
+        public async Task<IActionResult> Create([Bind("ElementID,Name,ImagePath")] Element element)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ElementID,Type,ImagePath")] Element element)
+        public async Task<IActionResult> Edit(int id, [Bind("ElementID,Name,ImagePath")] Element element)
         {
             if (id != element.ElementID)
             {

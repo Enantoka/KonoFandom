@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KonoFandom.Models.Card>
+﻿@model KonoFandom.ViewModels.CardIndex
 
 @{
     ViewData["Title"] = "Cards";
@@ -7,13 +7,28 @@
 
 <h1>Card List</h1>
 
+<div class="character-checkbox-filter">
+    @foreach (var character in Model.Characters.OrderBy(x => x.CharacterID))
+    {
+        <input type="checkbox" id="chara_@character.CharacterID"/>
+        <label for="chara_@character.CharacterID">@Html.DisplayFor(x => character.Name)</label> // Replace text with image
+    }
+</div>
+<div class="element-checkbox-filter">
+    @foreach (var element in Model.Elements.OrderBy(x => x.ElementID))
+    {
+        <input type="checkbox" id="ele_@element.ElementID" />
+        <label for="ele_@element.ElementID">@Html.DisplayFor(x => element.Name)</label>// Replace text with image
+    }
+</div>
+
 <div class="row">
-    @foreach (var item in Model.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
+    @foreach (var item in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
     {
         @if (count % 4 == 0)
         {
-            @:</div>
-            @:<div class="row">
+        @:</div>
+        @:<div class="row">
         }
         count++;
 
