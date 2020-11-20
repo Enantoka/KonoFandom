@@ -47,6 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.foundation.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\assets\data-tables\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\assets\data-tables\js\jquery.dataTables.js" />
+    <None Include="wwwroot\assets\data-tables\js\jquery.dataTables.min.js" />
     <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
     <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
     <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.ViewModels
 {
-    // View Model for GET details in Characters controller
+    // View Model for GET index in Cards controller
     public class CardIndex
     {
         public IEnumerable<Card> Cards;

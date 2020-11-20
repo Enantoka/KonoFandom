@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Cards";
-    var count = 0;
 }
 
 <h1>Card List</h1>
@@ -22,18 +21,87 @@
     }
 </div>
 
-<div class="row">
-    @foreach (var item in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
-    {
-        @if (count % 4 == 0)
+<table class="display" id="sortableTable">
+    <thead>
+        <tr>
+            <th colspan="3"></th>
+            <th colspan="8">Stats</th>
+            <th colspan="7">Resistance</th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Element</th>
+            <th>Rarity</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().HealthPoints)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().PhysicalAttack)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().MagicAttack)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().PhysicalDefense)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().MagicDefense)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Agility)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Dexterity)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Luck)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().FireResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().WaterResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().LightningResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().EarthResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().WindResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().LightResistance)</th>
+            <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().DarkResistance)</th>
+            <th colspan="3">Skills</th>
+            <th>Passive</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var card in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
         {
-        @:</div>
-        @:<div class="row">
+            <tr>
+                <td>@card.Name</td>
+                @foreach (var e in card.CardElements)
+                {
+                    <td>@e.Element.Name</td>
+                }
+                <td>@card.Rarity</td>
+                <td>@card.HealthPoints</td>
+                <td>@card.PhysicalAttack</td>
+                <td>@card.MagicAttack</td>
+                <td>@card.PhysicalDefense</td>
+                <td>@card.MagicDefense</td>
+                <td>@card.Agility</td>
+                <td>@card.Dexterity</td>
+                <td>@card.Luck</td>
+                <td>@card.FireResistance</td>
+                <td>@card.WaterResistance</td>
+                <td>@card.LightningResistance</td>
+                <td>@card.EarthResistance</td>
+                <td>@card.WindResistance</td>
+                <td>@card.LightResistance</td>
+                <td>@card.DarkResistance</td>
+                @foreach (var s in card.CardBasicSkills)
+                {
+                    <td><img src=@s.BasicSkill.ImagePath class="img-fluid"></td>
+                }
+                <td><img src=@card.PassiveSkill.ImagePath class="img-fluid"></td>
+            </tr>
         }
-        count++;
+    </tbody>
+</table>
 
-        <div class="col">
-            <img src=@Html.DisplayFor(modelItem => item.ImagePath) width="250" height="125">
-        </div>
-    }
-</div>
+<table id="test" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>15</td>
+        </tr>
+    </tbody>
+</table>
+

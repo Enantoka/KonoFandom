@@ -12,3 +12,11 @@ function viewDetails(element) {
     }
 }
 $('#index tbody tr td').click(function () { viewDetails(this) });
+
+$(document).ready(function () {
+    $('#sortableTable').DataTable();
+})
+
+//$(document).ready(function () {
+//    $('#test').DataTable();
+//})
