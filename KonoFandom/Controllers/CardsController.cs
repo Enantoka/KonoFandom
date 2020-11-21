@@ -28,8 +28,12 @@ namespace KonoFandom.Controllers
                     .ThenInclude(c => c.BasicSkill)
                 .Include(c => c.CardElements)
                 .ToListAsync();
-            var characters = await _context.Character.ToListAsync();
-            var elements = await _context.Element.ToListAsync();
+            var characters = await _context.Character
+                .OrderBy(x => x.CharacterID)
+                .ToListAsync();
+            var elements = await _context.Element
+                .OrderBy(x => x.ElementID)
+                .ToListAsync();
 
             CardIndex ci = new CardIndex();
             ci.Cards = cards;

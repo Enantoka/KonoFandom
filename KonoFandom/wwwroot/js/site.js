@@ -14,9 +14,13 @@ function viewDetails(element) {
 $('#index tbody tr td').click(function () { viewDetails(this) });
 
 $(document).ready(function () {
-    $('#sortableTable').DataTable();
+    $('#sortableTable').DataTable({
+        "paging" : false,
+        "columnDefs" : [
+            {
+                "targets": [ -2, -1 ],
+                "orderable": false
+            }
+        ]
+    });
 })
-
-//$(document).ready(function () {
-//    $('#test').DataTable();
-//})
