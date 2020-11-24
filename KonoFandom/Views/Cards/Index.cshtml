@@ -16,7 +16,7 @@
 <div class="element-checkbox-filter">
     @foreach (var element in Model.Elements)
     {
-        <input type="checkbox" id="ele_@element.ElementID" />
+        <input type="checkbox" id="ele_@element.ElementID" name="ele_group" value="@element.Name"/>
         <label for="ele_@element.ElementID">@element.Name</label>// Replace text with image
     }
 </div>
@@ -83,4 +83,3 @@
         }
     </tbody>
 </table>
-

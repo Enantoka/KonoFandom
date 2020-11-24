@@ -96,6 +96,11 @@
         "scss/_utilities.scss",
         "scss/_variables.scss"
       ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/lib/jquery/dist"
     }
   ]
 }
