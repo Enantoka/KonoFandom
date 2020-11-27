@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 function viewDetails(element) {
-    var dataAttribute = $(element).data('action');
+  var dataAttribute = $(element).data('action');
 
     if (dataAttribute == null) {
         var url = $(element).parent().data('url');
@@ -14,12 +14,14 @@ function viewDetails(element) {
 $('#index tbody tr td').click( function () {viewDetails(this) });
 
 
-// DataTable
-var otable;
+// DataTable for CardIndex Page
+// ----------------------------
+// Define variables
+var dt; // DataTable
+var character = []; // Character filter
 
 $(function () {
-
-    otable = $('#sortableTable').DataTable({
+    dt = $('#sortableTable').DataTable({
         "paging": false,
         "columnDefs": [
             {
@@ -28,15 +30,50 @@ $(function () {
             }
         ]
     });
+
+    $.fn.dataTable.ext.search.push(
+        function (settings, searchData, dataIndex) {
+
+            var row = dt
+                .row(dataIndex)
+                .nodes();
+
+            // Show rows of selected character or when none are selected
+            if (character.length > 0) {
+                for (c of character) {
+                    if ($(row).data('chara') == c) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            } else {
+                return true;
+            }
+        });
 })
 
-function myFilter() {
+// Filter by character
+function characterFilter() {
+    character = $('input:checkbox[name="chara_group"]:checked').map(function () {
+        return $(this).val();
+    }).get();
+
+    //var dt = $('#sortableTable').DataTable();
+    dt.draw();
+}
+$('.character-checkbox-filter').on('change', function () { characterFilter() });
+
+// Filter by element
+function elementFilter() {
     var element = $('input:checkbox[name="ele_group"]:checked').map(function () {
         return '^' + $(this).val() + '$';
-    }).get().join('|');
+    }).get().join('|'); 
 
-    otable.column(1).search(element, true, false).draw();
-    
-    
+    //var dt = $('#sortableTable').DataTable();
+    dt.column(1).search(element, true, false).draw();
 }
-$('div.element-checkbox-filter').on('click', function () { myFilter() });
+$('.element-checkbox-filter').on('change', function () { elementFilter() });
+
+// ----------------------------

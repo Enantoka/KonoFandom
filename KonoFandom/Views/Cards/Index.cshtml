@@ -9,10 +9,11 @@
 <div class="character-checkbox-filter">
     @foreach (var character in Model.Characters)
     {
-        <input type="checkbox" id="chara_@character.CharacterID"/>
+        <input type="checkbox" id="chara_@character.CharacterID" name="chara_group" value="@character.CharacterID"/>
         <label for="chara_@character.CharacterID">@character.Name</label> // Replace text with image
     }
 </div>
+<p>-----------------</p>
 <div class="element-checkbox-filter">
     @foreach (var element in Model.Elements)
     {
@@ -51,8 +52,8 @@
     <tbody>
         @foreach (var card in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
         {
-            <tr>
-                <td>@card.Name</td>
+            <tr data-chara="@card.CharacterID">
+                <td><img src=@card.ImagePath class="img-fluid"> @card.Name</td>
                 @foreach (var e in card.CardElements)
                 {
                     <td>@e.Element.Name</td>
