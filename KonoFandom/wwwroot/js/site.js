@@ -19,6 +19,7 @@ $('#index tbody tr td').click( function () {viewDetails(this) });
 // Define variables
 var dt; // DataTable
 var character = []; // Character filter
+var element = []; // Element filter
 
 $(function () {
     dt = $('#sortableTable').DataTable({
@@ -67,7 +68,7 @@ $('.character-checkbox-filter').on('change', function () { characterFilter() });
 
 // Filter by element
 function elementFilter() {
-    var element = $('input:checkbox[name="ele_group"]:checked').map(function () {
+    element = $('input:checkbox[name="ele_group"]:checked').map(function () {
         return '^' + $(this).val() + '$';
     }).get().join('|'); 
 
@@ -75,5 +76,16 @@ function elementFilter() {
     dt.column(1).search(element, true, false).draw();
 }
 $('.element-checkbox-filter').on('change', function () { elementFilter() });
+
+// Change opactiy of img to 1
+function fadeFilter(label) {
+
+    if ($(label).hasClass('fade-filter')) {
+        $(label).removeClass('fade-filter');
+    } else {
+        $(label).addClass('fade-filter');
+    }
+}
+$('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
 
 // ----------------------------

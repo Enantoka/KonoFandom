@@ -95,8 +95,24 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 }
 
 // Filters
-.element-checkbox-filter input[type="checkbox"] {
-    display: none;
+.element-checkbox-filter {
+    
+    border: solid;
+    border-width: thin;
+    
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    img {
+        opacity: 0.5;
+    }
+}
+
+.fade-filter {
+    img {
+        opacity: 1;
+    }
 }
 
 // Admin Page CSS
