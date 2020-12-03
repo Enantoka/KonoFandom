@@ -26,10 +26,11 @@ $(function () {
         "paging": false,
         "columnDefs": [
             {
-                "targets": [-2, -1],
+                "targets": [-4, -3, -2, -1],
                 "orderable": false
             }
-        ]
+        ],
+        "dom" : 'lrt'
     });
 
     $.fn.dataTable.ext.search.push(
