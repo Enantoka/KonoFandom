@@ -19,7 +19,7 @@ namespace KonoFandom.Models
         public string Name { get; set; }
 
         [Required]
-        [Range(1,5)]
+        [Range(1,4)]
         public int Rarity { get; set; }
 
         [Required]

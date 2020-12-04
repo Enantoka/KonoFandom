@@ -95,10 +95,15 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 }
 
 // Filters
+.character-checkbox-filter {
+    margin: 25px;
+}
+
 .element-checkbox-filter {
     
     border: solid;
     border-width: thin;
+    margin: 25px;
     
     input[type="checkbox"] {
         display: none;
@@ -116,8 +121,6 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 }
 
 // Admin Page CSS
-
-
 // Misc Can be deleted?
 // Home Background Visual
 .background-visual {

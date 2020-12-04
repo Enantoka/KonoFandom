@@ -27,10 +27,19 @@ $(function () {
         "columnDefs": [
             {
                 "targets": [-4, -3, -2, -1],
+                "width": 50,
                 "orderable": false
+            },
+            {
+                "targets": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+                "width": 50
+            },
+            {
+                "targets": 0,
+                "width": 250
             }
         ],
-        "dom" : 'lrt'
+        "dom": 'lrt'
     });
 
     $.fn.dataTable.ext.search.push(
@@ -90,3 +99,8 @@ function fadeFilter(label) {
 $('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
 
 // ----------------------------
+
+// Tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

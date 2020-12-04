@@ -7254,9 +7254,13 @@ a.text-dark:hover, a.text-dark:focus {
 .carousel-control-next {
   right: -10%; }
 
+.character-checkbox-filter {
+  margin: 25px; }
+
 .element-checkbox-filter {
   border: solid;
-  border-width: thin; }
+  border-width: thin;
+  margin: 25px; }
   .element-checkbox-filter input[type="checkbox"] {
     display: none; }
   .element-checkbox-filter img {
