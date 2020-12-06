@@ -62,11 +62,12 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,Name,Rarity,Weapon,ImagePath,CharacterID,PassiveSkillID," +
-                                                      "HealthPoints, PhysicalAttack, MagicAttack, PhysicalDefense, " +
-                                                      "MagicDefense, Agility, Dexterity, Luck, FireResistance," +
-                                                      "WaterResistance, LightningResistance, EarthResistance," +
-                                                      "WindResistance, LightResistance, DarkResistance")] Card card)
+        public async Task<IActionResult> Create([Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
+                                                      "CharacterID, PassiveSkillID, HealthPoints, PhysicalAttack," +
+                                                      "MagicAttack, PhysicalDefense, MagicDefense, Agility," +
+                                                      "Dexterity, Luck, FireResistance, WaterResistance," +
+                                                      "LightningResistance, EarthResistance, WindResistance," +
+                                                      "LightResistance, DarkResistance")] Card card)
         {
             if (ModelState.IsValid)
             {
@@ -126,11 +127,13 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedElements, [Bind("CardID,Name,Rarity,Weapon,ImagePath,CharacterID,PassiveSkillID," +
-                                                      "HealthPoints, PhysicalAttack, MagicAttack, PhysicalDefense, " +
-                                                      "MagicDefense, Agility, Dexterity, Luck, FireResistance," +
-                                                      "WaterResistance, LightningResistance, EarthResistance," +
-                                                      "WindResistance, LightResistance, DarkResistance")] Card card)
+        public async Task<IActionResult> Edit(int id, string[] selectedElements, 
+                [Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
+                "CharacterID, PassiveSkillID, HealthPoints, PhysicalAttack," +
+                "MagicAttack, PhysicalDefense, MagicDefense, Agility," +
+                "Dexterity, Luck, FireResistance, WaterResistance," +
+                "LightningResistance, EarthResistance, WindResistance," +
+                "LightResistance, DarkResistance")] Card card)
         {
             if (id != card.CardID)
             {

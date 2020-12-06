@@ -22,6 +22,9 @@ namespace KonoFandom.Models
         [Range(1,4)]
         public int Rarity { get; set; }
 
+        [Display(Name = "Rarity Image URL")]
+        public string RarityImagePath { get; set; }
+
         [Required]
         [EnumDataType(typeof(Weapon))]
         public Weapon Weapon { get; set; }
@@ -38,7 +41,7 @@ namespace KonoFandom.Models
         public ICollection<CardBasicSkill> CardBasicSkills { get; set; }
         public ICollection<CardElement> CardElements { get; set; }
 
-        // Stats attributes
+        // Stats Attributes
         [Display(Name = "HP")]
         public int HealthPoints { get; set; }
         [Display(Name = "P.Atk")]
