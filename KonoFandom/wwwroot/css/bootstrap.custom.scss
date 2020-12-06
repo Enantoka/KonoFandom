@@ -95,22 +95,19 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 }
 
 // Filters
-.character-checkbox-filter {
-    margin: 25px;
-}
 
-.element-checkbox-filter {
-    
+.element-checkbox-filter, .character-checkbox-filter {
     border: solid;
     border-width: thin;
     margin: 25px;
-    
+
     input[type="checkbox"] {
         display: none;
     }
 
     img {
         opacity: 0.5;
+        margin: 5px;
     }
 }
 

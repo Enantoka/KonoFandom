@@ -13,7 +13,9 @@
             @foreach (var character in Model.Characters)
             {
                 <input type="checkbox" id="chara_@character.CharacterID" name="chara_group" value="@character.CharacterID" />
-                <label for="chara_@character.CharacterID">@character.Name</label>// Replace text with image
+                <label for="chara_@character.CharacterID">
+                    <img src="~/assets/chara_icon/@(character.Name.ToLower()).jpg" class="img-fluid"/>
+                </label>// Replace text with image
             }
         </div>
 
@@ -21,7 +23,9 @@
             @foreach (var e in elements)
             {
                 <input type="checkbox" id="ele_@e.ElementID" name="ele_group" value="@e.Name" />
-                <label for="ele_@e.ElementID"><img src="@e.ImagePath" /></label>
+                <label for="ele_@e.ElementID">
+                    <img src="@e.ImagePath" />
+                </label>
             }
         </div>
     </div>
@@ -35,9 +39,9 @@
                 <th colspan="4">Skills</th>
             </tr>
             <tr>
-                <th>Name</th>
-                <th>Element</th>
-                <th>Rarity</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Name)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().CardElements.FirstOrDefault().Element)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Rarity)</th>
                 <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().HealthPoints)</th>
                 <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().PhysicalAttack)</th>
                 <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().MagicAttack)</th>
@@ -66,7 +70,9 @@
                         <td>@e.Element.Name</td>
                     }
 
-                    <td>@card.Rarity</td>
+                    <td data-sort=@card.Rarity>
+                        <img src=@card.RarityImagePath class="img-fluid">
+                    </td>
                     <td>@card.HealthPoints</td>
                     <td>@card.PhysicalAttack</td>
                     <td>@card.MagicAttack</td>

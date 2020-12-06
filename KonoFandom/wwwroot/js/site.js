@@ -100,6 +100,7 @@ function fadeFilter(label) {
     }
 }
 $('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
+$('.character-checkbox-filter label').on('click', function () { fadeFilter(this) });
 
 // ----------------------------
 

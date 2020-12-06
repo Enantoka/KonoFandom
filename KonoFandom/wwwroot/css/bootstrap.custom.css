@@ -7254,17 +7254,15 @@ a.text-dark:hover, a.text-dark:focus {
 .carousel-control-next {
   right: -10%; }
 
-.character-checkbox-filter {
-  margin: 25px; }
-
-.element-checkbox-filter {
+.element-checkbox-filter, .character-checkbox-filter {
   border: solid;
   border-width: thin;
   margin: 25px; }
-  .element-checkbox-filter input[type="checkbox"] {
+  .element-checkbox-filter input[type="checkbox"], .character-checkbox-filter input[type="checkbox"] {
     display: none; }
-  .element-checkbox-filter img {
-    opacity: 0.5; }
+  .element-checkbox-filter img, .character-checkbox-filter img {
+    opacity: 0.5;
+    margin: 5px; }
 
 .fade-filter img {
   opacity: 1; }
