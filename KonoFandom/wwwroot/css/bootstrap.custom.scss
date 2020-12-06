@@ -96,7 +96,9 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 
 // Filters
 
-.element-checkbox-filter, .character-checkbox-filter {
+.character-checkbox-filter, 
+.element-checkbox-filter, 
+.rarity-checkbox-filter {
     border: solid;
     border-width: thin;
     margin: 25px;

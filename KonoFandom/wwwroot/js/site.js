@@ -20,6 +20,7 @@ $('#index tbody tr td').click( function () {viewDetails(this) });
 var dt; // DataTable
 var character = []; // Character filter
 var element = []; // Element filter
+var rarity = []; // Rarity filter
 
 $(function () {
     dt = $('#sortableTable').DataTable({
@@ -62,7 +63,22 @@ $(function () {
                         return false;
                     }
                 }
-            } else {
+            }
+
+            if (rarity.length > 0) {
+                for (r of rarity) {
+                    if ($(row).data('rarity') == r) {
+                        console.log(true + " " + r);
+                        return true;
+                    }
+                    else {
+                        console.log($(row).data('rarity'));
+                        console.log(r);
+                        return false;
+                    }
+                }
+            }
+            else {
                 return true;
             }
         });
@@ -74,7 +90,6 @@ function characterFilter() {
         return $(this).val();
     }).get();
 
-    //var dt = $('#sortableTable').DataTable();
     dt.draw();
 }
 $('.character-checkbox-filter').on('change', function () { characterFilter() });
@@ -85,10 +100,19 @@ function elementFilter() {
         return '^' + $(this).val() + '$';
     }).get().join('|'); 
 
-    //var dt = $('#sortableTable').DataTable();
     dt.column(1).search(element, true, false).draw();
 }
 $('.element-checkbox-filter').on('change', function () { elementFilter() });
+
+// Filter by rarity
+function rarityFilter() {
+    rarity = $('input:checkbox[name="rarity_group"]:checked').map(function () {
+        return $(this).val();
+    }).get();
+
+    dt.draw();
+}
+$('.rarity-checkbox-filter').on('change', function () { rarityFilter() });
 
 // Change opactiy of img to 1
 function fadeFilter(label) {
@@ -99,8 +123,9 @@ function fadeFilter(label) {
         $(label).addClass('fade-filter');
     }
 }
-$('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
 $('.character-checkbox-filter label').on('click', function () { fadeFilter(this) });
+$('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
+$('.rarity-checkbox-filter label').on('click', function () { fadeFilter(this) });
 
 // ----------------------------
 

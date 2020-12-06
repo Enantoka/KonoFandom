@@ -7254,13 +7254,19 @@ a.text-dark:hover, a.text-dark:focus {
 .carousel-control-next {
   right: -10%; }
 
-.element-checkbox-filter, .character-checkbox-filter {
+.character-checkbox-filter,
+.element-checkbox-filter,
+.rarity-checkbox-filter {
   border: solid;
   border-width: thin;
   margin: 25px; }
-  .element-checkbox-filter input[type="checkbox"], .character-checkbox-filter input[type="checkbox"] {
+  .character-checkbox-filter input[type="checkbox"],
+  .element-checkbox-filter input[type="checkbox"],
+  .rarity-checkbox-filter input[type="checkbox"] {
     display: none; }
-  .element-checkbox-filter img, .character-checkbox-filter img {
+  .character-checkbox-filter img,
+  .element-checkbox-filter img,
+  .rarity-checkbox-filter img {
     opacity: 0.5;
     margin: 5px; }
 

@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Cards";
     var elements = Model.Elements;
+    var rarity = Model.Cards
+        .Select(x => new { x.Rarity, x.RarityImagePath })
+        .Distinct()
+        .OrderBy(x => x.Rarity)
+        .ToList();
 }
 
 <h1>Card List</h1>
@@ -14,8 +19,8 @@
             {
                 <input type="checkbox" id="chara_@character.CharacterID" name="chara_group" value="@character.CharacterID" />
                 <label for="chara_@character.CharacterID">
-                    <img src="~/assets/chara_icon/@(character.Name.ToLower()).jpg" class="img-fluid"/>
-                </label>// Replace text with image
+                    <img src="~/assets/chara_icon/@(character.Name.ToLower()).jpg" class="img-fluid" />
+                </label>
             }
         </div>
 
@@ -25,6 +30,16 @@
                 <input type="checkbox" id="ele_@e.ElementID" name="ele_group" value="@e.Name" />
                 <label for="ele_@e.ElementID">
                     <img src="@e.ImagePath" />
+                </label>
+            }
+        </div>
+
+        <div class="rarity-checkbox-filter">
+            @foreach (var r in rarity)
+            {
+                <input type="checkbox" id="rarity_@r.Rarity" name="rarity_group" value="@r.Rarity" />
+                <label for="rarity_@r.Rarity">
+                    <img src="@r.RarityImagePath" />
                 </label>
             }
         </div>
@@ -63,7 +78,7 @@
         <tbody>
             @foreach (var card in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
             {
-                <tr data-chara="@card.CharacterID">
+                <tr data-chara="@card.CharacterID" data-rarity="@card.Rarity">
                     <td><img src=@card.ImagePath class="img-fluid"> @card.Name</td>
                     @foreach (var e in card.CardElements)
                     {
