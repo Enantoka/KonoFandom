@@ -1,24 +1,110 @@
-﻿@model IEnumerable<KonoFandom.Models.Card>
+﻿@model KonoFandom.ViewModels.CardIndex
 
 @{
     ViewData["Title"] = "Cards";
-    var count = 0;
+    var elements = Model.Elements;
 }
 
 <h1>Card List</h1>
 
-<div class="row">
-    @foreach (var item in Model.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
-    {
-        @if (count % 4 == 0)
-        {
-            @:</div>
-            @:<div class="row">
-        }
-        count++;
-
-        <div class="col">
-            <img src=@Html.DisplayFor(modelItem => item.ImagePath) width="250" height="125">
+<div class="chara-bg">
+    <div class="container text-center">
+        <div class="character-checkbox-filter">
+            @foreach (var character in Model.Characters)
+            {
+                <input type="checkbox" id="chara_@character.CharacterID" name="chara_group" value="@character.CharacterID" />
+                <label for="chara_@character.CharacterID">@character.Name</label>// Replace text with image
+            }
         </div>
-    }
+
+        <div class="element-checkbox-filter">
+            @foreach (var e in elements)
+            {
+                <input type="checkbox" id="ele_@e.ElementID" name="ele_group" value="@e.Name" />
+                <label for="ele_@e.ElementID"><img src="@e.ImagePath" /></label>
+            }
+        </div>
+    </div>
+    
+    <table class="display bg-light text-center w-75" id="sortableTable">
+        <thead>
+            <tr>
+                <th colspan="3"></th>
+                <th colspan="8">Stats</th>
+                <th colspan="7">Resistance</th>
+                <th colspan="4">Skills</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Element</th>
+                <th>Rarity</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().HealthPoints)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().PhysicalAttack)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().MagicAttack)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().PhysicalDefense)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().MagicDefense)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Agility)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Dexterity)</th>
+                <th>@Html.DisplayNameFor(x => x.Cards.FirstOrDefault().Luck)</th>
+                @foreach (var e in elements)
+                {
+                    <th><img src=@e.ImagePath style="width:70%"></th>
+                }
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var card in Model.Cards.OrderByDescending(c => c.Rarity).ThenBy(c => c.CharacterID))
+            {
+                <tr data-chara="@card.CharacterID">
+                    <td><img src=@card.ImagePath class="img-fluid"> @card.Name</td>
+                    @foreach (var e in card.CardElements)
+                    {
+                        <td>@e.Element.Name</td>
+                    }
+
+                    <td>@card.Rarity</td>
+                    <td>@card.HealthPoints</td>
+                    <td>@card.PhysicalAttack</td>
+                    <td>@card.MagicAttack</td>
+                    <td>@card.PhysicalDefense</td>
+                    <td>@card.MagicDefense</td>
+                    <td>@card.Agility</td>
+                    <td>@card.Dexterity</td>
+                    <td>@card.Luck</td>
+                    <td>@Html.DisplayFor(x => card.FireResistance)</td>
+                    <td>@Html.DisplayFor(x => card.WaterResistance)</td>
+                    <td>@Html.DisplayFor(x => card.LightningResistance)</td>
+                    <td>@Html.DisplayFor(x => card.EarthResistance)</td>
+                    <td>@Html.DisplayFor(x => card.WindResistance)</td>
+                    <td>@Html.DisplayFor(x => card.LightResistance)</td>
+                    <td>@Html.DisplayFor(x => card.DarkResistance)</td>
+
+                    <!-- temp variable c -->
+                    @{var c = 0;}
+                    @foreach (var s in card.CardBasicSkills)
+                    {
+                        <td>
+                            <img src=@s.BasicSkill.ImagePath data-toggle="tooltip"
+                                    data-placement="bottom" title="@s.BasicSkill.Description"
+                                    class="img-fluid">
+                        </td>
+                        c++;
+                    }
+
+                    @for (; c < 4; c++)
+                    {
+                        <td>
+                            <img src=@card.PassiveSkill.ImagePath data-toggle="tooltip"
+                                    data-placement="bottom" title="@card.PassiveSkill.Description"
+                                    class="img-fluid">
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

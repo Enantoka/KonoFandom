@@ -5,7 +5,7 @@ $merriweather-sans: 'Merriweather Sans', sans-serif;
 // Fonts
 $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-@import "../lib/bootstrap/scss/bootstrap";
+@import "../lib/bootstrap/scss/bootstrap.scss";
 
 // Wrapper
 .wrapper{
@@ -62,7 +62,7 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     background: url(../assets/img/bg_01.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
 // Orange Background
@@ -94,9 +94,33 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     right: -10%;
 }
 
+// Filters
+.character-checkbox-filter {
+    margin: 25px;
+}
+
+.element-checkbox-filter {
+    
+    border: solid;
+    border-width: thin;
+    margin: 25px;
+    
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    img {
+        opacity: 0.5;
+    }
+}
+
+.fade-filter {
+    img {
+        opacity: 1;
+    }
+}
+
 // Admin Page CSS
-
-
 // Misc Can be deleted?
 // Home Background Visual
 .background-visual {

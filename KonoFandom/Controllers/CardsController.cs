@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Data;
+using KonoFandom.ViewModels;
 
 namespace KonoFandom.Controllers
 {
@@ -21,28 +22,25 @@ namespace KonoFandom.Controllers
         // GET: Cards
         public async Task<IActionResult> Index()
         {
-            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
-            return View(await konoFandomContext.ToListAsync());
-        }
-
-        // GET: Cards/Details/5
-        /*public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var card = await _context.Card
-                .Include(c => c.Character)
+            var cards = await _context.Card
                 .Include(c => c.PassiveSkill)
-                .FirstOrDefaultAsync(m => m.CardID == id);
-            
-            if (card == null)
-            {
-                return NotFound();
-            }
-            return View(card);
-        }*/
+                .Include(c => c.CardBasicSkills)
+                    .ThenInclude(c => c.BasicSkill)
+                .Include(c => c.CardElements)
+                .ToListAsync();
+            var characters = await _context.Character
+                .OrderBy(x => x.CharacterID)
+                .ToListAsync();
+            var elements = await _context.Element
+                .OrderBy(x => x.ElementID)
+                .ToListAsync();
+
+            CardIndex ci = new CardIndex();
+            ci.Cards = cards;
+            ci.Characters = characters;
+            ci.Elements = elements;
+
+            return View(ci);
+        }
     }
 }
