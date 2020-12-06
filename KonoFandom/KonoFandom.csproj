@@ -43,6 +43,8 @@
     <Compile Include="Migrations\KonoFandom\20201108111041_UpdateModelSchema.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\20201108114120_UpdateModelDisplayName.cs" />
     <Compile Include="Migrations\KonoFandom\20201108114120_UpdateModelDisplayName.Designer.cs" />
+    <Compile Include="Migrations\KonoFandom\20201206090200_DB_v1.0.cs" />
+    <Compile Include="Migrations\KonoFandom\20201206090200_DB_v1.0.Designer.cs" />
     <Compile Include="Migrations\KonoFandom\KonoFandomContextModelSnapshot.cs" />
   </ItemGroup>
   <ItemGroup>
