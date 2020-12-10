@@ -25,25 +25,15 @@ var rarity = []; // Rarity filter
 $(function () {
     dt = $('#sortableTable').DataTable({
         "paging": false,
+        "autoWidth" : false,
+        "dom": 'lrt',
         "columnDefs": [
             // Skills column
             {
                 "targets": [-4, -3, -2, -1],
-                "width": 50,
                 "orderable": false
-            },
-            // Rarity, stats and resistance column
-            {
-                "targets": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-                "width": 50
-            },
-            // Name column
-            {
-                "targets": 0,
-                "width": 250
             }
-        ],
-        "dom": 'lrt'
+        ]
     });
 
     $.fn.dataTable.ext.search.push(
@@ -53,36 +43,31 @@ $(function () {
                 .row(dataIndex)
                 .nodes();
 
-            // Show rows of selected character or when none are selected
+            // Filter rows with selected character
             if (character.length > 0) {
-                for (c of character) {
-                    if ($(row).data('chara') == c) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
+                if (character.indexOf($(row).data('chara').toString()) > -1) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
 
+            // Filter rows with selected rarity
             if (rarity.length > 0) {
-                for (r of rarity) {
-                    if ($(row).data('rarity') == r) {
-                        console.log(true + " " + r);
-                        return true;
-                    }
-                    else {
-                        console.log($(row).data('rarity'));
-                        console.log(r);
-                        return false;
-                    }
+                if (rarity.indexOf($(row).data('rarity').toString()) > -1) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
             else {
                 return true;
             }
         });
+
+    $('#sortableTable').DataTable().columns.adjust()
 })
+
 
 // Filter by character
 function characterFilter() {
