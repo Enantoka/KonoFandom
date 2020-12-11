@@ -43,29 +43,30 @@ $(function () {
                 .row(dataIndex)
                 .nodes();
 
+            // Filter rows with selected character and rarity
+            if (character.length > 0 && rarity.length > 0) {
+                if (character.indexOf($(row).data('chara').toString()) > -1 && rarity.indexOf($(row).data('rarity').toString()) > -1) {
+                    return true;
+                }
+            }
             // Filter rows with selected character
-            if (character.length > 0) {
+            else if (character.length > 0) {
                 if (character.indexOf($(row).data('chara').toString()) > -1) {
                     return true;
-                } else {
-                    return false;
+                }
+            }
+                // Filter rows with selected rarity
+            else if (rarity.length > 0) {
+                if (rarity.indexOf($(row).data('rarity').toString()) > -1) {
+                    return true;
                 }
             }
 
-            // Filter rows with selected rarity
-            if (rarity.length > 0) {
-                if (rarity.indexOf($(row).data('rarity').toString()) > -1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            else {
+            // No filter, show all rows
+            if (character.length == 0 && rarity.length == 0) {
                 return true;
             }
         });
-
-    $('#sortableTable').DataTable().columns.adjust()
 })
 
 
