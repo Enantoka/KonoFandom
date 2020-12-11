@@ -7273,6 +7273,9 @@ a.text-dark:hover, a.text-dark:focus {
 .fade-filter img {
   opacity: 1; }
 
+.element-checkbox-filter img {
+  width: 80%; }
+
 .background-visual {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url("../assets/img/bg_pc_top_02.png");
   background-position: center;
