@@ -119,6 +119,13 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     }
 }
 
+.rarity-checkbox-filter {
+    img {
+        max-width: 150%;
+        height: auto;
+    }
+}
+
 
 // Admin Page CSS
 // Misc Can be deleted?

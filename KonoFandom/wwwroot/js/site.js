@@ -55,7 +55,7 @@ $(function () {
                     return true;
                 }
             }
-                // Filter rows with selected rarity
+            // Filter rows with selected rarity
             else if (rarity.length > 0) {
                 if (rarity.indexOf($(row).data('rarity').toString()) > -1) {
                     return true;
@@ -69,8 +69,7 @@ $(function () {
         });
 })
 
-
-// Filter by character
+// Create array with selected characters
 function characterFilter() {
     character = $('input:checkbox[name="chara_group"]:checked').map(function () {
         return $(this).val();
@@ -80,7 +79,7 @@ function characterFilter() {
 }
 $('.character-checkbox-filter').on('change', function () { characterFilter() });
 
-// Filter by element
+// Create array and filter by element
 function elementFilter() {
     element = $('input:checkbox[name="ele_group"]:checked').map(function () {
         return '^' + $(this).val() + '$';
@@ -90,7 +89,7 @@ function elementFilter() {
 }
 $('.element-checkbox-filter').on('change', function () { elementFilter() });
 
-// Filter by rarity
+// Create array with selected rarity
 function rarityFilter() {
     rarity = $('input:checkbox[name="rarity_group"]:checked').map(function () {
         return $(this).val();
