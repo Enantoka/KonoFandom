@@ -581,12 +581,39 @@ namespace KonoFandom.Data {
                 // Add cards for characters
                 if (!context.Card.Any())
                 {
+                    var rarityOneImagePath = "https://drive.google.com/uc?export=view&id=1-gQnvlvkEES2pAdAWGp3ClMfk8NeJ499";
+                    var rarityTwoImagePath = "https://drive.google.com/uc?export=view&id=1ceXr7wyf4KMEad316zFApcb-N2iYqAP7";
+                    var rarityThreeImagePath = "https://drive.google.com/uc?export=view&id=1UCFALfB8sn9RFopP7qiXq-hqGEWPGkT_";
+                    var rarityFourImagePath = "https://drive.google.com/uc?export=view&id=1efnJ_hoF6YOwq85JjpzUJFBAPFPfSPzR";
+
+
                     context.Card.AddRange(
+                        // Kazuma
                         new Card
                         {
                             Name = "Starter",
                             Rarity = 1,
-                            ImagePath = "",
+                            RarityImagePath = rarityOneImagePath,
+                            Weapon = Weapon.Sword,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1fnRdWThSdLkGtuFSn6yqNLKmZp9KLJ-D",
+                            
+                            HealthPoints = 1391,
+                            PhysicalAttack = 206,
+                            MagicAttack = 204,
+                            PhysicalDefense = 147,
+                            MagicDefense = 141,
+                            Agility = 72,
+                            Dexterity = 78,
+                            Luck = 88,
+
+                            FireResistance = 0.2m,
+                            WaterResistance = 0,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 1,
                             PassiveSkillID = 1
                         },
@@ -595,72 +622,234 @@ namespace KonoFandom.Data {
                         {
                             Name = "Construction Site",
                             Rarity = 2,
-                            ImagePath = "",
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Sword,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1jimlOadqb-2RODiLnHvoax7d58P1tKMr",
+
+                            HealthPoints = 1468,
+                            PhysicalAttack = 221,
+                            MagicAttack = 215,
+                            PhysicalDefense = 156,
+                            MagicDefense = 149,
+                            Agility = 73,
+                            Dexterity = 79,
+                            Luck = 87,
+
+                            FireResistance = 0,
+                            WaterResistance = 0,
+                            LightningResistance = 0.2m,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 1,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 2
                         },
 
                         new Card
                         {
                             Name = "Adventurer",
                             Rarity = 2,
-                            ImagePath = "",
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Sword,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1dIWgIlaYZotWV9kPZNRD4Wx0ebxtMrih",
+
+                            HealthPoints = 1483,
+                            PhysicalAttack = 220,
+                            MagicAttack = 217,
+                            PhysicalDefense = 157,
+                            MagicDefense = 150,
+                            Agility = 72,
+                            Dexterity = 78,
+                            Luck = 88,
+
+                            FireResistance = 0,
+                            WaterResistance = 0,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0.2m,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 1,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 2
                         },
 
+                        // Aqua
                         new Card
                         {
                             Name = "Starter",
                             Rarity = 1,
+                            RarityImagePath = rarityOneImagePath,
+                            Weapon = Weapon.Rod,
                             ImagePath = "",
+
+                            HealthPoints = 1431,
+                            PhysicalAttack = 218,
+                            MagicAttack = 237,
+                            PhysicalDefense = 158,
+                            MagicDefense = 167,
+                            Agility = 66,
+                            Dexterity = 76,
+                            Luck = 10,
+
+                            FireResistance = 0.2m,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 2,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 4
                         },
 
                         new Card
                         {
                             Name = "Construction Site",
                             Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Rod,
                             ImagePath = "",
+
+                            HealthPoints = 1511,
+                            PhysicalAttack = 235,
+                            MagicAttack = 254,
+                            PhysicalDefense = 166,
+                            MagicDefense = 177,
+                            Agility = 67,
+                            Dexterity = 77,
+                            Luck = 10,
+
+                            FireResistance = 0,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0.2m,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 2,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 6
                         },
 
                         new Card
                         {
                             Name = "Arc Priest",
                             Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Rod,
                             ImagePath = "",
+
+                            HealthPoints = 1526,
+                            PhysicalAttack = 233,
+                            MagicAttack = 253,
+                            PhysicalDefense = 168,
+                            MagicDefense = 178,
+                            Agility = 66,
+                            Dexterity = 76,
+                            Luck = 10,
+
+                            FireResistance = 0,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0.2m,
+
                             CharacterID = 2,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 5
                         },
 
+                        // Megumin
                         new Card
                         {
                             Name = "Starter",
                             Rarity = 1,
+                            RarityImagePath = rarityOneImagePath,
+                            Weapon = Weapon.Staff,
                             ImagePath = "",
+
+                            HealthPoints = 1148,
+                            PhysicalAttack = 200,
+                            MagicAttack = 233,
+                            PhysicalDefense = 132,
+                            MagicDefense = 158,
+                            Agility = 68,
+                            Dexterity = 71,
+                            Luck = 72,
+
+                            FireResistance = 0,
+                            WaterResistance = 0,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0.2m,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 3,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 7
                         },
 
                         new Card
                         {
                             Name = "Plain Clothed",
                             Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Staff,
                             ImagePath = "",
+
+                            HealthPoints = 1212,
+                            PhysicalAttack = 211,
+                            MagicAttack = 251,
+                            PhysicalDefense = 139,
+                            MagicDefense = 167,
+                            Agility = 69,
+                            Dexterity = 72,
+                            Luck = 71,
+
+                            FireResistance = 0,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 3,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 7
                         },
 
                         new Card
                         {
                             Name = "Arc Wizard",
                             Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Staff,
                             ImagePath = "",
+
+                            HealthPoints = 1224,
+                            PhysicalAttack = 213,
+                            MagicAttack = 249,
+                            PhysicalDefense = 141,
+                            MagicDefense = 168,
+                            Agility = 68,
+                            Dexterity = 71,
+                            Luck = 72,
+
+                            FireResistance = 0,
+                            WaterResistance = 0,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0.2m,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
                             CharacterID = 3,
-                            PassiveSkillID = 1
+                            PassiveSkillID = 8
                         }
                     );
                     context.SaveChanges();
