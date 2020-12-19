@@ -13,6 +13,7 @@ namespace KonoFandom.Data {
         {
             using (var context = new KonoFandomContext(serviceProvider.GetRequiredService<DbContextOptions<KonoFandomContext>>()))
             {
+                // Add characters
                 if (!context.Character.Any())
                 {
                     context.Character.AddRange(
@@ -278,6 +279,7 @@ namespace KonoFandom.Data {
                     context.SaveChanges();
                 }
 
+                // Add ultimate skill for characters
                 if (!context.UltimateSkill.Any())
                 {
                     context.AddRange(
@@ -448,6 +450,7 @@ namespace KonoFandom.Data {
                     context.SaveChanges();
                 }
 
+                // Add elements
                 if (!context.Element.Any())
                 {
                     context.AddRange(
@@ -500,41 +503,82 @@ namespace KonoFandom.Data {
                             ImagePath = "https://drive.google.com/uc?export=view&id=1uSYgzp3On3pF5EdcQ65eKZ-3JONm4owz"
                         }
                     );
+                    context.SaveChanges();
                 }
 
-                if (!context.Skill.Any())
+                // Add passive skills
+                if (!context.PassiveSkill.Any())
                 {
                     context.AddRange(
                         new PassiveSkill
                         {
-                            Name = "Passive1",
-                            Description = "Desc1"
+                            SkillID = 1,
+                            Name = "Water-type Attack Up",
+                            Description = "Increase attack power by 5% when using water-type attacks",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1b3xqdYkk5LTLZIrKATDjT2GA2isEeAxS"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 2,
+                            Name = "Bind Resistance Up",
+                            Description = "Increase resistance against bind by 12%",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1pREW6V1wEilRe2SIfj3MHvxdNx1XSuAA"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 3,
+                            Name = "Poison Resistance Up",
+                            Description = "Increase resistance against poison by 15%",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=11INbvxK2_uifMwO-cOYyeCIU5puKwc2j"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 4,
+                            Name = "Healing Skill Effect Up",
+                            Description = "Increase healing skill effects by 7%",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1P-lwOOz-QKx5QXKUljLh25vGrGLFwjXR"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 5,
+                            Name = "Seal Resistance Up",
+                            Description = "Increase resistance against seal by 12%",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1a-3mLIDEGQxXW02Ht85miUY3CoWPkfNX"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 6,
+                            Name = "Recover Per Action",
+                            Description = "Heal 50 HP for every action",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1o3L-znTh1H6-5T3FeFzV69rZogS9YJy1"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 7,
+                            Name = "Fire-type Attack Up",
+                            Description = "Increase attack power by 5% when using fire-type attacks",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1l3BiJE8IMG6uM4AdSDJPpPHfdeI5FWJh"
+                        },
+
+                        new PassiveSkill
+                        {
+                            SkillID = 8,
+                            Name = "Lightning Attack Up",
+                            Description = "Increase attack power by 5% when using lightning-type attacks",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1xmCumN_JAiSJ6PhPMRQyxvQBAd5fIjkB"
                         }
+
                     );
                     context.SaveChanges();
                 }
 
-                if (!context.BasicSkill.Any())
-                {
-                    context.BasicSkill.AddRange(
-                        new BasicSkill
-                        {
-                            Name = "Basic1",
-                            Description = "Desc1"
-                        }
-                    );
-                    context.SaveChanges();
-
-                    context.CardBasicSkill.AddRange(
-                        new CardBasicSkill
-                        {
-                            CardID = 1,
-                            BasicSkillID = 1
-                        }
-                    );
-                    context.SaveChanges();
-                }
-
+                // Add cards for characters
                 if (!context.Card.Any())
                 {
                     context.Card.AddRange(
@@ -618,6 +662,32 @@ namespace KonoFandom.Data {
                             CharacterID = 3,
                             PassiveSkillID = 1
                         }
+                    );
+                    context.SaveChanges();
+                }
+
+                // Add basic skills
+                if (!context.BasicSkill.Any())
+                {
+                    context.BasicSkill.AddRange(
+                        new BasicSkill
+                        {
+                            Name = "Basic1",
+                            Description = "Desc1"
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
+                // Assign basic skills to cards
+                if (!context.CardBasicSkill.Any())
+                {
+                    context.CardBasicSkill.AddRange(
+                    new CardBasicSkill
+                    {
+                        CardID = 1,
+                        BasicSkillID = 1
+                    }
                     );
                     context.SaveChanges();
                 }
