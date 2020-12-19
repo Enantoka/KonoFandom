@@ -19,115 +19,260 @@ namespace KonoFandom.Data {
                         new Character
                         {
                             CharacterID = 1,
-                            Name = "Kazuma"
+                            Name = "Kazuma",
+                            CharacterVoice = "Fukushima Jun",
+                            Birthday = new DateTime(2020, 6, 7),
+                            Biography = "A boy reincarnated from Japan who originally was a shut-in " +
+                            "that loves games. He has the worst job - an adventurer, but with his high " +
+                            "luck stats, quick-wittedness and strength of his comrades he stands evenly " +
+                            "matched when contending against the Demon Army Generals.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1fImzqGmYvNJwpq1f2XdokNHttKhzLdUC",
+                            CharacterImagePath = "https://drive.google.com/uc?export=view&id=1ZPreciFaaJ_aZ8G16uL6kvrgFFyAcfZS"
                         },
 
                         new Character
                         {
                             CharacterID = 2,
-                            Name = "Aqua"
+                            Name = "Aqua",
+                            CharacterVoice = "Amamiya Sora",
+                            Birthday = new DateTime(2020, 8, 1),
+                            Biography = "A goddess that was brought along as part of Kazuma’s reincarnation " +
+                            "privileges. Her job is an arch priest. Majority of her abilities have high " +
+                            "stats however, her intelligence is below average, she has the worst luck " +
+                            "stats and often draws the short end of the stick. She’s also good at " +
+                            "performing party tricks.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1mlaNGcRJvZmbyc5K7FjqcJQaEsHbkKk3",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 3,
-                            Name = "Megumin"
+                            Name = "Megumin",
+                            CharacterVoice = "Takahashi Rie",
+                            Birthday = new DateTime(2020, 12, 4),
+                            Biography = "A sorceress of the Crimson Demon Clan that is innate with " +
+                            "extremely high magical abilities and intelligence. Her job is an arch " +
+                            "wizard. She is a user of explosion magic - the strongest offensive magic. " +
+                            "She’s unable to use any other magic.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1sIOiljhk7XQcEvbgphbM8THePBDbWRYw",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 4,
-                            Name = "Darkness"
+                            Name = "Darkness",
+                            CharacterVoice = "Kayano Ai",
+                            Birthday = new DateTime(2020, 4, 6),
+                            Biography = "A beautiful looking crusader with blonde hair and blue eyes. " +
+                            "Her defensive abilities are extremely high however, she’s a very " +
+                            "masochistic tank who enjoys taking attacks. In reality, she’s the " +
+                            "daughter of the Dustiness household, a noble family.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1Zw1POgT1WWwbPWpOyRFQwo004E1Fdgsc",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 5,
-                            Name = "Wiz"
+                            Name = "Wiz",
+                            CharacterVoice = "Horie Yui",
+                            Birthday = new DateTime(),
+                            Biography = "A woman who sells magic tools in Axel Town. She’s a hard worker, " +
+                            "but is misfortunate as she becomes poorer the more she works. In fact she’s " +
+                            "a lich, king of the undead, that is one of the Demon Army Generals.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1vV5dnwuHPUNeAaLbhqsJgD_KOhqoHoas",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 6,
-                            Name = "Yunyun"
+                            Name = "Yunyun",
+                            CharacterVoice = "Toyosaki Aki",
+                            Birthday = new DateTime(2020, 2, 29),
+                            Biography = "An arch wizard that is Megumin’s self-proclaimed rival. " +
+                            "She’s a rare case with common sense within the Crimson Demon Clan " +
+                            "where many possess chuunibyou behaviour. However, she has no " +
+                            "friends and is constantly looking for friends.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1de9b8zMRdRZ1oRRgGzO1FBRHDX43qpRQ",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 7,
-                            Name = "Arue"
+                            Name = "Arue",
+                            CharacterVoice = "Nazuka Kaori",
+                            Birthday = new DateTime(2020, 3, 28),
+                            Biography = "A classmate of Megumin and Yunyun with a job as an arch wizard. " +
+                            "With an ambition of becoming a novelist she writes questionable manuscripts " +
+                            "and sends profound letters to Megumin and Yunyun.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1nhvG7ZtmnZ7xnhSdRVLvXfn0BJdbjxdw",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 8,
-                            Name = "Chris"
+                            Name = "Chris",
+                            CharacterVoice = "Suwa Ayaka",
+                            Birthday = new DateTime(2020, 12, 25),
+                            Biography = "A girl with silver hair and is Darkness’ friend. Her job " +
+                            "is a thief and she teaches Kazuma various thief skills such as steal " +
+                            "and bind. However, because of this relationship her underwear gets " +
+                            "stolen time after time.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1xdpvV663ww7D2k0ZsijFzn2rwg44pVju",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 9,
-                            Name = "Iris"
+                            Name = "Iris",
+                            CharacterVoice = "Takao Kanon",
+                            Birthday = new DateTime(2020, 9, 6),
+                            Biography = "A princess of the Belzerg Kingdom. She possesses knowledge " +
+                            "and elegance befitting of royalty, but has an innocent side as she is " +
+                            "fascinated by commoner’s food and is intrigued by Kazuma’s stories.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=187Ypa5VgVj3xPEn2Z_ZzIj5TxnPrdqp1",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 10,
-                            Name = "Cecily"
+                            Name = "Cecily",
+                            CharacterVoice = "Fairouz Ai",
+                            Birthday = new DateTime(2020, 1, 12),
+                            Biography = "A believer of the Axis Order and self-proclaimed beautiful priest. " +
+                            "She has very strong beliefs and is free-spirited. She has a weakness for " +
+                            "beautiful looking men and women and enjoys making Megumin call her “Onee-san”.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1uPxlyahDOc83lInGfW-pC58wEtk-EwWu",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 11,
-                            Name = "Mitsurugi"
+                            Name = "Mitsurugi",
+                            CharacterVoice = "Eguchi Takuya",
+                            Birthday = new DateTime(2020, 6, 6),
+                            Biography = "A man who reincarnated from Japan as a sword master. " +
+                            "He reveres Aqua and devotes everyday to become a hero befitting " +
+                            "her however, she seems to never remember his name.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1nqkq1tIZhQpD2ro78jwfr98J5wj71ZXx",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 12,
-                            Name = "Dust"
+                            Name = "Dust",
+                            CharacterVoice = "Majima Junji",
+                            Birthday = new DateTime(2020, 9, 28),
+                            Biography = "A man in Axel Town whose job is a fighter. He’s well " +
+                            "known as a hoodlum who picks fights with new adventurers, dine " +
+                            "and dash and blows all his borrowed funds in gambling.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1M7DsLyRBAl7PgU1AZGywTeNOs8bY-LjW",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 13,
-                            Name = "Rin"
+                            Name = "Rin",
+                            CharacterVoice = "Hanamori Yumiri",
+                            Birthday = new DateTime(2020, 10, 6),
+                            Biography = "A wizard who graduated from a magic academy as an " +
+                            "orthodox magic user and can use intermediate magic. She’s in " +
+                            "a party with Dust. She’s also a hard worker who’s often " +
+                            "manipulated by the troublemaker Dust.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1J4Xeq2SJguR72-nc21G_5OCtDyOW5eOz",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 14,
-                            Name = "Lia"
+                            Name = "Lia",
+                            CharacterVoice = "Kawase Maki",
+                            Birthday = new DateTime(2020, 7, 4),
+                            Biography = "A lancer who’s good at singing and is also the leader " +
+                            "of the dance group - Axel Hearts. She’s a hard worker with a " +
+                            "serious demeanor, but at times can be careless. She treasures " +
+                            "her stuffed doll - Koujirou.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1zJznBPKznE4WYYO6CgzQ3tbGaQQFE40e",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 15,
-                            Name = "Cielo"
+                            Name = "Cielo",
+                            CharacterVoice = "Isobe Karin",
+                            Birthday = new DateTime(2020, 11, 19),
+                            Biography = "An arch priest who’s good at dancing and is also a member " +
+                            "of the dance group - Axel Hearts. She’s shy and indecisive, but " +
+                            "because of her androphobia when touched by men she hits them on reflex.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=12vBF-Tn5DBE7dQQBf2Dga-LgxM4pDl7P",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 16,
-                            Name = "Erika"
+                            Name = "Erika",
+                            CharacterVoice = "Narumi Runa",
+                            Birthday = new DateTime(2020, 5, 17),
+                            Biography = "A ranger who’s obsessed with being cute and is also a " +
+                            "member of the dance group - Axel Hearts. She’s egotistic and does " +
+                            "things at her own pace, but easily gets carried away when praised.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1_UMl1OVRpfN5N9PDQvNm8Lg0686vLPTf",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 17,
-                            Name = "Melissa"
+                            Name = "Melissa",
+                            CharacterVoice = "Takano Marika",
+                            Birthday = new DateTime(2020, 10, 28),
+                            Biography = "She’s seductive yet well known for being an outstanding " +
+                            "treasure hunter. She’s always looking down on others and is prideful, " +
+                            "but she loves cute animals and when encountering pets she suddenly " +
+                            "speaks in baby talk.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1csbMK8VGNKPSgRnHIW0UOH6qYMWWUHO_",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 18,
-                            Name = "Mia"
+                            Name = "Mia",
+                            CharacterVoice = "Waki Azumi",
+                            Birthday = new DateTime(2020, 4, 26),
+                            Biography = "A young human beast with a dialect accent. She’s a " +
+                            "glutton that is pure and innocent yet filled with curiosity. She " +
+                            "touches objects that are not meant to be touched, eats food that " +
+                            "is not meant to be eaten and causes all sorts of trouble.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=1hvNhIgY1u9nJMo1Gm-7pHfc932J8F0Kp",
+                            CharacterImagePath = ""
                         },
 
                         new Character
                         {
                             CharacterID = 19,
-                            Name = "Amy"
+                            Name = "Amy",
+                            CharacterVoice = "Oozora Naomi",
+                            Birthday = new DateTime(2020, 2, 8),
+                            Biography = "An older human beast from the northern lands. " +
+                            "She’s overprotective, enjoys looking after others more than " +
+                            "anything and often takes care of Mia like a little sister, " +
+                            "but she spoils her too much that it has adverse effects.",
+                            IconImagePath = "https://drive.google.com/uc?export=view&id=18qtofW26asHStshiG4LwUV9tmWKCO4rE",
+                            CharacterImagePath = ""
                         }
                     );
                     context.SaveChanges();
