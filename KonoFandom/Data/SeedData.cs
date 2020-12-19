@@ -278,30 +278,179 @@ namespace KonoFandom.Data {
                     context.SaveChanges();
                 }
 
-                if (!context.Skill.Any())
+                if (!context.UltimateSkill.Any())
                 {
                     context.AddRange(
                         new UltimateSkill
                         {
-                            Name = "Ult1",
-                            Description = "Desc1",
+                            Name = "Double Drain Touch",
+                            Description = "Deals 344% non-elemental magic damage to an enemy " +
+                            "and moderately heals allies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=13NvY9RUCpW9-sFu5AT36slzClTMbfPIM",
                             CharacterID = 1
                         },
 
                         new UltimateSkill
                         {
-                            Name = "Ult2",
-                            Description = "Desc2",
+                            Name = "God Blow",
+                            Description = "Deals 338% light physical damage to an enemy.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1yNqg_xy-ZvdAO_3h6FtzT6OP4FzjCuhF",
                             CharacterID = 2
                         },
 
                         new UltimateSkill
                         {
-                            Name = "Ult3",
-                            Description = "Desc3",
+                            Name = "Explosion",
+                            Description = "Deals 433% fire magic damage to all enemies and " +
+                            "becomes unable to fight after use.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1LDQ8-bzC-oGtTx9YparOOTOtWMM4EY99",
                             CharacterID = 3
                         },
 
+                        new UltimateSkill
+                        {
+                            Name = "Use me as a wall",
+                            Description = "Highly increases chances of drawing enemy attacks " +
+                            "and greatly increases your physical and magical defence (20 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1MifOwFO0Jb9AA2LVmsH4U2RQX7EALTmJ",
+                            CharacterID = 4
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Cursed Crystal Prison",
+                            Description = "Deals 252% water magic damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1uv8rZgsEyZzHSveAYsjCaWT2JD8eMeA0",
+                            CharacterID = 5
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Light of Saber",
+                            Description = "Deals 252% light magic damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1iEQChkt-bG9bmTka3L1KNtJ9WpAEGudI",
+                            CharacterID = 6
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Cursed Lightning",
+                            Description = "Deals 252% dark magic damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1Zhzm4ePRVdIn6W8uHgUgwdKy-lLPwOgO",
+                            CharacterID = 7
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Wire Tornado",
+                            Description = "Deals 256% non-elemental physical damage to all " +
+                            "enemies and greatly reduces their agility (16 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1_a_k4nJrsgYKsBU_FJp1lLJjLej55yWL",
+                            CharacterID = 8
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Exterion",
+                            Description = "Deals 252% light physical damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1I8WjrjbXH1vFc8nwIcN-Gfmz87cHK2zB",
+                            CharacterID = 9
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Axis Order Attack",
+                            Description = "Deals 256% non-elemental physical damage to all " +
+                            "enemies and greatly reduces their magic defence (16 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1EuQS-ebOD_fWBjC14dDIe9OLNz6dz6sd",
+                            CharacterID = 10
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Sword of the Chosen Hero",
+                            Description = "Deals 344% non-elemental physical damage to an " +
+                            "enemy and greatly increases the physical defence of all allies " +
+                            "(16 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1AdVzAhy0AvDZ8ac0bAnUJU5d5jJ7RYJt",
+                            CharacterID = 11
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "I Can Do It When I Try",
+                            Description = "Deals 292% non-elemental physical damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=16V-VtMkgKm8dylSB5nCwqPbs5wGmiqAN",
+                            CharacterID = 12
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Blade of Wind",
+                            Description = "Deals 252% wind magic damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1EPIOUtHOue0WHSk4tI7ffJ5apjoeoLWS",
+                            CharacterID = 13
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Prelude Defence",
+                            Description = "Greatly increases the physical and magic defence of " +
+                            "all allies (12 seconds) and moderately fills their ultimate skill gauge.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1mN3DS68Ol_4fZj0nyrkONiFkOelSI-Xh",
+                            CharacterID = 14
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Sacred Highness Heal",
+                            Description = "Heals all allies for an extremely large amount and " +
+                            "greatly increases physical and magic attack (12 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=183GYZyKitScQoSqwdW_z6-27mqCf6J2Q",
+                            CharacterID = 15
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Self-call and Response",
+                            Description = "Deals 344% non-elemental physical damage to an enemy " +
+                            "and greatly increases the physical attack of all allies (16 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=14_xI936iOlJXMCh4Fo-DHfh7HQI6Q2TK",
+                            CharacterID = 16
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Midnight Edge",
+                            Description = "Deals 344% non-elemental physical damage to an enemy " +
+                            "and greatly reduces their physical defence (20 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1Y8SnzkecAcJu8RO3htnhXy3_0L6mC9eJ",
+                            CharacterID = 17
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Rock Bomber",
+                            Description = "Deals 252% earth physical damage to all enemies.",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=11qJzzIZVgA23cfC5z7G1vDG7w_Tj7gVo",
+                            CharacterID = 18
+                        },
+
+                        new UltimateSkill
+                        {
+                            Name = "Pain, Pain Fly Away",
+                            Description = "Heals all allies for an extremely large amount " +
+                            "and greatly increases their magic attack (16 seconds).",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1RLk0rAZPf9FvaWgEVvO4N50qNi69QidQ",
+                            CharacterID = 19
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
+                if (!context.Skill.Any())
+                {
+                    context.AddRange(
                         new PassiveSkill
                         {
                             Name = "Passive1",
