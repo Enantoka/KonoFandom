@@ -4,11 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KonoFandom.Data;
 using KonoFandom.Models;
 
-namespace KonoFandom.Areas.Admin.Models
-{
+namespace KonoFandom.Data {
     public class SeedData
     {
         public static void Intialize(IServiceProvider serviceProvider)
