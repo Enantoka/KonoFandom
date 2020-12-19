@@ -683,7 +683,7 @@ namespace KonoFandom.Data {
                             Rarity = 1,
                             RarityImagePath = rarityOneImagePath,
                             Weapon = Weapon.Rod,
-                            ImagePath = "",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1K8G-mulEc3fgmuxJTZV3_Oife9YURqPn",
 
                             HealthPoints = 1431,
                             PhysicalAttack = 218,
@@ -708,40 +708,11 @@ namespace KonoFandom.Data {
 
                         new Card
                         {
-                            Name = "Construction Site",
-                            Rarity = 2,
-                            RarityImagePath = rarityTwoImagePath,
-                            Weapon = Weapon.Rod,
-                            ImagePath = "",
-
-                            HealthPoints = 1511,
-                            PhysicalAttack = 235,
-                            MagicAttack = 254,
-                            PhysicalDefense = 166,
-                            MagicDefense = 177,
-                            Agility = 67,
-                            Dexterity = 77,
-                            Luck = 10,
-
-                            FireResistance = 0,
-                            WaterResistance = 0.2m,
-                            LightningResistance = 0.2m,
-                            EarthResistance = 0,
-                            WindResistance = 0,
-                            LightResistance = 0,
-                            DarkResistance = 0,
-
-                            CharacterID = 2,
-                            PassiveSkillID = 6
-                        },
-
-                        new Card
-                        {
                             Name = "Arc Priest",
                             Rarity = 2,
                             RarityImagePath = rarityTwoImagePath,
                             Weapon = Weapon.Rod,
-                            ImagePath = "",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=12i-tb4pDEBkmR5FGaLKFyn-terfF84SI",
 
                             HealthPoints = 1526,
                             PhysicalAttack = 233,
@@ -764,6 +735,35 @@ namespace KonoFandom.Data {
                             PassiveSkillID = 5
                         },
 
+                        new Card
+                        {
+                            Name = "Construction Site",
+                            Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Rod,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=17lWtcTygiw6Y1LFJVWeZAIvV2J00qYnT",
+
+                            HealthPoints = 1511,
+                            PhysicalAttack = 235,
+                            MagicAttack = 254,
+                            PhysicalDefense = 166,
+                            MagicDefense = 177,
+                            Agility = 67,
+                            Dexterity = 77,
+                            Luck = 10,
+
+                            FireResistance = 0,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0.2m,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
+                            CharacterID = 2,
+                            PassiveSkillID = 6
+                        },
+
                         // Megumin
                         new Card
                         {
@@ -771,7 +771,7 @@ namespace KonoFandom.Data {
                             Rarity = 1,
                             RarityImagePath = rarityOneImagePath,
                             Weapon = Weapon.Staff,
-                            ImagePath = "",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1gSUJ-9Bcg_jn2Eaxd3ec2N4MOuTfQoMY",
 
                             HealthPoints = 1148,
                             PhysicalAttack = 200,
@@ -796,40 +796,11 @@ namespace KonoFandom.Data {
 
                         new Card
                         {
-                            Name = "Plain Clothed",
-                            Rarity = 2,
-                            RarityImagePath = rarityTwoImagePath,
-                            Weapon = Weapon.Staff,
-                            ImagePath = "",
-
-                            HealthPoints = 1212,
-                            PhysicalAttack = 211,
-                            MagicAttack = 251,
-                            PhysicalDefense = 139,
-                            MagicDefense = 167,
-                            Agility = 69,
-                            Dexterity = 72,
-                            Luck = 71,
-
-                            FireResistance = 0,
-                            WaterResistance = 0.2m,
-                            LightningResistance = 0,
-                            EarthResistance = 0,
-                            WindResistance = 0,
-                            LightResistance = 0,
-                            DarkResistance = 0,
-
-                            CharacterID = 3,
-                            PassiveSkillID = 7
-                        },
-
-                        new Card
-                        {
                             Name = "Arc Wizard",
                             Rarity = 2,
                             RarityImagePath = rarityTwoImagePath,
                             Weapon = Weapon.Staff,
-                            ImagePath = "",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1DWPQGuYP17cwbBML_baY-1udChvxu213",
 
                             HealthPoints = 1224,
                             PhysicalAttack = 213,
@@ -850,6 +821,35 @@ namespace KonoFandom.Data {
 
                             CharacterID = 3,
                             PassiveSkillID = 8
+                        },
+
+                        new Card
+                        {
+                            Name = "Plain Clothed",
+                            Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Staff,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1IbNsPATCze0ZqiXv3vY5FS_8PR5Eh2NK",
+
+                            HealthPoints = 1212,
+                            PhysicalAttack = 211,
+                            MagicAttack = 251,
+                            PhysicalDefense = 139,
+                            MagicDefense = 167,
+                            Agility = 69,
+                            Dexterity = 72,
+                            Luck = 71,
+
+                            FireResistance = 0,
+                            WaterResistance = 0.2m,
+                            LightningResistance = 0,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
+                            CharacterID = 3,
+                            PassiveSkillID = 7
                         }
                     );
                     context.SaveChanges();
