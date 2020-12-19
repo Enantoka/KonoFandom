@@ -448,6 +448,60 @@ namespace KonoFandom.Data {
                     context.SaveChanges();
                 }
 
+                if (!context.Element.Any())
+                {
+                    context.AddRange(
+                        new Element
+                        {
+                            ElementID = 1,
+                            Name = "Fire",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1zs-o5OyRvFxWOC1s9AjOD_l96pLqjpTp"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 2,
+                            Name = "Water",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=143pAC7heEZ2bVvckuw1R5m0rjEiDA4wi"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 3,
+                            Name = "Lightning",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=15LujTvvyODjLoV581p4WPWB7hmkixrvD"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 4,
+                            Name = "Earth",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1J3rH8Qn4goCwLNsUdxUi4PSDDj1DzBu7"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 5,
+                            Name = "Wind",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1gfP8aLWwKVt7o45LpAu_k8xVEO9f3INW"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 6,
+                            Name = "Light",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1goxJfL8Xyn_uv4Y5NYXqugw8VRcjyTS6"
+                        },
+
+                        new Element
+                        {
+                            ElementID = 7,
+                            Name = "Dark",
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1uSYgzp3On3pF5EdcQ65eKZ-3JONm4owz"
+                        }
+                    );
+                }
+
                 if (!context.Skill.Any())
                 {
                     context.AddRange(
