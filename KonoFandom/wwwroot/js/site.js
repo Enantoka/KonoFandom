@@ -20,29 +20,20 @@ $('#index tbody tr td').click( function () {viewDetails(this) });
 var dt; // DataTable
 var character = []; // Character filter
 var element = []; // Element filter
+var rarity = []; // Rarity filter
 
 $(function () {
     dt = $('#sortableTable').DataTable({
         "paging": false,
+        "autoWidth" : false,
+        "dom": 'lrt',
         "columnDefs": [
             // Skills column
             {
                 "targets": [-4, -3, -2, -1],
-                "width": 50,
                 "orderable": false
-            },
-            // Rarity, stats and resistance column
-            {
-                "targets": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-                "width": 50
-            },
-            // Name column
-            {
-                "targets": 0,
-                "width": 250
             }
-        ],
-        "dom": 'lrt'
+        ]
     });
 
     $.fn.dataTable.ext.search.push(
@@ -52,43 +43,61 @@ $(function () {
                 .row(dataIndex)
                 .nodes();
 
-            // Show rows of selected character or when none are selected
-            if (character.length > 0) {
-                for (c of character) {
-                    if ($(row).data('chara') == c) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
+            // Filter rows with selected character and rarity
+            if (character.length > 0 && rarity.length > 0) {
+                if (character.indexOf($(row).data('chara').toString()) > -1 && rarity.indexOf($(row).data('rarity').toString()) > -1) {
+                    return true;
                 }
-            } else {
+            }
+            // Filter rows with selected character
+            else if (character.length > 0) {
+                if (character.indexOf($(row).data('chara').toString()) > -1) {
+                    return true;
+                }
+            }
+            // Filter rows with selected rarity
+            else if (rarity.length > 0) {
+                if (rarity.indexOf($(row).data('rarity').toString()) > -1) {
+                    return true;
+                }
+            }
+
+            // No filter, show all rows
+            if (character.length == 0 && rarity.length == 0) {
                 return true;
             }
         });
 })
 
-// Filter by character
+// Create array with selected characters
 function characterFilter() {
     character = $('input:checkbox[name="chara_group"]:checked').map(function () {
         return $(this).val();
     }).get();
 
-    //var dt = $('#sortableTable').DataTable();
     dt.draw();
 }
 $('.character-checkbox-filter').on('change', function () { characterFilter() });
 
-// Filter by element
+// Create array and filter by element
 function elementFilter() {
     element = $('input:checkbox[name="ele_group"]:checked').map(function () {
         return '^' + $(this).val() + '$';
     }).get().join('|'); 
 
-    //var dt = $('#sortableTable').DataTable();
     dt.column(1).search(element, true, false).draw();
 }
 $('.element-checkbox-filter').on('change', function () { elementFilter() });
+
+// Create array with selected rarity
+function rarityFilter() {
+    rarity = $('input:checkbox[name="rarity_group"]:checked').map(function () {
+        return $(this).val();
+    }).get();
+
+    dt.draw();
+}
+$('.rarity-checkbox-filter').on('change', function () { rarityFilter() });
 
 // Change opactiy of img to 1
 function fadeFilter(label) {
@@ -99,7 +108,9 @@ function fadeFilter(label) {
         $(label).addClass('fade-filter');
     }
 }
+$('.character-checkbox-filter label').on('click', function () { fadeFilter(this) });
 $('.element-checkbox-filter label').on('click', function () { fadeFilter(this) });
+$('.rarity-checkbox-filter label').on('click', function () { fadeFilter(this) });
 
 // ----------------------------
 

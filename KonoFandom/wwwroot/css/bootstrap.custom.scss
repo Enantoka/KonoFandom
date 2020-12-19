@@ -7,6 +7,13 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 
 @import "../lib/bootstrap/scss/bootstrap.scss";
 
+//
+@media (max-width: 575px) {
+    body {
+        font-size: 0.7rem;
+    }
+}
+
 // Wrapper
 .wrapper{
     position: relative;
@@ -28,10 +35,6 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 
         p {
             margin-bottom: 0em;
-
-            @media (max-width: 575px) {
-                font-size: 0.7rem;
-            }
         }
     }
 
@@ -42,11 +45,9 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
         }
     }
 
-    .appstore-top {
+    .appstore-top a {
+        display: inline-block;
 
-        a {
-            display: inline-block;
-        }
     }
 
     .pic {
@@ -95,16 +96,13 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
 }
 
 // Filters
-.character-checkbox-filter {
-    margin: 25px;
-}
-
-.element-checkbox-filter {
-    
+.character-checkbox-filter, 
+.element-checkbox-filter, 
+.rarity-checkbox-filter {
     border: solid;
     border-width: thin;
     margin: 25px;
-    
+
     input[type="checkbox"] {
         display: none;
     }
@@ -118,6 +116,10 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     img {
         opacity: 1;
     }
+}
+
+.element-checkbox-filter img {
+    width: 80%;
 }
 
 // Admin Page CSS

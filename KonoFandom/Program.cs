@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KonoFandom.Areas.Admin.Models;
+using KonoFandom.Data;
 using KonoFandom.Areas.Admin.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
