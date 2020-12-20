@@ -422,10 +422,6 @@ namespace KonoFandom.Data {
 
                     );
                     context.SaveChanges();
-
-                    // Set the value of the skill id to current value
-                    query = "SELECT setval('public.skill_skill_id_seq', max(skill_id)) FROM public.skill";
-                    context.Database.ExecuteSqlRaw(query);
                 }
 
                 // Add cards for characters
@@ -465,36 +461,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 1,
-                            PassiveSkillID = 1
-                        },
-
-                        new Card
-                        {
-                            Name = "Construction Site",
-                            Rarity = 2,
-                            RarityImagePath = rarityTwoImagePath,
-                            Weapon = Weapon.Sword,
-                            ImagePath = "https://drive.google.com/uc?export=view&id=1jimlOadqb-2RODiLnHvoax7d58P1tKMr",
-
-                            HealthPoints = 1468,
-                            PhysicalAttack = 221,
-                            MagicAttack = 215,
-                            PhysicalDefense = 156,
-                            MagicDefense = 149,
-                            Agility = 73,
-                            Dexterity = 79,
-                            Luck = 87,
-
-                            FireResistance = 0,
-                            WaterResistance = 0,
-                            LightningResistance = 0.2m,
-                            EarthResistance = 0,
-                            WindResistance = 0,
-                            LightResistance = 0,
-                            DarkResistance = 0,
-
-                            CharacterID = 1,
-                            PassiveSkillID = 2
+                            PassiveSkillID = 1,
+                            CardID = 1
                         },
 
                         new Card
@@ -523,7 +491,38 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 1,
-                            PassiveSkillID = 2
+                            PassiveSkillID = 2,
+                            CardID = 2
+                        },
+
+                        new Card
+                        {
+                            Name = "Construction Site",
+                            Rarity = 2,
+                            RarityImagePath = rarityTwoImagePath,
+                            Weapon = Weapon.Sword,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1jimlOadqb-2RODiLnHvoax7d58P1tKMr",
+
+                            HealthPoints = 1468,
+                            PhysicalAttack = 221,
+                            MagicAttack = 215,
+                            PhysicalDefense = 156,
+                            MagicDefense = 149,
+                            Agility = 73,
+                            Dexterity = 79,
+                            Luck = 87,
+
+                            FireResistance = 0,
+                            WaterResistance = 0,
+                            LightningResistance = 0.2m,
+                            EarthResistance = 0,
+                            WindResistance = 0,
+                            LightResistance = 0,
+                            DarkResistance = 0,
+
+                            CharacterID = 1,
+                            PassiveSkillID = 2,
+                            CardID = 3
                         },
 
                         // Aqua
@@ -553,7 +552,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 2,
-                            PassiveSkillID = 4
+                            PassiveSkillID = 4,
+                            CardID = 4
                         },
 
                         new Card
@@ -582,7 +582,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0.2m,
 
                             CharacterID = 2,
-                            PassiveSkillID = 5
+                            PassiveSkillID = 5,
+                            CardID = 5
                         },
 
                         new Card
@@ -611,7 +612,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 2,
-                            PassiveSkillID = 6
+                            PassiveSkillID = 6,
+                            CardID = 6
                         },
 
                         // Megumin
@@ -641,7 +643,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 3,
-                            PassiveSkillID = 7
+                            PassiveSkillID = 7,
+                            CardID = 7
                         },
 
                         new Card
@@ -670,7 +673,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 3,
-                            PassiveSkillID = 8
+                            PassiveSkillID = 8,
+                            CardID = 8
                         },
 
                         new Card
@@ -699,7 +703,8 @@ namespace KonoFandom.Data {
                             DarkResistance = 0,
 
                             CharacterID = 3,
-                            PassiveSkillID = 7
+                            PassiveSkillID = 7,
+                            CardID = 9
                         }
                     );
                     context.SaveChanges();
@@ -715,21 +720,337 @@ namespace KonoFandom.Data {
                     context.BasicSkill.AddRange(
                         new BasicSkill
                         {
-                            Name = "Basic1",
-                            Description = "Desc1"
+                            SkillID = 9,
+                            Name = "Attack",
+                            Description = "Deal 126% non-elemental physical damage to an enemy",
+                            ChargeTime = 0,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1qEY7ALGVT5rf4vVZ6LK_QUyHNK8LlOjU"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 10,
+                            Name = "Create Water",
+                            Description = "Deal 151% water magic damage to an enemy",
+                            ChargeTime = 9,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1S2ph_9tSKEBLY1__UiB_roWWM7HbS2ru"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 11,
+                            Name = "Bind",
+                            Description = "A high chance of applying bind to an enemy (7 seconds)",
+                            ChargeTime = 14,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1Nt1m5sQdtn8sW-lskri79RGQMz6B6iD2"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 12,
+                            Name = "Fire Slash",
+                            Description = "Deal 190% fire physical damage to an enemy",
+                            ChargeTime = 17,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1oJ9XDha5olvODxoQUABv27PhnIZrBkG5"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 13,
+                            Name = "Guard Down",
+                            Description = "Slightly reduce the physical defence of all enemies (16 seconds)",
+                            ChargeTime = 16,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1SY_JaffmPQg-hLUgo1JQ7k_1JdrPCj7W"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 14,
+                            Name = "Create Earth",
+                            Description = "Deal 151% earth magic damage to an enemy",
+                            ChargeTime = 9,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=19JPMy8VzyTSznsXvhYoMd5WqvGpoMdpk"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 15,
+                            Name = "Speed Down",
+                            Description = "Slightly reduce the speed of all enemies (16 seconds)",
+                            ChargeTime = 16,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1yT9gDJuH1rQHpdj8TFdoah10VwkODeBm"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 16,
+                            Name = "Marine Attack",
+                            Description = "Deal 180% water physical damage to an enemy",
+                            ChargeTime = 15,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1TX6pZJ4QaOl4IZxHACJn2tYpfzGqH7jY"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 17,
+                            Name = "Heal",
+                            Description = "Moderately heal an ally ",
+                            ChargeTime = 13,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1YUvosdGDdyEzxfxHNYkSFWdngG1ZJysB"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 18,
+                            Name = "Bright Attack+",
+                            Description = "Deal 128% light physical damage to an enemy and slightly heal all allies",
+                            ChargeTime = 18,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1-kQ3FGDeiWpd3CAqOeT91sFx4r9CVCG_"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 19,
+                            Name = "Purification+",
+                            Description = "Remove all negative effects from an ally and slightly heal",
+                            ChargeTime = 16,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1boALmHKQDnJyFKVP8bOh55qvYb3EXupE"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 20,
+                            Name = "Rock Attack",
+                            Description = "Deal 180% earth physical damage to an enemy",
+                            ChargeTime = 15,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1eE_wPiB8w47jJmJtM9PXoI_sEJn7nZO3"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 21,
+                            Name = "Fire Potion",
+                            Description = "Deal 180% fire magic damage to an enemy",
+                            ChargeTime = 15,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1kLG_SyBypa2XDSrJHfP9m3WhVhfNmz6O"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 22,
+                            Name = "Enhance Magic Power",
+                            Description = "Moderately increase your magic attack (16 seconds)",
+                            ChargeTime = 14,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1RNXXinxXZ8-4VsbIJBCrkbYCMyMeyFCq"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 23,
+                            Name = "Fire Potions",
+                            Description = "Deal 142% fire magic attack damage to all enemies",
+                            ChargeTime = 17,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1HtGKUrP-2pjTigDELxfo4ivynQlncKIr"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 24,
+                            Name = "Enhance Speed",
+                            Description = "Moderately increase your speed (16 seconds)",
+                            ChargeTime = 14,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1QyQII_Gziwr4hbmH7z4x1L14MfsqqwqB"
+                        },
+
+                        new BasicSkill
+                        {
+                            SkillID = 25,
+                            Name = "Thunder Potions",
+                            Description = "Deal 142% lightning magic damage to all enemies",
+                            ChargeTime = 17,
+                            ImagePath = "https://drive.google.com/uc?export=view&id=1ewXPDrzECTz6FqtjC2Fwc7yp0hmzVPpL"
                         }
                     );
                     context.SaveChanges();
+
+                    // Set the value of the skill id to current value
+                    query = "SELECT setval('public.skill_skill_id_seq', max(skill_id)) FROM public.skill";
+                    context.Database.ExecuteSqlRaw(query);
                 }
 
                 // Assign basic skills to cards
                 if (!context.CardBasicSkill.Any())
                 {
                     context.CardBasicSkill.AddRange(
+                        // Kazuma - Beginner
                         new CardBasicSkill
                         {
                             CardID = 1,
-                            BasicSkillID = 1
+                            BasicSkillID = 10
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 1,
+                            BasicSkillID = 11
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 1,
+                            BasicSkillID = 9
+                        },
+
+                        // Kazuma - Adventurer
+                        new CardBasicSkill
+                        {
+                            CardID = 2,
+                            BasicSkillID = 12
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 2,
+                            BasicSkillID = 13
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 2,
+                            BasicSkillID = 9
+                        },
+
+                        // Kazuma - Construction Site
+                        new CardBasicSkill
+                        {
+                            CardID = 3,
+                            BasicSkillID = 14
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 3,
+                            BasicSkillID = 15
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 3,
+                            BasicSkillID = 9
+                        },
+
+                        // Aqua - Beginner
+                        new CardBasicSkill
+                        {
+                            CardID = 4,
+                            BasicSkillID = 16
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 4,
+                            BasicSkillID = 17
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 4,
+                            BasicSkillID = 9
+                        },
+
+                        // Aqua - Arch Priest
+                        new CardBasicSkill
+                        {
+                            CardID = 5,
+                            BasicSkillID = 18
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 5,
+                            BasicSkillID = 19
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 5,
+                            BasicSkillID = 9
+                        },
+
+                        // Aqua - Construction Site
+                        new CardBasicSkill
+                        {
+                            CardID = 6,
+                            BasicSkillID = 20
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 6,
+                            BasicSkillID = 17
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 6,
+                            BasicSkillID = 9
+                        },
+
+                        // Megumin - Starter
+                        new CardBasicSkill
+                        {
+                            CardID = 7,
+                            BasicSkillID = 21
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 7,
+                            BasicSkillID = 22
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 7,
+                            BasicSkillID = 9
+                        },
+
+                        // Megumin - Arch Wizard
+                        new CardBasicSkill
+                        {
+                            CardID = 8,
+                            BasicSkillID = 23
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 8,
+                            BasicSkillID = 24
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 8,
+                            BasicSkillID = 9
+                        },
+
+                        // Megumin - Plain Clothed
+                        new CardBasicSkill
+                        {
+                            CardID = 9,
+                            BasicSkillID = 25
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 9,
+                            BasicSkillID = 22
+                        },
+
+                        new CardBasicSkill
+                        {
+                            CardID = 9,
+                            BasicSkillID = 9
                         }
                     );
                     context.SaveChanges();

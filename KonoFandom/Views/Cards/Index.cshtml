@@ -132,8 +132,6 @@
                 <td>@Html.DisplayFor(x => card.LightResistance)</td>
                 <td>@Html.DisplayFor(x => card.DarkResistance)</td>
 
-                <!-- temp variable c -->
-                @{var c = 0;}
                 @foreach (var s in card.CardBasicSkills)
                 {
                     <td>
@@ -141,17 +139,12 @@
                              data-placement="bottom" title="@s.BasicSkill.Description"
                              class="img-fluid" />
                     </td>
-                    c++;
                 }
-
-                @for (; c < 4; c++)
-                {
-                    <td>
-                        <img src=@card.PassiveSkill.ImagePath data-toggle="tooltip"
-                             data-placement="bottom" title="@card.PassiveSkill.Description"
-                             class="img-fluid" />
-                    </td>
-                }
+                <td>
+                    <img src=@card.PassiveSkill.ImagePath data-toggle="tooltip"
+                            data-placement="bottom" title="@card.PassiveSkill.Description"
+                            class="img-fluid" />
+                </td>
             </tr>
         }
     </tbody>
