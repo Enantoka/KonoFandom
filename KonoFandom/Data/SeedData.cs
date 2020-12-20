@@ -714,6 +714,67 @@ namespace KonoFandom.Data {
                     context.Database.ExecuteSqlRaw(query);
                 }
 
+                // Assign element to cards
+                if (!context.CardElement.Any())
+                {
+                    context.CardElement.AddRange(
+                        new CardElement
+                        {
+                            CardID = 1,
+                            ElementID = 2
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 2,
+                            ElementID = 1
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 3,
+                            ElementID = 4
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 4,
+                            ElementID = 2
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 5,
+                            ElementID = 6
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 6,
+                            ElementID = 4
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 7,
+                            ElementID = 1
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 8,
+                            ElementID = 1
+                        },
+
+                        new CardElement
+                        {
+                            CardID = 9,
+                            ElementID = 3
+                        }
+                    );
+                    context.SaveChanges();
+                }
+
                 // Add basic skills
                 if (!context.BasicSkill.Any())
                 {
