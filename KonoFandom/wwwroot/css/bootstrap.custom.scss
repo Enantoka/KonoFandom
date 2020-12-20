@@ -19,6 +19,7 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     position: relative;
     left: 3%;
     top: 10%;
+    z-index: 1;
 }
 
 // Home Top
@@ -27,7 +28,6 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     .background-top {
         background: linear-gradient(135deg, #729dca 60%, white 60%);
         position: relative;
-        z-index: -2;
     }
 
     .welcome-msg {
@@ -55,7 +55,6 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
         position: relative;
         left: -4%;
         top: 4%;
-        z-index: -1;
     }
 }
 
