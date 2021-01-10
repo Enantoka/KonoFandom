@@ -15,25 +15,32 @@ namespace KonoFandom.XUnitTest
         }
 
         [Collection("Database")]
-        public class CharacterTests
+        public class CharacterControllerTests
         {
             private SharedDatabaseFixture fixture;
 
-            public CharacterTests(SharedDatabaseFixture fixture)
+            // Test for Admin/CharacterController
+            public CharacterControllerTests(SharedDatabaseFixture fixture)
             {
                 this.fixture = fixture;
             }
 
             [Fact]
-            public void Get_amount_of_characters()
+            public void Index_Characters_ReturnsListOfCharacters()
             {
-                var count = fixture.DbContext.Character.Count();
-                Assert.Equal(2, count);
+                // Act
+                var list = fixture.DbContext.Character.ToList();
+
+                // Assert
+                Assert.IsType<List<Character>>(list);
             }
 
             [Fact]
-            public void Add_characters()
+            public void Create_Characters_ReturnsCorrectCount()
             {
+                // Arrange
+                const int EXPECTED_COUNT = 2;
+                
                 fixture.DbContext.Character.AddRange(
                     new Character
                     {
@@ -46,8 +53,12 @@ namespace KonoFandom.XUnitTest
                     }
                 );
                 fixture.DbContext.SaveChanges();
+
+                // Act
                 var count = fixture.DbContext.Character.Count();
-                Assert.Equal(2, count);
+
+                // Assert
+                Assert.Equal(EXPECTED_COUNT, count);
             }
         }
 
