@@ -1,11 +1,11 @@
 ﻿using System;
 using DoomedDatabases.Postgres;
-using Xunit;
 using Microsoft.Extensions.Configuration;
 using KonoFandom.Data;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
-using System.Linq;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KonoFandom.XUnitTest
 {
@@ -18,6 +18,10 @@ namespace KonoFandom.XUnitTest
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             TestDatabase = new TestDatabaseBuilder().WithConfiguration(configuration).Build();
             TestDatabase.Create();
+
+            // Add Test Server for route testing
+            //var webHostBuilder = new WebHostBuilder().UseStartup<Startup>();
+            //var server = new TestServer(webHostBuilder);
 
             var builder = new DbContextOptionsBuilder<KonoFandomContext>();
             builder.UseNpgsql(TestDatabase.ConnectionString);
