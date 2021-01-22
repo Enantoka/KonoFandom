@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace KonoFandom.XUnitTest
 {
@@ -20,16 +21,19 @@ namespace KonoFandom.XUnitTest
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            // Utilise appsettings.json in test project
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables()
                 .Build();
 
             services.AddDbContext<KonoFandomContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseNpgsql(Configuration.GetConnectionString("TestApplicationDb"))
            .UseSnakeCaseNamingConvention());
 
             services.AddDbContext<IdentityContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseNpgsql(Configuration.GetConnectionString("TestUserDb"))
             .UseSnakeCaseNamingConvention());
 
             services.AddIdentity<KonoFandomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -42,14 +46,19 @@ namespace KonoFandom.XUnitTest
         {
             base.Configure(app, env);
 
-            /* var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
 
             using (var serviceScope = serviceScopeFactory.CreateScope())
             {
-                var testDbContext = serviceScope.ServiceProvider.GetRequiredService<KonoFandomContext>();
-                Console.WriteLine("TEST STRING > > > > : " + testDbContext.Database.GetDbConnection().ConnectionString.ToLower());
+                var serviceProvider = serviceScope.ServiceProvider;
+                var testDbContext = serviceProvider.GetRequiredService<KonoFandomContext>();
+
+                // Create the test application database
                 testDbContext.Database.EnsureCreated();
-            }*/
+
+                // Seed test application database
+                SeedData.Intialize(serviceProvider);
+            }
             
         }
     }
