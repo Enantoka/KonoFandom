@@ -1,9 +1,12 @@
-﻿/*using System;
+﻿using System;
 using DoomedDatabases.Postgres;
 using Microsoft.Extensions.Configuration;
 using KonoFandom.Data;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 
 namespace KonoFandom.XUnitTest
 {
@@ -13,13 +16,12 @@ namespace KonoFandom.XUnitTest
 
         public SharedDatabaseFixture()
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
             TestDatabase = new TestDatabaseBuilder().WithConfiguration(configuration).Build();
             TestDatabase.Create();
-
-            // Add Test Server for route testing
-            //var webHostBuilder = new WebHostBuilder().UseStartup<Startup>();
-            //var server = new TestServer(webHostBuilder);
 
             var builder = new DbContextOptionsBuilder<KonoFandomContext>();
             builder.UseNpgsql(TestDatabase.ConnectionString);
@@ -56,4 +58,3 @@ namespace KonoFandom.XUnitTest
         }
     }
 }
-*/

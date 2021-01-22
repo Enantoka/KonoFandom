@@ -1,4 +1,4 @@
-﻿/*using KonoFandom.Models;
+﻿using KonoFandom.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,4 +73,3 @@ namespace KonoFandom.XUnitTest
         }
     }
 }
-*/
