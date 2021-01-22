@@ -1,11 +1,9 @@
-﻿using System;
+﻿/*using System;
 using DoomedDatabases.Postgres;
 using Microsoft.Extensions.Configuration;
 using KonoFandom.Data;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Hosting;
 
 namespace KonoFandom.XUnitTest
 {
@@ -58,3 +56,4 @@ namespace KonoFandom.XUnitTest
         }
     }
 }
+*/
