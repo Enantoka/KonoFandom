@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace KonoFandom.XUnitTest
@@ -28,6 +26,9 @@ namespace KonoFandom.XUnitTest
                 .AddEnvironmentVariables()
                 .Build();
 
+            /* Add database context with connection string to test databases
+             * to services
+             */
             services.AddDbContext<KonoFandomContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("TestApplicationDb"))
            .UseSnakeCaseNamingConvention());
@@ -36,7 +37,7 @@ namespace KonoFandom.XUnitTest
                 options.UseNpgsql(Configuration.GetConnectionString("TestUserDb"))
             .UseSnakeCaseNamingConvention());
 
-            services.AddIdentity<KonoFandomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<KonoFandomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddDefaultTokenProviders()
             .AddDefaultUI()
             .AddEntityFrameworkStores<IdentityContext>();
@@ -59,7 +60,6 @@ namespace KonoFandom.XUnitTest
                 // Seed test application database
                 SeedData.Intialize(serviceProvider);
             }
-            
         }
     }
 }

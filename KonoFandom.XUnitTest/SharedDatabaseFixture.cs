@@ -4,9 +4,6 @@ using Microsoft.Extensions.Configuration;
 using KonoFandom.Data;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
 
 namespace KonoFandom.XUnitTest
 {

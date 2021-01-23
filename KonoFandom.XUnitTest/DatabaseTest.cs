@@ -6,7 +6,7 @@ using Xunit;
 
 namespace KonoFandom.XUnitTest
 {
-    public class SharedDatabaseTest : IClassFixture<SharedDatabaseFixture>
+    public class DatabaseTest : IClassFixture<SharedDatabaseFixture>
     {
         [CollectionDefinition("Database")]
         public class DatabaseCollectionFixture : ICollectionFixture<SharedDatabaseFixture>
