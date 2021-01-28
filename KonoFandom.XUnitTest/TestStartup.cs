@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 
 namespace KonoFandom.XUnitTest
@@ -58,7 +60,15 @@ namespace KonoFandom.XUnitTest
                 testDbContext.Database.EnsureCreated();
 
                 // Seed test application database
-                SeedData.Intialize(serviceProvider);
+                try
+                {
+                    Utility.Intialize(serviceProvider);
+                }
+                catch (Exception ex)
+                {
+                    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB");
+                }
             }
         }
     }
