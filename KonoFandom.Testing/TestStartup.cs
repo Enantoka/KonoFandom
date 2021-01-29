@@ -54,15 +54,18 @@ namespace KonoFandom.Testing
             using (var serviceScope = serviceScopeFactory.CreateScope())
             {
                 var serviceProvider = serviceScope.ServiceProvider;
-                var testDbContext = serviceProvider.GetRequiredService<KonoFandomContext>();
+                var testApplicationDb = serviceProvider.GetRequiredService<KonoFandomContext>();
+                var testUserdb = serviceProvider.GetRequiredService<IdentityContext>();
 
                 // Create the test application database
-                testDbContext.Database.EnsureCreated();
+                testApplicationDb.Database.EnsureCreated();
+                testUserdb.Database.EnsureCreated();
 
                 // Seed test application database
                 try
                 {
                     Utility.Intialize(serviceProvider);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -70,6 +73,8 @@ namespace KonoFandom.Testing
                     logger.LogError(ex, "An error occurred seeding the DB");
                 }
             }
+
+
         }
     }
 }
