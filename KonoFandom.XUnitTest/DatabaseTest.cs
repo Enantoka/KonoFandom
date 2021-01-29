@@ -1,6 +1,5 @@
 ﻿using KonoFandom.Data;
 using KonoFandom.Models;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ namespace KonoFandom.XUnitTest
     public class DatabaseTest : FactoryFixture
     {
         private KonoFandomContext context;
-        // Test for Admin/CharacterController
         public DatabaseTest(CustomWebApplicationFactory<TestStartup> factory) : base(factory)
         {
             var service = _factory.Services;
@@ -35,7 +33,7 @@ namespace KonoFandom.XUnitTest
         public void Create_Characters_ReturnsCorrectCount()
         {
             // Arrange
-            const int EXPECTED_COUNT = 20;
+            const int EXPECTED_COUNT = 20; // 19 from seeded data
 
             context.Database.BeginTransaction();
             context.Character.AddRange(

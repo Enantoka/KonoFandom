@@ -32,8 +32,7 @@ namespace KonoFandom.XUnitTest
             var response = await client.GetAsync(url);
 
             // Assert
-            response.EnsureSuccessStatusCode(); // Status Code 200-299
-            //Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
+            response.EnsureSuccessStatusCode();
         }
 
         [Fact]
@@ -47,59 +46,6 @@ namespace KonoFandom.XUnitTest
 
             // Assert
             Assert.NotNull(result);
-        }
-
-        [Fact]
-        public async void Details_CharacterController_ReturnsViewWithViewModel()
-        {
-            // Arrange
-            var service = _factory.Services;
-            var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
-
-            var expected = new CharacterDetails();
-
-            var character = new Character
-            {
-                Name = "Test",
-                CharacterVoice = "Test",
-                Biography = "Test",
-                IconImagePath = "Test",
-                CharacterImagePath = "Test"
-            };
-
-            var characters = new List<Character>()
-            {
-                new Character()
-                {
-                    Name = "Test",
-                    CharacterVoice = "Test",
-                    Biography = "Test",
-                    IconImagePath = "Test",
-                    CharacterImagePath = "Test"
-                },
-                new Character()
-                {
-                    Name = "Test2",
-                    CharacterVoice = "Test2",
-                    Biography = "Test2",
-                    IconImagePath = "Test2",
-                    CharacterImagePath = "Test2"
-                }
-            };
-
-            expected.Character = character;
-            expected.Characters = characters;
-            const int id = 1;
-
-            // Act
-            var result = await controller.Details(id) as ViewResult;
-            var model = result.Model as CharacterDetails;
-
-            // Assert
-            Assert.IsType<CharacterDetails>(model);
-            Assert.NotNull(result);
-
         }
     }
 }
