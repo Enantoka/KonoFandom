@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace KonoFandom.XUnitTest.ControllersTest
+namespace KonoFandom.Testing.ControllersTest
 {
     public class HomeControllerTest : FactoryFixture
     {

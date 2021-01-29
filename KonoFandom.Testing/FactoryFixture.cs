@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace KonoFandom.XUnitTest
+namespace KonoFandom.Testing
 {
     // Fixture to be shared between all test classes
     public class FactoryFixture : IClassFixture<CustomWebApplicationFactory<TestStartup>>

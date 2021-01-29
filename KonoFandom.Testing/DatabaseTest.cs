@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace KonoFandom.XUnitTest
+namespace KonoFandom.Testing
 {
     public class DatabaseTest : FactoryFixture
     {

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 
-namespace KonoFandom.XUnitTest
+namespace KonoFandom.Testing
 {
     public class TestStartup : Startup
     {

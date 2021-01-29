@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonoFandom.XUnitTest", "KonoFandom.XUnitTest\KonoFandom.XUnitTest.csproj", "{7EE9707A-A08F-494E-BAD4-6D95AA5A5477}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonoFandom.Testing", "KonoFandom.Testing\KonoFandom.Testing.csproj", "{7EE9707A-A08F-494E-BAD4-6D95AA5A5477}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonoFandom", "KonoFandom\KonoFandom.csproj", "{3EF3986E-019C-49B0-8356-62172E8CCB4B}"
 EndProject
