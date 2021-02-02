@@ -20,17 +20,17 @@ namespace KonoFandom
 
             using (var scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
+                var serviceProvider = scope.ServiceProvider;
 
                 try
                 {
-                    SeedData.Intialize(services);
-                    RoleCreator.CreateUserRoles(services).Wait();
-                    SeedIdentityData.CreateDefaultAdministrator(services);
+                    SeedData.Intialize(serviceProvider);
+                    RoleCreator.CreateUserRoles(serviceProvider).Wait();
+                    SeedIdentityData.CreateDefaultAdministrator(serviceProvider);
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB");
                 }
             }
