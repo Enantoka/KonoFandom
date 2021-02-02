@@ -1,11 +1,8 @@
 ﻿using KonoFandom.Controllers;
 using KonoFandom.Data;
-using KonoFandom.Models;
 using KonoFandom.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -20,7 +17,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Index_Card_ReturnsCards()
+        public async Task Index_ReturnsCards_ForView()
         {
             // Arrange
             var request = "/Cards";
@@ -34,7 +31,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Index_Card_ReturnsViewWithViewModel()
+        public async Task Index_ReturnsViewModel_ForView()
         {
             // Arrange
             var service = _factory.Services;

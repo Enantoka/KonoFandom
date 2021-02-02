@@ -61,11 +61,11 @@ namespace KonoFandom.Testing
                 testApplicationDb.Database.EnsureCreated();
                 testUserdb.Database.EnsureCreated();
 
-                // Seed test application database
+                // Seed test database
                 try
                 {
                     Utility.Intialize(serviceProvider);
-                    
+                    FakeUser.Initialize(serviceProvider);
                 }
                 catch (Exception ex)
                 {
@@ -73,8 +73,6 @@ namespace KonoFandom.Testing
                     logger.LogError(ex, "An error occurred seeding the DB");
                 }
             }
-
-
         }
     }
 }

@@ -2,10 +2,8 @@
 using KonoFandom.Data;
 using KonoFandom.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -18,9 +16,8 @@ namespace KonoFandom.Testing.ControllersTest
 
         }
 
-        // Client-side Characters Controller Tests
         [Fact]
-        public async Task Index_Character_ReturnsCharacters()
+        public async Task Index_ReturnsCharacters_ForGivenRequest()
         {
             // Arrange
             var request = "/Characters";
@@ -34,7 +31,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Index_Character_ReturnsViewWithListOfCharacters()
+        public async Task Index_ReturnsListOfCharacters_ForView()
         {
             // Arrange
             var service = _factory.Services;
@@ -50,7 +47,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Details_Character_ReturnsACharacter()
+        public async Task Details_ReturnsACharacter_ForView()
         {
             // Arrange
             var request = "/Characters/Details/1";
@@ -64,7 +61,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async void Details_Character_ReturnsViewWithViewModel()
+        public async Task Details_ReturnsViewModel_ForView()
         {
             // Arrange
             const int ID = 1;
@@ -78,43 +75,6 @@ namespace KonoFandom.Testing.ControllersTest
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsType<CharacterDetails>(viewResult.ViewData.Model);
-        }
-
-        // Admin Characters Controller Tests
-        [Fact]
-        public async Task Index_Character_RedirectsUnauthorizedUser()
-        {
-            // Arrange
-            var request = "Admin/Characters";
-            var client = _factory.CreateClient(
-                new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                });
-
-            // Act
-            var response = await client.GetAsync(request);
-
-            //Assert
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task Index_Character_ReturnsCharactersForAuthorizedUser()
-        {
-            // Arrange
-            var request = "Admin/Characters";
-            var client = _factory.CreateClient(
-                new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                });
-
-            // Act
-            var response = await client.GetAsync(request);
-
-            //Assert
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
         }
     }
 }
