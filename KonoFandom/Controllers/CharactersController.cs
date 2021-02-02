@@ -25,11 +25,6 @@ namespace KonoFandom.Controllers
             return View(await _context.Character.ToListAsync());
         }
 
-        public async Task<List<Models.Character>> GetCharacters()
-        {
-            return await _context.Character.ToListAsync();
-        }
-
         // GET: Characters/Details/5
         public async Task<IActionResult> Details(int? id)
         {
