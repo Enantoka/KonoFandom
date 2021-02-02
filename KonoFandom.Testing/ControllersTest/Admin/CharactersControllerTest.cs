@@ -1,4 +1,4 @@
-﻿using KonoFandom.Areas.Admin.Controllers;
+﻿/*using KonoFandom.Areas.Admin.Controllers;
 using KonoFandom.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -102,7 +102,8 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             var result = await controller.Create(null);
 
             // Assert
-            Assert.IsType<BadRequestObjectResult>(result);
+    Assert.IsType<BadRequestObjectResult>(result);
         }
     }
 }
+*/

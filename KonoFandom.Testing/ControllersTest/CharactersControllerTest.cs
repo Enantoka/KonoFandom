@@ -1,4 +1,4 @@
-﻿using KonoFandom.Controllers;
+﻿/*using KonoFandom.Controllers;
 using KonoFandom.Data;
 using KonoFandom.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -78,3 +78,4 @@ namespace KonoFandom.Testing.ControllersTest
         }
     }
 }
+*/
