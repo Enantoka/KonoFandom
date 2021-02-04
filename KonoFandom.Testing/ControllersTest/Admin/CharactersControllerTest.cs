@@ -20,21 +20,17 @@ namespace KonoFandom.Testing.ControllersTest.Admin
         }
 
         [Fact]
-        public async Task Index_Redirects_UnauthenticatedUser()
+        public async Task Index_NotFound_UnauthenticatedGuest() // Testing unauthenticated access of non-users of the application
         {
             // Arrange
             var request = "/Admin/Characters";
-            var client = _factory.CreateClient(
-                new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                });
+            var client = _factory.CreateClient();
 
             // Act
             var response = await client.GetAsync(request);
 
             //Assert
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
         [Fact]
