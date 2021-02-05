@@ -47,7 +47,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Details_ReturnsACharacter_ForView()
+        public async Task Details_ReturnsCharacter_ForView()
         {
             // Arrange
             var request = "/Characters/Details/1";
@@ -61,7 +61,7 @@ namespace KonoFandom.Testing.ControllersTest
         }
 
         [Fact]
-        public async Task Details_ReturnsViewModel_ForView()
+        public async Task Details_ValidId_ReturnsViewModel()
         {
             // Arrange
             const int ID = 1;

@@ -10,17 +10,16 @@ namespace KonoFandom.Testing
 {
     public class DatabaseTest : FactoryFixture
     {
-        private KonoFandomContext context;
         public DatabaseTest(CustomWebApplicationFactory<TestStartup> factory) : base(factory)
         {
-            var service = _factory.Services;
-            context = service.GetRequiredService<KonoFandomContext>();
         }
 
         [Fact]
         public void Index_Characters_ReturnsListOfCharacters()
         {
             // Arrange
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
 
             // Act
             var list = context.Character.ToList();
@@ -34,7 +33,10 @@ namespace KonoFandom.Testing
         {
             // Arrange
             const int EXPECTED_COUNT = 20; // 19 from seeded data
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
 
+            // Act
             context.Database.BeginTransaction();
             context.Character.AddRange(
                 new Character
@@ -49,12 +51,11 @@ namespace KonoFandom.Testing
             );
             context.SaveChanges();
 
-            // Act
             var count = context.Character.Count();
+            context.Database.RollbackTransaction();
 
             // Assert
             Assert.Equal(EXPECTED_COUNT, count);
-            context.Database.RollbackTransaction();
         }
     }
 }

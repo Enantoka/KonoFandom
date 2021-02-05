@@ -1,9 +1,11 @@
 ﻿using KonoFandom.Areas.Admin.Controllers;
 using KonoFandom.Data;
+using KonoFandom.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,11 +21,16 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
         }
 
-        [Fact]
-        public async Task Index_NotFound_UnauthenticatedGuest() // Testing unauthenticated access of non-users of the application
+        [Theory]
+        [InlineData("/Admin/Characters")]
+        [InlineData("/Admin/Characters/Details/1")]
+        [InlineData("/Admin/Characters/Create")]
+        [InlineData("/Admin/Characters/Edit/1")]
+        [InlineData("/Admin/Characters/Delete/1")]
+
+        public async Task Pages_NotFound_UnauthenticatedGuest(string request) // Testing unauthenticated access of non-users of the application
         {
             // Arrange
-            var request = "/Admin/Characters";
             var client = _factory.CreateClient();
 
             // Act
@@ -65,28 +72,44 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<List<Models.Character>>(viewResult.ViewData.Model);
+            Assert.IsType<List<Character>>(viewResult.ViewData.Model);
         }
 
         [Fact]
-        public async Task Details_ReturnsACharacter_ForView()
+        public async Task Details_ValidId_ReturnsCharacter()
         {
             // Arrange
-            const int ID = 1;
+            const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
             var controller = new CharactersController(context);
 
             // Act
-            var result = await controller.Details(ID);
+            var result = await controller.Details(Id);
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<Models.Character>(viewResult.ViewData.Model);
+            Assert.IsType<Character>(viewResult.ViewData.Model);
         }
 
         [Fact]
-        public async Task Create_ReturnsBadRequest_GivenInvalidModel()
+        public async Task Details_InvalidId_ReturnsPageNotFound()
+        {
+            // Arrange
+            const int InvalidId = 999;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            var result = await controller.Details(InvalidId);
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task POST_Create_ReturnsBadRequest_GivenInvalidModel()
         {
             // Arrange
             var service = _factory.Services;
@@ -99,6 +122,180 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task POST_Create_RedirectToIndex_GivenValidModel()
+        {
+            // Arrange
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            var character =
+                new Character
+                {
+                    Name = "Test",
+                    CharacterVoice = "Test",
+                    Birthday = new DateTime(2020, 6, 7),
+                    Biography = "Test",
+                    IconImagePath = "Test",
+                    CharacterImagePath = "Test"
+                };
+
+            // Act
+            context.Database.BeginTransaction();
+            var result = await controller.Create(character);
+            context.Database.RollbackTransaction();
+
+            // Assert
+            var viewResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", viewResult.ActionName);
+        }
+
+        [Fact]
+        public async Task GET_Edit_ValidId_ReturnsCharacter()
+        {
+            // Arrange
+            const int Id = 1;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            var result = await controller.Edit(Id);
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.IsType<Character>(viewResult.ViewData.Model);
+        }
+
+        [Fact]
+        public async Task GET_Edit_InvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            const int InvalidId = 999;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            var result = await controller.Edit(InvalidId);
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task POST_Edit_ReturnsBadRequest_GivenInvalidModel()
+        {
+            // Arrange
+            const int Id = 1;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+            controller.ModelState.AddModelError("EditCharacter", "Invalid data input");
+
+            var character =
+                new Character
+                {
+                    CharacterID = 1,
+                    Name = "Test",
+                    CharacterVoice = "Test",
+                    Birthday = new DateTime(2020, 6, 7),
+                    Biography = "Test",
+                    IconImagePath = "Test",
+                    CharacterImagePath = "Test"
+                };
+
+            // Act
+            var result = await controller.Edit(Id, character);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task POST_Edit_RedirectToIndex_GivenValidModel()
+        {
+            // Arrange
+            const int Id = 1;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            var character =
+                new Character
+                {
+                    CharacterID = 1,
+                    Name = "Test",
+                    CharacterVoice = "Test",
+                    Birthday = new DateTime(2020, 6, 7),
+                    Biography = "Test",
+                    IconImagePath = "Test",
+                    CharacterImagePath = "Test"
+                };
+
+            // Act
+            context.Database.BeginTransaction();
+            var result = await controller.Edit(Id, character);
+            context.Database.RollbackTransaction();
+
+            // Assert
+            var viewResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", viewResult.ActionName);
+        }
+
+        [Fact]
+        public async Task GET_Delete_ValidId_ReturnsCharacter()
+        {
+            // Arrange
+            const int Id = 1;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            var result = await controller.Delete(Id);
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.IsType<Character>(viewResult.ViewData.Model);
+        }
+
+        [Fact]
+        public async Task GET_Delete_InvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            const int InvalidId = 999;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            var result = await controller.Delete(InvalidId);
+
+            //Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task POST_DeleteConfirmed_RedirectToIndex_GivenId()
+        {
+            // Arrange
+            const int Id = 2;
+            var service = _factory.Services;
+            var context = service.GetRequiredService<KonoFandomContext>();
+            var controller = new CharactersController(context);
+
+            // Act
+            context.Database.BeginTransaction();
+            var result = await controller.DeleteConfirmed(Id);
+            context.Database.RollbackTransaction();
+
+            // Assert
+            var viewResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", viewResult.ActionName);
         }
     }
 }
