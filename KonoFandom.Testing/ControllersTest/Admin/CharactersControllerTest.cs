@@ -135,6 +135,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             var character =
                 new Character
                 {
+                    CharacterID = 100,
                     Name = "Test",
                     CharacterVoice = "Test",
                     Birthday = new DateTime(2020, 6, 7),
