@@ -225,17 +225,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             var context = service.GetRequiredService<KonoFandomContext>();
             var controller = new CharactersController(context);
 
-            var character =
-                new Character
-                {
-                    CharacterID = 1,
-                    Name = "Test",
-                    CharacterVoice = "Test",
-                    Birthday = new DateTime(2020, 6, 7),
-                    Biography = "Test",
-                    IconImagePath = "Test",
-                    CharacterImagePath = "Test"
-                };
+            var character = context.Character.FirstOrDefault(x => x.CharacterID == Id);
 
             // Act
             context.Database.BeginTransaction();
