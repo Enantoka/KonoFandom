@@ -64,12 +64,13 @@ namespace KonoFandom.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
+
                 _context.Add(ultimateSkill);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
-            return View(ultimateSkill);
+            return BadRequest(ModelState);
         }
 
         // GET: UltimateSkills/Edit/5
@@ -105,6 +106,8 @@ namespace KonoFandom.Areas.Admin.Controllers
             {
                 try
                 {
+                    ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
+
                     _context.Update(ultimateSkill);
                     await _context.SaveChangesAsync();
                 }
@@ -121,8 +124,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", ultimateSkill.CharacterID);
-            return View(ultimateSkill);
+            return BadRequest(ModelState);
         }
 
         // GET: UltimateSkills/Delete/5
