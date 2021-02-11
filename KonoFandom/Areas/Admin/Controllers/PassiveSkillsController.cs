@@ -65,7 +65,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(passiveSkill);
+            return BadRequest(ModelState);
         }
 
         // GET: PassiveSkills/Edit/5
@@ -116,7 +116,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(passiveSkill);
+            return BadRequest(ModelState);
         }
 
         // GET: PassiveSkills/Delete/5
