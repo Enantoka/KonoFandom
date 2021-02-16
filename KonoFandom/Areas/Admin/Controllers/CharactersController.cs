@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
 using KonoFandom.Data;
@@ -63,8 +66,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            return BadRequest(ModelState);
+            return View(character);
         }
 
         // GET: Characters/Edit/5
@@ -150,6 +152,12 @@ namespace KonoFandom.Areas.Admin.Controllers
         private bool CharacterExists(int id)
         {
             return _context.Character.Any(e => e.CharacterID == id);
+        }
+
+        // GET: Characters
+        public async Task<IActionResult> Main()
+        {
+            return View(await _context.Character.ToListAsync());
         }
     }
 }

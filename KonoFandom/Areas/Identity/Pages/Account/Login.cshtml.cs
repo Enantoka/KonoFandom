@@ -73,7 +73,7 @@ namespace KonoFandom.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Admin/Dashboard");
+            returnUrl = returnUrl ?? Url.Content("~/User/Admin");
 
             if (ModelState.IsValid)
             {
