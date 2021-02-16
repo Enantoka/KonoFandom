@@ -304,13 +304,14 @@
                                                         </table>
                                                     </div>
 
-                                                    @if (count > 2)
+                                                    @if (count > 2 && card.PassiveSkill != null)
                                                     {
                                                         <div class="col-6">
                                                             <table class="table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <th colspan="2">
+                                                                            
                                                                             @card.PassiveSkill.Name
                                                                         </th>
                                                                     </tr>

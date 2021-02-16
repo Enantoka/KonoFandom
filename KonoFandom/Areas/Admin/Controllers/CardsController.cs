@@ -41,6 +41,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 .Include(c => c.Character)
                 .Include(c => c.PassiveSkill)
                 .FirstOrDefaultAsync(m => m.CardID == id);
+
             if (card == null)
             {
                 return NotFound();
@@ -73,11 +74,13 @@ namespace KonoFandom.Areas.Admin.Controllers
             {
                 _context.Add(card);
                 await _context.SaveChangesAsync();
+
+                ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
+                ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            return BadRequest(ModelState);
         }
 
         // GET: Cards/Edit/5
@@ -88,7 +91,6 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            // var card = await _context.Card.FindAsync(id);
             var card = await _context.Card
                         .Include(c => c.CardElements)
                             .ThenInclude(c => c.Element)
@@ -166,11 +168,12 @@ namespace KonoFandom.Areas.Admin.Controllers
                         throw;
                     }
                 }
+                ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
+                ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
-            return View(card);
+            return BadRequest(ModelState);
         }
 
         private void UpdateCardElements(string[] selectedElements, Card cardToUpdate)
@@ -242,13 +245,6 @@ namespace KonoFandom.Areas.Admin.Controllers
         private bool CardExists(int id)
         {
             return _context.Card.Any(e => e.CardID == id);
-        }
-
-        // GET: Cards
-        public async Task<IActionResult> Main()
-        {
-            var konoFandomContext = _context.Card.Include(c => c.Character).Include(c => c.PassiveSkill);
-            return View(await konoFandomContext.ToListAsync());
         }
     }
 }

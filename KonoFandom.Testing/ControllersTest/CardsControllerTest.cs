@@ -13,7 +13,7 @@ namespace KonoFandom.Testing.ControllersTest
 
         public CardsControllerTest(CustomWebApplicationFactory<TestStartup> factory) : base(factory)
         {
-            
+
         }
 
         [Fact]

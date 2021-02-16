@@ -65,7 +65,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(basicSkill);
+            return BadRequest(ModelState);
         }
 
         // GET: BasicSkills/Edit/5
@@ -147,7 +147,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(basicSkill);
+            return BadRequest(ModelState);
         }
 
         private void UpdateCardBasicSkills(string[] selectedCards, BasicSkill basicSkillToUpdate)

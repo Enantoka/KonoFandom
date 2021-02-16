@@ -115,7 +115,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(character);
+            return BadRequest(ModelState);
         }
 
         // GET: Characters/Delete/5

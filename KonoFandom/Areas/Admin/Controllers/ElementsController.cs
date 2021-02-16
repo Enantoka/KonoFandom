@@ -65,7 +65,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(element);
+            return BadRequest(ModelState);
         }
 
         // GET: Elements/Edit/5
@@ -116,7 +116,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(element);
+            return BadRequest(ModelState);
         }
 
         // GET: Elements/Delete/5

@@ -36,6 +36,11 @@ namespace KonoFandom.Data
                 .HasKey(ce => new { ce.CardID, ce.ElementID });
             modelBuilder.Entity<SkillStatusEffect>()
                 .HasKey(sse => new { sse.SkillID, sse.StatusEffectID });
+
+            modelBuilder.Entity<PassiveSkill>()
+                .HasMany(c => c.Cards)
+                .WithOne(p => p.PassiveSkill)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

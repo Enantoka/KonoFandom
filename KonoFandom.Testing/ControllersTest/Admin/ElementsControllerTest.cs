@@ -3,30 +3,30 @@ using KonoFandom.Data;
 using KonoFandom.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace KonoFandom.Testing.ControllersTest.Admin
 {
-    public class CharactersControllerTest : FactoryFixture
+    public class ElementsControllerTest : FactoryFixture
     {
-        public CharactersControllerTest(CustomWebApplicationFactory<TestStartup> factory) : base(factory)
+        public ElementsControllerTest(CustomWebApplicationFactory<TestStartup> factory) : base(factory)
         {
 
         }
 
         [Theory]
-        [InlineData("/Admin/Characters")]
-        [InlineData("/Admin/Characters/Details/1")]
-        [InlineData("/Admin/Characters/Create")]
-        [InlineData("/Admin/Characters/Edit/1")]
-        [InlineData("/Admin/Characters/Delete/1")]
+        [InlineData("/Admin/Elements")]
+        [InlineData("/Admin/Elements/Details/1")]
+        [InlineData("/Admin/Elements/Create")]
+        [InlineData("/Admin/Elements/Edit/1")]
+        [InlineData("/Admin/Elements/Delete/1")]
 
         public async Task Pages_NotFound_UnauthenticatedGuest(string request) // Testing unauthenticated access of non-users of the application
         {
@@ -46,7 +46,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             // Arrange
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var type = controller.GetType();
@@ -60,36 +60,36 @@ namespace KonoFandom.Testing.ControllersTest.Admin
         }
 
         [Fact]
-        public async Task Index_ReturnsListOfCharacters_ForView()
+        public async Task Index_ReturnsListOfElements_ForView()
         {
             // Arrange
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Index();
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<List<Character>>(viewResult.ViewData.Model);
+            Assert.IsType<List<Element>>(viewResult.ViewData.Model);
         }
 
         [Fact]
-        public async Task Details_ValidId_ReturnsCharacter()
+        public async Task Details_ValidId_ReturnsElement()
         {
             // Arrange
             const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Details(Id);
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<Character>(viewResult.ViewData.Model);
+            Assert.IsType<Element>(viewResult.ViewData.Model);
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int InvalidId = 999;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Details(InvalidId);
@@ -114,8 +114,8 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             // Arrange
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
-            controller.ModelState.AddModelError("NewCharacter", "Invalid data input");
+            var controller = new ElementsController(context);
+            controller.ModelState.AddModelError("NewElement", "Invalid data input");
 
             // Act
             var result = await controller.Create(null);
@@ -130,23 +130,18 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             // Arrange
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
-            var character =
-                new Character
+            var element =
+                new Element
                 {
-                    CharacterID = 100,
                     Name = "Test",
-                    CharacterVoice = "Test",
-                    Birthday = new DateTime(2020, 6, 7),
-                    Biography = "Test",
-                    IconImagePath = "Test",
-                    CharacterImagePath = "Test"
+                    ImagePath = "Test"
                 };
 
             // Act
             context.Database.BeginTransaction();
-            var result = await controller.Create(character);
+            var result = await controller.Create(element);
             context.Database.RollbackTransaction();
 
             // Assert
@@ -155,20 +150,20 @@ namespace KonoFandom.Testing.ControllersTest.Admin
         }
 
         [Fact]
-        public async Task GET_Edit_ValidId_ReturnsCharacter()
+        public async Task GET_Edit_ValidId_ReturnsElement()
         {
             // Arrange
             const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Edit(Id);
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<Character>(viewResult.ViewData.Model);
+            Assert.IsType<Element>(viewResult.ViewData.Model);
         }
 
         [Fact]
@@ -178,7 +173,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int InvalidId = 999;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Edit(InvalidId);
@@ -194,23 +189,13 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
-            controller.ModelState.AddModelError("EditCharacter", "Invalid data input");
+            var controller = new ElementsController(context);
+            controller.ModelState.AddModelError("EditElement", "Invalid data input");
 
-            var character =
-                new Character
-                {
-                    CharacterID = 1,
-                    Name = "Test",
-                    CharacterVoice = "Test",
-                    Birthday = new DateTime(2020, 6, 7),
-                    Biography = "Test",
-                    IconImagePath = "Test",
-                    CharacterImagePath = "Test"
-                };
+            var element = context.Element.FirstOrDefault(x => x.ElementID == Id);
 
             // Act
-            var result = await controller.Edit(Id, character);
+            var result = await controller.Edit(Id, element);
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
@@ -223,35 +208,35 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
-            var character = context.Character.FirstOrDefault(x => x.CharacterID == Id);
+            var element = context.Element.FirstOrDefault(x => x.ElementID == Id);
 
             // Act
             context.Database.BeginTransaction();
-            var result = await controller.Edit(Id, character);
+            var result = await controller.Edit(Id, element);
             context.Database.RollbackTransaction();
 
             // Assert
-            var viewResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("Index", viewResult.ActionName);
+            var actionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", actionResult.ActionName);
         }
 
         [Fact]
-        public async Task GET_Delete_ValidId_ReturnsCharacter()
+        public async Task GET_Delete_ValidId_ReturnsElement()
         {
             // Arrange
             const int Id = 1;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Delete(Id);
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<Character>(viewResult.ViewData.Model);
+            Assert.IsType<Element>(viewResult.ViewData.Model);
         }
 
         [Fact]
@@ -261,7 +246,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int InvalidId = 999;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             var result = await controller.Delete(InvalidId);
@@ -277,7 +262,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             const int Id = 2;
             var service = _factory.Services;
             var context = service.GetRequiredService<KonoFandomContext>();
-            var controller = new CharactersController(context);
+            var controller = new ElementsController(context);
 
             // Act
             context.Database.BeginTransaction();

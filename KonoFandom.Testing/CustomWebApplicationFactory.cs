@@ -15,7 +15,7 @@ namespace KonoFandom.Testing
         {
             return WebHost.CreateDefaultBuilder(null)
                 .UseStartup<TEntryPoint>()
-                //.UseSetting("https_port", "5001")
+                .UseSetting("https_port", "5001")
                 .UseSetting(WebHostDefaults.ApplicationKey, typeof(Startup).Assembly.GetName().Name);
         }
     }

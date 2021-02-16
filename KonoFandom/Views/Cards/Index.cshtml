@@ -140,11 +140,14 @@
                              class="img-fluid" />
                     </td>
                 }
-                <td>
-                    <img src=@card.PassiveSkill.ImagePath data-toggle="tooltip"
-                            data-placement="bottom" title="@card.PassiveSkill.Description"
-                            class="img-fluid" />
-                </td>
+                @if (card.PassiveSkill != null)
+                {
+                    <td>
+                        <img src=@card.PassiveSkill.ImagePath data-toggle="tooltip"
+                                data-placement="bottom" title="@card.PassiveSkill.Description"
+                                class="img-fluid" />
+                    </td>
+                }
             </tr>
         }
     </tbody>
