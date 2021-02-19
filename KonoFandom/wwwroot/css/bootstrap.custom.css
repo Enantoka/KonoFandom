@@ -7196,10 +7196,64 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-@media (max-width: 575px) {
-  body {
-    font-size: 0.7rem; } }
+html {
+  height: 100%; }
 
+body {
+  display: grid;
+  min-height: 100%; }
+
+footer {
+  grid-column: 1 / -1; }
+
+.bg-navy {
+  background-color: #111430; }
+
+.home-visual {
+  background-color: #fffce8;
+  min-height: 100vh;
+  padding-top: 3em; }
+
+.home-visual-body {
+  display: grid;
+  position: relative;
+  max-width: 1150px; }
+
+.game-logo, .aqua-img {
+  grid-row: 2; }
+
+.game-logo {
+  grid-column: 1 / span 2;
+  width: 135%;
+  align-self: center; }
+
+.aqua-img {
+  grid-column: 2 / span 3;
+  width: 100%; }
+
+.store-link {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 10px;
+  top: 95%; }
+
+.apple-store img, .play-store img {
+  width: 100%; }
+
+.apple-store {
+  grid-column: 2 / span 3;
+  grid-row: 1; }
+
+.play-store {
+  grid-column: 2 / span 3;
+  grid-row: 2; }
+
+/*@media (max-width: 575px) {
+    body {
+        font-size: 0.7rem;
+    }
+}*/
 .wrapper {
   position: relative;
   left: 3%;
