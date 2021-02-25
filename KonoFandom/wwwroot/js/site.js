@@ -3,6 +3,23 @@
 
 // Write your JavaScript code.
 
+/******************* 
+    Navigation Bar
+********************/
+
+// Indicate selected link from menu
+$(function () {
+    var url = window.location.href;
+    $(".navbar .navbar-nav .nav-item .nav-link").each(function () {
+        if (url == this.href) {
+            $(this).closest(".nav-link").addClass("active");
+        }
+    });
+})
+
+/****************
+    Admin Page
+****************/
 function viewDetails(element) {
   var dataAttribute = $(element).data('action');
 

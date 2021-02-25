@@ -24,13 +24,30 @@ footer {
     background-color: rgb(17, 20, 48);
 }
 
-// Home Page
-.home-visual {
+.main-content {
     background-color: rgb(255, 252, 232);
     min-height: 100vh;
     padding-top: 3em;
+    padding-bottom: 3em;
 }
 
+/********************
+    Navigation Bar
+********************/
+
+.navbar .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: rgb(239, 130, 0);
+}
+
+.navbar .navbar-nav .nav-link.active {
+    color: rgb(239, 130, 0);
+}
+
+// Home Page
 .home-visual-body {
     display: grid;
     position: relative;
