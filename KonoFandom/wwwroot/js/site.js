@@ -6,13 +6,14 @@
 /******************* 
     Navigation Bar
 ********************/
-
 // Indicate selected link from menu
 $(function () {
     var url = window.location.href;
-    $(".navbar .navbar-nav .nav-item .nav-link").each(function () {
-        if (url == this.href) {
-            $(this).closest(".nav-link").addClass("active");
+    var links = ["Characters", "Cards"];
+
+    links.forEach(function (link) {
+        if (url.includes(link)) {
+            $('.navbar .navbar-nav .nav-item .' + link.toLowerCase() + "-link").addClass('active');
         }
     });
 })

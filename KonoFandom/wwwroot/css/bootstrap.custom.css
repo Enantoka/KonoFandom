@@ -7218,13 +7218,25 @@ footer {
 /********************
     Navigation Bar
 ********************/
-.navbar .navbar-nav .nav-link {
-  color: white; }
-
-.navbar .navbar-nav .nav-link:hover {
+.navbar .navbar-nav .characters-link:hover,
+.navbar .navbar-nav .cards-link:hover,
+.navbar .navbar-nav .tutorial-link:hover,
+.navbar .navbar-nav .story-link:hover {
+  text-decoration: none;
   color: #ef8200; }
 
-.navbar .navbar-nav .nav-link.active {
+.navbar .navbar-nav .characters-link,
+.navbar .navbar-nav .cards-link,
+.navbar .navbar-nav .tutorial-link,
+.navbar .navbar-nav .story-link {
+  display: block;
+  padding: 0.5rem;
+  color: white; }
+
+.navbar .navbar-nav .characters-link.active,
+.navbar .navbar-nav .cards-link.active,
+.navbar .navbar-nav .tutorial-link.active,
+.navbar .navbar-nav .story-link.active {
   color: #ef8200; }
 
 .home-visual-body {
