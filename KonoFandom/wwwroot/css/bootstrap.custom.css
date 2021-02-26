@@ -7274,6 +7274,27 @@ footer {
   grid-column: 2 / span 3;
   grid-row: 2; }
 
+/**************************** 
+    Character Details Page 
+****************************/
+#dp-body {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto 1fr auto 1fr 1fr auto;
+  background-color: white;
+  border: 1px solid;
+  min-height: 100vh; }
+
+#character-nav {
+  grid-column: 1 / span 6; }
+
+.sub-title {
+  grid-column: 3 / span 6;
+  grid-row: 2;
+  background-color: #583d3c;
+  margin: 0.5rem;
+  border-bottom-right-radius: 5% 55%; }
+
 /*@media (max-width: 575px) {
     body {
         font-size: 0.7rem;

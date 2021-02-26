@@ -4,44 +4,57 @@
     var cardByRarity = Model.Character.Cards.OrderByDescending(c => c.Rarity);
 }
 
-<section class="chara-bg">
-    <!-- Character Nav Carousel -->
+<div class="main-content">
     <div class="container">
-        <div id="characterNav" class="carousel slide" data-interval="false">
-            <div class="carousel-inner">
-                @{
-                    var i = 0;
-                    while (i < Model.Characters.Count())
-                    {
-                        <div class="carousel-item @(i == 0 ? "active" : "")">
-                            <div class="row">
-                                @do
-                                {
-                                    <div class="col-2">
-                                        <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id=" @Model.Characters.ElementAt(i).CharacterID">
-                                            <img src=@Model.Characters.ElementAt(i).IconImagePath class="img-fluid" alt=" @Model.Characters.ElementAt(i).Name">
-                                        </a>
-                                    </div>
-                                    i++;
-                                } while (i % 6 != 0 && i < Model.Characters.Count());
+        <div id="dp-body">
+            <!-- Character Navigation Carousel -->
+            <div id="character-nav" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    @{
+                        var i = 0;
+                        while (i < Model.Characters.Count())
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row">
+                                    @do
+                                    {
+                                        <div class="col-2">
+                                            <a asp-area="GameData" asp-controller="Characters" asp-action="Details" asp-route-id=" @Model.Characters.ElementAt(i).CharacterID">
+                                                <img src=@Model.Characters.ElementAt(i).IconImagePath class="img-fluid" alt=" @Model.Characters.ElementAt(i).Name">
+                                            </a>
+                                        </div>
+                                        i++;
+                                    } while (i % 6 != 0 && i < Model.Characters.Count());
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
-                }
+                </div>
+                <a class="carousel-control-prev" href="#character-nav" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#character-nav" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#characterNav" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#characterNav" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+
+            <!-- Character Content -->
+            <div class="sub-title text-white">
+                <h3>@Html.DisplayFor(model => model.Character.Name)</h3>
+                <h5>CV: @Html.DisplayFor(model => model.Character.CharacterVoice)</h5>
+            </div>
         </div>
     </div>
+</div>
+
+
+
+<!--<section class="chara-bg">-->
 
     <!-- Character Info -->
-    <div class="container" id="main-content">
+    <!--<div class="container" id="main-content">
         <h1>@Html.DisplayNameFor(model => model.Character.Biography)</h1>
         <table class="table table-borderless text-center m-auto w-50">
             <tbody>
@@ -125,10 +138,10 @@
                 }
             }
         }
-        </div>
+        </div>-->
 
         <!-- Modal -->
-        <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <!--<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -355,4 +368,4 @@
             </div>
         </div>
     </div>
-</section>
+</section>-->
