@@ -42,34 +42,34 @@
 
             <!-- Character Content -->
             
-                <div id="character-header" class="sub-title text-white">
-                    <h3>@Html.DisplayFor(model => model.Character.Name)</h3>
-                    <h5>CV: @Html.DisplayFor(model => model.Character.CharacterVoice)</h5>
-                </div>
-                <div id="biography">
-                    <p>@Html.DisplayFor(model => model.Character.Biography)</p>
-                </div>
-                <div id="skill-header" class="sub-title text-white">
-                    <h3>@Html.DisplayNameFor(model => model.Character.UltimateSkill)</h3>
-                </div>
-                <div id="skill-info">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="row">
-                                <p id="skill-title">@Html.DisplayFor(model => model.Character.UltimateSkill.Name)</p>
-                            </div>
-                            <div class="row">
-                                <p>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</p>
-                            </div>
+            <div id="character-header" class="sub-title text-white">
+                <h3>@Html.DisplayFor(model => model.Character.Name)</h3>
+                <h5>CV: @Html.DisplayFor(model => model.Character.CharacterVoice)</h5>
+            </div>
+            <div id="biography">
+                <p>@Html.DisplayFor(model => model.Character.Biography)</p>
+            </div>
+            <div id="skill-header" class="sub-title text-white">
+                <h3>@Html.DisplayNameFor(model => model.Character.UltimateSkill)</h3>
+            </div>
+            <div id="skill-info">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row">
+                            <p id="skill-title">@Html.DisplayFor(model => model.Character.UltimateSkill.Name)</p>
                         </div>
-                        <div class="col-4">
-                            <img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="img-fluid d-block mx-auto">
+                        <div class="row">
+                            <p>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</p>
                         </div>
                     </div>
+                    <div class="col-4">
+                        <img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="img-fluid d-block mx-auto">
+                    </div>
                 </div>
-                <div id="character-img">
-                    <img src=@Html.DisplayFor(model => model.Character.CharacterImagePath) class="img-fluid mx-auto d-block" />
-                </div>
+            </div>
+            <div id="character-img">
+                <img src=@Html.DisplayFor(model => model.Character.CharacterImagePath) class="img-fluid mx-auto d-block" />
+            </div>
             
 
             <!-- Card Content -->
