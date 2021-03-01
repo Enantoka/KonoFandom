@@ -7240,8 +7240,8 @@ footer {
 ****************/
 .visual {
   display: grid;
-  grid-template: "title title . ." min-content  ". store store ." min-content ". . . ." 3em ". news news ." auto / auto;
-  position: relative;
+  grid-template: "title title . ." min-content  "store store store store" min-content ". . . ." 3em "news news news news" auto / auto;
+  min-width: 360px;
   max-width: 1150px; }
 
 .game-logo {
@@ -7257,7 +7257,7 @@ footer {
 .store-link {
   grid-area: store;
   display: grid;
-  grid-template: "appstore appstore appstore" min-content "playstore playstore playstore" min-content / 1fr 1fr 1fr;
+  grid-template: ". appstore ." min-content ". playstore ." min-content / 1fr 4fr 1fr;
   grid-row-gap: 10px; }
 
 .apple-store img, .play-store img {
@@ -7271,31 +7271,48 @@ footer {
 
 .news {
   grid-area: news;
-  /*display: grid;
-    grid-template: 
-        ". . header . ." auto 
-
-        ". . . . ." auto / 0.75rem auto auto auto 0.75rem;*/
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-self: center;
   background-color: #111430;
-  height: 100%;
-  padding-bottom: 1.75em;
+  width: 80%;
+  padding-bottom: 0.5em;
   border-top-left-radius: 5% 5%;
   border-top-right-radius: 5% 5%;
   border-bottom-left-radius: 5% 5%;
   border-bottom-right-radius: 5% 5%; }
 
 #news-header {
-  grid-area: header;
-  text-align: center; }
+  text-align: center;
+  padding-top: 1em; }
+
+#news-header h3 {
+  font-weight: 400; }
 
 .news-item {
   display: grid;
-  grid-template: "tag . . ." min-content "info info info info" auto / auto auto;
-  margin: 0.5em;
-  background-color: white; }
+  grid-template: "tag . . ." min-content  "info info info info" auto / auto auto;
+  background-color: white;
+  margin: 0.5em 0.5em 0.15em 0.5em;
+  padding: 0.5em 0.5em 0 0.5em;
+  border-top-left-radius: 5% 10%;
+  border-top-right-radius: 5% 10%;
+  border-bottom-left-radius: 5% 10%;
+  border-bottom-right-radius: 5% 10%; }
 
 .news-tag {
-  grid-area: tag; }
+  grid-area: tag;
+  background-color: orange;
+  padding: 0 0.25em 0 0.25em;
+  margin-bottom: 0.25em;
+  border-top-left-radius: 5% 25%;
+  border-top-right-radius: 5% 25%;
+  border-bottom-left-radius: 5% 25%;
+  border-bottom-right-radius: 5% 25%; }
+
+.news-tag p {
+  font-weight: 500;
+  margin: 0; }
 
 .news-info {
   grid-area: info; }
