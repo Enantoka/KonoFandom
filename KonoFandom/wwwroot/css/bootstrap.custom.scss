@@ -11,16 +11,15 @@ p {
     font-size: clamp(12px, 2vw, 16px);
 }
 
-footer {
-    grid-column: 1 / -1;
-}
-
 .bg-navy {
     background-color: rgb(17, 20, 48);
 }
 
 .main-content {
+    display: flex;
+    justify-content: center;
     background-color: rgb(255, 252, 232);
+    min-width: 320px;
     min-height: 100vh;
     padding-top: 3em;
     padding-bottom: 3em;
@@ -64,7 +63,6 @@ footer {
         "store store store store" min-content
         ". . . ." 3em
         "news news news news" auto / auto;
-    min-width: 360px;
     max-width: 1150px; // may need changes
 }
 
@@ -101,6 +99,13 @@ footer {
     grid-area: playstore;
 }
 
+.news, .news-item {
+    border-top-left-radius: 1em 1em;
+    border-top-right-radius: 1em 1em;
+    border-bottom-left-radius: 1em 1em;
+    border-bottom-right-radius: 1em 1em;
+}
+
 .news {
     grid-area: news;
     display: grid;
@@ -108,16 +113,12 @@ footer {
     justify-self: center;
     background-color: rgb(17, 20, 48);
     width: 80%;
-    padding-bottom: 0.5em;
-    border-top-left-radius: 5% 5%;
-    border-top-right-radius: 5% 5%;
-    border-bottom-left-radius: 5% 5%;
-    border-bottom-right-radius: 5% 5%;
 }
 
 #news-header {
     text-align: center;
     padding-top: 1em;
+    padding-bottom:0.5em;
 }
 
 #news-header h3 {
@@ -130,12 +131,8 @@ footer {
         "tag . . ." min-content 
         "info info info info" auto / auto auto;
     background-color: rgb(255, 255, 255);
-    margin: 0.5em 0.5em 0.15em 0.5em;
-    padding: 0.5em 0.5em 0 0.5em;
-    border-top-left-radius: 5% 10%;
-    border-top-right-radius: 5% 10%;
-    border-bottom-left-radius: 5% 10%;
-    border-bottom-right-radius: 5% 10%;
+    margin: 0 0.5em 0.5em 0.5em;
+    padding: 0.5em 0 0 0.5em;
 }
 
 .news-tag {
