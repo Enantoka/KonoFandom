@@ -212,6 +212,14 @@ hr.news-separator {
     justify-items: center;
 }
 
+#cv-tag, #birthdate-tag {
+    background-color: rgb(232, 233, 247);
+    border-top-left-radius: 1em 1em;
+    border-top-right-radius: 1em 1em;
+    border-bottom-left-radius: 1em 1em;
+    border-bottom-right-radius: 1em 1em;
+}
+
 #cv-tag {
     grid-area: cv-tag;
     text-align: center;
@@ -230,9 +238,13 @@ hr.news-separator {
     grid-area: birthdate;
 }
 
+hr.dotted-line {
+    margin: 1em;
+    border-top: 2px dotted rgb(17, 20, 48);
+}
+
 #about {
     grid-area: about;
-    margin-top: 2.5em;
 }
 
 #skill-header {
@@ -247,7 +259,7 @@ hr.news-separator {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(88, 61 , 60);
+    background-color: rgb(17, 20, 48);
     border-bottom-right-radius: 10% 55%;
     height: auto;
     min-height: 4em;

@@ -7354,6 +7354,13 @@ hr.news-separator {
   grid-template: "cv-tag cv" min-content "birthdate-tag birthdate" min-content "about about" min-content / 1fr 1fr;
   justify-items: center; }
 
+#cv-tag, #birthdate-tag {
+  background-color: #e8e9f7;
+  border-top-left-radius: 1em 1em;
+  border-top-right-radius: 1em 1em;
+  border-bottom-left-radius: 1em 1em;
+  border-bottom-right-radius: 1em 1em; }
+
 #cv-tag {
   grid-area: cv-tag;
   text-align: center; }
@@ -7368,9 +7375,12 @@ hr.news-separator {
 #birthdate {
   grid-area: birthdate; }
 
+hr.dotted-line {
+  margin: 1em;
+  border-top: 2px dotted #111430; }
+
 #about {
-  grid-area: about;
-  margin-top: 2.5em; }
+  grid-area: about; }
 
 #skill-header {
   grid-area: skill-header; }
@@ -7382,7 +7392,7 @@ hr.news-separator {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #583d3c;
+  background-color: #111430;
   border-bottom-right-radius: 10% 55%;
   height: auto;
   min-height: 4em;

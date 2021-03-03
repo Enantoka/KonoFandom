@@ -50,7 +50,10 @@
                 <p id="cv">@Html.DisplayFor(model => model.Character.CharacterVoice)</p>
                 <p id="birthdate-tag">Birthday</p>
                 <p id="birthdate">@Html.DisplayFor(model => model.Character.Birthday)</p>
-                <p id="about">@Html.DisplayFor(model => model.Character.Biography)</p>
+                <div id="about">
+                    <hr class="dotted-line">
+                    <p>@Html.DisplayFor(model => model.Character.Biography)</p>
+                </div>
             </div>
             <div id="skill-header" class="sub-title text-white">
                 <h3>@Html.DisplayNameFor(model => model.Character.UltimateSkill)</h3>
