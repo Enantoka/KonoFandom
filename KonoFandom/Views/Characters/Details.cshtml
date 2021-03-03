@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Details";
     var cardByRarity = Model.Character.Cards.OrderByDescending(c => c.Rarity);
+    var name = @Html.DisplayFor(model => model.Character.Name).ToString().ToLower();
 }
 
 <div class="main-content">
@@ -41,13 +42,15 @@
             </div>
 
             <!-- Character Content -->
-            
             <div id="character-header" class="sub-title text-white">
                 <h3>@Html.DisplayFor(model => model.Character.Name)</h3>
-                <h5>CV: @Html.DisplayFor(model => model.Character.CharacterVoice)</h5>
             </div>
             <div id="biography">
-                <p>@Html.DisplayFor(model => model.Character.Biography)</p>
+                <p id="cv-tag">Character Voice</p>
+                <p id="cv">@Html.DisplayFor(model => model.Character.CharacterVoice)</p>
+                <p id="birthdate-tag">Birthday</p>
+                <p id="birthdate">@Html.DisplayFor(model => model.Character.Birthday)</p>
+                <p id="about">@Html.DisplayFor(model => model.Character.Biography)</p>
             </div>
             <div id="skill-header" class="sub-title text-white">
                 <h3>@Html.DisplayNameFor(model => model.Character.UltimateSkill)</h3>
@@ -67,9 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div id="character-img">
-                <img src=@Html.DisplayFor(model => model.Character.CharacterImagePath) class="img-fluid mx-auto d-block" />
-            </div>
+            <div id="character-@Model.Character.Name.ToString().ToLower()"></div>
             
 
             <!-- Card Content -->

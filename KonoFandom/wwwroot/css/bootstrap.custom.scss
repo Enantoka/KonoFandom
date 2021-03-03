@@ -166,14 +166,20 @@ hr.news-separator {
 
 #dp-body {
     display: grid;
-    //grid-template-columns: repeat(6, 1fr);
-    //grid-template-rows: repeat(5, auto) 1fr;
-    grid-template:
+    /*    grid-template:
         "nav nav" min-content
         "img character-header" 10rem
         "img biography" 10rem 
         ". skill-header" min-content
         ". skill-description" auto
+        "card card" auto / 1fr 2fr;*/
+        grid-template:
+        "nav nav" min-content
+        "character-header character-header" min-content
+        "img biography" min-content
+        //"biography biography" min-content 
+        "skill-header skill-header" min-content
+        "skill-description skill-description" min-content
         "card card" auto / 1fr 2fr;
     grid-gap: 0.75em;
     background-color: rgb(255, 255, 255);
@@ -192,12 +198,41 @@ hr.news-separator {
     margin: 0.5rem;
 }
 
-#character-header {
+#character-header{
     grid-area: character-header;
 }
 
 #biography {
     grid-area: biography;
+    display: grid;
+    grid-template:
+        "cv-tag cv" min-content
+        "birthdate-tag birthdate" min-content
+        "about about" min-content / 1fr 1fr;
+    justify-items: center;
+}
+
+#cv-tag {
+    grid-area: cv-tag;
+    text-align: center;
+}
+
+#cv {
+    grid-area: cv;
+    text-align:center;
+}
+
+#birthdate-tag {
+    grid-area: birthdate-tag;
+}
+
+#birthdate {
+    grid-area: birthdate;
+}
+
+#about {
+    grid-area: about;
+    margin-top: 2.5em;
 }
 
 #skill-header {
@@ -220,7 +255,6 @@ hr.news-separator {
 }
 
 .sub-title h3,
-.sub-title h5,
 #biography p {
     padding-left: 0.25em;
 }
@@ -229,9 +263,9 @@ hr.news-separator {
     font-size: clamp(1.25em, 2vw, 1.75em);
 }
 
-.sub-title h5 {
+/*.sub-title h5 {
     font-size: clamp(0.75em, calc(2vw - 0.5em), 1.25em);
-}
+}*/
 
 .row {
     margin-left: 0;
@@ -252,8 +286,13 @@ hr.news-separator {
     font-weight: bold;
 }
 
-#character-img {
+#character-kazuma {
     grid-area: img;
+    min-height: 300px;
+    background-image: url("/assets/img/kazuma.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    margin-left: 0.5em;
 }
 
 #card-gallery {
