@@ -7,7 +7,8 @@ $font-family-sans-serif: $roboto;
 
 @import "../lib/bootstrap/scss/bootstrap.scss";
 
-p {
+p,
+table {
     font-size: clamp(12px, 2vw, 16px);
 }
 
@@ -185,8 +186,7 @@ hr.news-separator {
 
 #biography, 
 #character-header, 
-#skill-header, 
-#skill-list {
+#skill-header {
     margin: 0.5rem;
 }
 
@@ -207,6 +207,7 @@ hr.news-separator {
 
 #cv-tag, #birthdate-tag {
     background-color: rgb(232, 233, 247);
+    padding: 0 0.2em;
     border-top-left-radius: 1em 1em;
     border-top-right-radius: 1em 1em;
     border-bottom-left-radius: 1em 1em;
@@ -240,35 +241,29 @@ hr.dotted-line {
     grid-area: about;
 }
 
+#about p{
+    margin: 1em;
+}
+
 #skill-header {
     grid-area: skill-header;
 }
 
 #skill-list {
     grid-area: skill-list;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-row-gap: 0.5em;
+    margin: 0 0.5em 0.5em 0.5em;
+    padding-left: 0.3em;
+    background-color: rgb(232, 233, 247);
+    text-align: center;
 }
 
-.skill-item {
-    display: grid;
-    grid-template: 
-        "skill-name ." min-content 
-        "skill-desc skill-img" min-content / 3fr 1fr;
-}
-
-.skill-name {
-    grid-area: skill-name;
-    font-weight: bold;
-}
-
-.skill-desc {
-    grid-area: skill-desc;
+#skill-list tbody td {
+    border: 2px solid white;
 }
 
 .skill-img {
     grid-area: skill-img;
+    max-width: 40%;
 }
 
 .sub-title {
@@ -280,8 +275,7 @@ hr.dotted-line {
     min-height: 2.5em;
 }
 
-.sub-title h3,
-#biography p {
+.sub-title h3 {
     padding-left: 0.25em;
 }
 
@@ -298,10 +292,6 @@ hr.dotted-line {
 #skill-info .col-8 {
     padding-left: 0;
     align-self: center;
-}
-
-#skill-list img {
-    max-width: 60%;
 }
 
 #character-kazuma {
