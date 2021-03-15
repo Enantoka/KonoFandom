@@ -67,7 +67,7 @@
                     </tr>
                     <tr>
                         <td>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</td>
-                        <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="skill-img img-fluid d-block mx-auto"></td>
+                        <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="sp-skill-img img-fluid d-block mx-auto"></td>
                     </tr>
                     <tr>
                         <td style="font-weight:bold">@Html.DisplayFor(model => model.Character.UltimateSkill.Name)</td>
@@ -75,7 +75,7 @@
                     </tr>
                     <tr>
                         <td>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</td>
-                        <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="skill-img img-fluid d-block mx-auto"></td>
+                        <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="sp-skill-img img-fluid d-block mx-auto"></td>
                     </tr>
                 </tbody>
             </table>
@@ -105,7 +105,7 @@
 
             <!-- Card Modal -->
             <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -120,11 +120,14 @@
                                         <div class="carousel-item @(cardByRarity.FirstOrDefault() == card ? "active" : "")">
                                             <div class="container text-center">
                                                 <div class="row">
-                                                    <div class="col-5">
+                                                    <div class="col">
                                                         <span> @card.Name </span>
                                                         <img src=@card.ImagePath class="img-fluid" />
                                                     </div>
-                                                    <div class="col-7">
+                                                </div>
+                                                <div class="row">
+                                                   
+                                                    <div class="col">
                                                         <table class="table-bordered w-100">
                                                             <thead>
                                                                 <tr>
@@ -239,79 +242,38 @@
                                                         </table>
                                                     </div>
                                                 </div>
-                                                <div class="row mt-2">
-                                                    @{
-                                                        var count = 0;
-
-                                                        @foreach (var skill in card.CardBasicSkills)
-                                                        {
-
-                                                            if (count % 2 == 0)
-                                                            {
-                                                            @:</div>
-                                                            @:<div class="row mt-2">
-                                                            }
-                                                            count++;
-
-                                                            <div class="col-6">
-                                                                <table class="table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th colspan="2">
-                                                                                @skill.BasicSkill.Name
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td rowspan="2" style="width:30%">
-                                                                                <img src="@skill.BasicSkill.ImagePath" class="img-fluid">
-                                                                            </td>
-                                                                            <td style="width:70%">
-                                                                                Charge Time: @skill.BasicSkill.ChargeTime
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td style="width:70%">
-                                                                                @skill.BasicSkill.Description
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                <div class="card-modal-skill-list">
+                                                    @foreach (var skill in card.CardBasicSkills)
+                                                    {
+                                                        <div class="card-modal-skill">
+                                                            <div class="skill-name">
+                                                                <span>@skill.BasicSkill.Name</span>
                                                             </div>
-
-                                                            @if (count > 2 && card.PassiveSkill != null)
-                                                            {
-                                                                <div class="col-6">
-                                                                    <table class="table-bordered">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th colspan="2">
-
-                                                                                    @card.PassiveSkill.Name
-                                                                                </th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td rowspan="2" style="width:30%">
-                                                                                    <img src="@card.PassiveSkill.ImagePath" class="img-fluid">
-                                                                                </td>
-                                                                                <td>
-                                                                                    Passive
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    @card.PassiveSkill.Description
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            }
-                                                        }
+                                                            <div class="charge-time">
+                                                                <span>Charge Time: @skill.BasicSkill.ChargeTime</span>
+                                                            </div>
+                                                            <div class="skill-img">
+                                                                <img src="@skill.BasicSkill.ImagePath" class="img-fluid">
+                                                            </div>
+                                                            <div class="skill-desc">
+                                                                <span>@skill.BasicSkill.Description</span>
+                                                            </div>
+                                                        </div>
                                                     }
+                                                    <div class="card-modal-skill">
+                                                        <div class="skill-name">
+                                                            <span>@card.PassiveSkill.Name</span>
+                                                        </div>
+                                                        <div class="charge-time">
+                                                            <span>Passive</span>
+                                                        </div>
+                                                        <div class="skill-img">
+                                                            <img src="@card.PassiveSkill.ImagePath" class="img-fluid">
+                                                        </div>
+                                                        <div class="skill-desc">
+                                                            <span>@card.PassiveSkill.Description</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

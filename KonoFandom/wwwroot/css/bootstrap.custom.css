@@ -7197,6 +7197,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 p,
+span,
 table {
   font-size: clamp(12px, 2vw, 16px); }
 
@@ -7393,8 +7394,8 @@ hr.dotted-line {
 #skill-list tbody td {
   border: 2px solid white; }
 
+.sp-skill-img,
 .skill-img {
-  grid-area: skill-img;
   max-width: 40%; }
 
 .sub-title {
@@ -7430,6 +7431,40 @@ hr.dotted-line {
 
 #card-gallery {
   grid-area: card; }
+
+.card-modal-content {
+  display: grid;
+  grid-template: "cardImg cardImg" min-content "cardStats cardStats" min-content "cardSkill cardSkill" min-content / 1fr 1fr; }
+
+.card-modal-img {
+  grid-area: cardImg; }
+
+.card-modal-stats {
+  grid-area: cardStats; }
+
+.card-modal-skill-list {
+  grid-area: cardSkill;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; }
+
+.card-modal-skill {
+  display: grid;
+  grid-template: "skill-name skill-name" min-content "charge-time charge-time" min-content "skill-img skill-img" min-content "skill-desc skill-desc" min-content / 1fr 2fr;
+  border: 1px solid black; }
+
+.skill-name {
+  grid-area: skill-name; }
+
+.charge-time {
+  grid-area: charge-time; }
+
+.skill-img {
+  grid-area: skill-img;
+  justify-self: center; }
+
+.skill-desc {
+  grid-area: skill-desc; }
 
 /*************** 
     Carousel
