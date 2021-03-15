@@ -81,6 +81,9 @@
             </table>
 
             <!-- Card Content -->
+            <div id="card-header" class="sub-title text-white">
+                <h3>@Html.DisplayNameFor(model => model.Character.Cards)</h3>
+            </div>
             <div id="card-gallery" class="row" data-toggle="modal" data-target="#cardModal">
                 @{
                     if (Model.Character.Cards != null)
@@ -126,7 +129,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                   
+
                                                     <div class="col">
                                                         <table class="table-bordered w-100">
                                                             <thead>

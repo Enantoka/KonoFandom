@@ -7325,7 +7325,7 @@ hr.news-separator {
 *****************************/
 #dp-body {
   display: grid;
-  grid-template: "nav nav" min-content "character-header character-header" min-content "img biography" min-content "skill-header skill-header" min-content "skill-list skill-list" min-content "card card" auto / 1fr 2fr;
+  grid-template: "nav nav" min-content "character-header character-header" min-content "img biography" min-content "skill-header skill-header" min-content "skill-list skill-list" min-content "card-header card-header" min-content "card card" auto / 1fr 2fr;
   grid-gap: 0.75em;
   background-color: white;
   border: 1px solid;
@@ -7336,8 +7336,12 @@ hr.news-separator {
 
 #biography,
 #character-header,
-#skill-header {
+#skill-header,
+#card-header {
   margin: 0.5rem; }
+
+#card-header {
+  grid-area: card-header; }
 
 #character-header {
   grid-area: character-header; }
