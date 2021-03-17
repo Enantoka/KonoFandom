@@ -7,6 +7,10 @@ $font-family-sans-serif: $roboto;
 
 @import "../lib/bootstrap/scss/bootstrap.scss";
 
+body {
+    background-color: rgb(255, 252, 232);
+}
+
 p,
 span,
 table {
@@ -20,7 +24,6 @@ table {
 .main-content {
     display: flex;
     justify-content: center;
-    background-color: rgb(255, 252, 232);
     min-width: 320px;
     min-height: 100vh;
     padding-top: 3em;
@@ -365,6 +368,98 @@ hr.dotted-line {
     grid-area: skill-desc;
 }
 
+/****************
+    Cards Page
+****************/
+#card-content {
+    display: grid;
+    grid-template: 
+        "character-filter" min-content
+        "element-filter" min-content
+        "rarity-filter" min-content
+        "table-content" min-content / 1fr;
+    grid-gap: 1em;
+}
+
+.character-checkbox-filter,
+.element-checkbox-filter,
+.rarity-checkbox-filter {
+    grid-row-gap: 1em;
+}
+
+#character-filter-header,
+#element-filter-header,
+#rarity-filter-header {
+    text-align: center;
+}
+
+#character-filter-item,
+#element-filter-item,
+#rarity-filter-item {
+    justify-self: center;
+}
+
+.character-checkbox-filter {
+    grid-area: character-filter;
+    display: grid;
+    grid-template: 
+        "character-filter-header" min-content 
+        "character-filter-item" auto;
+}
+
+#character-filter-header {
+    grid-area: character-filter-header;
+}
+
+#character-filter-item {
+    grid-area: character-filter-item;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1em;
+}
+
+.element-checkbox-filter {
+    grid-area: element-filter;
+    display: grid;
+    grid-template: 
+        "element-filter-header" min-content 
+        "element-filter-item" auto / 1fr;
+}
+
+#element-filter-header {
+    grid-area: element-filter-header;
+}
+
+#element-filter-item {
+    grid-area: element-filter-item;
+}
+
+.rarity-checkbox-filter {
+    grid-area: rarity-filter;
+    display: grid;
+    grid-template: 
+        "rarity-filter-header" min-content 
+        "rarity-filter-item" auto / 1fr;
+}
+
+#rarity-filter-header {
+    grid-area: rarity-filter-header;
+}
+
+#rarity-filter-item {
+    grid-area: rarity-filter-item;
+}
+
+#card-table {
+    grid-area: table-content;
+    background-color: rgb(17, 20, 48);
+}
+
+table.dataTable thead tr {
+    color: white;
+    border: none;
+}
+
 /*************** 
     Carousel
 ***************/
@@ -385,12 +480,12 @@ hr.dotted-line {
 /**************
     Filters
 **************/
-.character-checkbox-filter, 
-.element-checkbox-filter, 
+.character-checkbox-filter,
+.element-checkbox-filter,
 .rarity-checkbox-filter {
     border: solid;
     border-width: thin;
-    margin: 25px;
+    background-color: rgb(255, 255, 255);
 
     input[type="checkbox"] {
         display: none;
