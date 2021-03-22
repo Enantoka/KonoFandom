@@ -3,6 +3,24 @@
 
 // Write your JavaScript code.
 
+/******************* 
+    Navigation Bar
+********************/
+// Indicate selected link from menu
+$(function () {
+    var url = window.location.href;
+    var links = ["Characters", "Cards"];
+
+    links.forEach(function (link) {
+        if (url.includes(link)) {
+            $('.navbar .navbar-nav .nav-item .' + link.toLowerCase() + "-link").addClass('active');
+        }
+    });
+})
+
+/****************
+    Admin Page
+****************/
 function viewDetails(element) {
   var dataAttribute = $(element).data('action');
 

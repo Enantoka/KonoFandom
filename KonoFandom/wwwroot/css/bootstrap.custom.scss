@@ -1,85 +1,468 @@
 ﻿// Google Font
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@569&display=swap');
-$merriweather-sans: 'Merriweather Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+$roboto: 'Roboto', sans-serif;
 
 // Fonts
-$font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: $roboto;
 
 @import "../lib/bootstrap/scss/bootstrap.scss";
 
-//
-@media (max-width: 575px) {
-    body {
-        font-size: 0.7rem;
-    }
+body {
+    background-color: rgb(255, 252, 232);
 }
 
-// Wrapper
-.wrapper{
-    position: relative;
-    left: 3%;
-    top: 10%;
-    z-index: 1;
+p,
+span,
+table {
+    font-size: clamp(12px, 2vw, 16px);
 }
 
-// Home Top
-#home-top {
-
-    .background-top {
-        background: linear-gradient(135deg, #729dca 60%, white 60%);
-        position: relative;
-    }
-
-    .welcome-msg {
-        text-align: center;
-
-        p {
-            margin-bottom: 0em;
-        }
-    }
-
-    .ksfd-logo {
-
-        img {
-            width: 50%;
-        }
-    }
-
-    .appstore-top a {
-        display: inline-block;
-
-    }
-
-    .pic {
-        margin: auto;
-        position: relative;
-        left: -4%;
-        top: 4%;
-    }
+.bg-navy {
+    background-color: rgb(17, 20, 48);
 }
 
-.chara-bg {
-    background: url(../assets/img/bg_01.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-// Orange Background
-.orange-bg {
-    background-color: orange;
-}
-
-// Container for main content
-#main-content {
-    background-color: #fbf0e0;
-    border-left: groove brown;
-    border-right: groove brown;
+.main-content {
+    display: flex;
+    justify-content: center;
+    min-width: 320px;
     min-height: 100vh;
-    padding: 50px, 50px, 0px, 50px;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
-// Carousel
+/*********************
+    Navigation Bar
+*********************/
+.navbar .navbar-nav .characters-link:hover,
+.navbar .navbar-nav .cards-link:hover,
+.navbar .navbar-nav .tutorial-link:hover,
+.navbar .navbar-nav .story-link:hover {
+    text-decoration: none;
+    color: rgb(239, 130, 0);
+}
+
+.navbar .navbar-nav .characters-link,
+.navbar .navbar-nav .cards-link,
+.navbar .navbar-nav .tutorial-link,
+.navbar .navbar-nav .story-link {
+    display: block;
+    padding: 0.5rem;
+    color: rgb(255, 255, 255);
+}
+
+.navbar .navbar-nav .characters-link.active,
+.navbar .navbar-nav .cards-link.active,
+.navbar .navbar-nav .tutorial-link.active,
+.navbar .navbar-nav .story-link.active {
+    color: rgb(239, 130, 0);
+}
+
+
+/****************
+    Home Page 
+****************/
+.visual {
+    display: grid;
+    grid-template: 
+        "title title . ." min-content 
+        "store store store store" min-content
+        ". . . ." 3em
+        "news news news news" auto / auto;
+    max-width: 1150px; // may need changes
+}
+
+.game-logo {
+    grid-area: title;
+    width: 135%;
+    align-self: center;
+}
+
+.aqua-img {
+    grid-column: 2 / span 3;
+    grid-row: 1;
+    width: 100%;
+}
+
+.store-link {
+    grid-area: store;
+    display: grid;
+    grid-template:
+        ". appstore ." min-content
+        ". playstore ." min-content / 1fr 4fr 1fr;
+    grid-row-gap: 10px;
+}
+
+.apple-store img, .play-store img {
+    width: 100%;
+}
+
+.apple-store {
+    grid-area: appstore;
+}
+
+.play-store {
+    grid-area: playstore;
+}
+
+.news, .news-item {
+    border-top-left-radius: 1em 1em;
+    border-top-right-radius: 1em 1em;
+    border-bottom-left-radius: 1em 1em;
+    border-bottom-right-radius: 1em 1em;
+}
+
+.news {
+    grid-area: news;
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-self: center;
+    background-color: rgb(17, 20, 48);
+    width: 80%;
+}
+
+#news-header {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom:0.5em;
+}
+
+#news-header h3 {
+    font-weight: 400;
+}
+
+.news-item {
+    display: grid;
+    grid-template: 
+        "tag . . ." min-content 
+        "info info info info" auto / auto auto;
+    background-color: rgb(255, 255, 255);
+    margin: 0 0.5em 0.5em 0.5em;
+    padding: 0.5em 0 0 0.5em;
+}
+
+.news-tag {
+    grid-area: tag;
+    background-color: orange;
+    padding: 0 0.25em 0 0.25em;
+    margin-bottom: 0.25em;
+    border-top-left-radius: 5% 25%;
+    border-top-right-radius: 5% 25%;
+    border-bottom-left-radius: 5% 25%;
+    border-bottom-right-radius: 5% 25%;
+}
+
+.news-tag p {
+    font-weight: 500;
+    margin: 0;
+}
+
+.news-info {
+    grid-area: info;
+}
+
+hr.news-separator {
+    margin: 0;
+    border-top: 1px solid rgb(0, 0, 0);
+}
+
+/***************************** 
+    Character Details Page 
+*****************************/
+
+#dp-body {
+    display: grid;
+        grid-template:
+        "nav nav" min-content
+        "character-header character-header" min-content
+        "img biography" min-content
+        "skill-header skill-header" min-content
+        "skill-list skill-list" min-content
+        "card-header card-header" min-content
+        "card card" auto / 1fr 2fr;
+    grid-gap: 0.75em;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+    min-height: 100vh;
+}
+
+#character-nav {
+    grid-area: nav;
+}
+
+#biography, 
+#character-header, 
+#skill-header,
+#card-header {
+    margin: 0.5rem;
+}
+
+#card-header {
+    grid-area: card-header;
+}
+
+#character-header {
+    grid-area: character-header;
+}
+
+#biography {
+    grid-area: biography;
+    display: grid;
+    grid-template:
+        "cv-tag cv" min-content
+        "birthdate-tag birthdate" min-content
+        "about about" min-content / 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+}
+
+#cv-tag, #birthdate-tag {
+    background-color: rgb(232, 233, 247);
+    padding: 0 0.2em;
+    border-top-left-radius: 1em 1em;
+    border-top-right-radius: 1em 1em;
+    border-bottom-left-radius: 1em 1em;
+    border-bottom-right-radius: 1em 1em;
+}
+
+#cv-tag {
+    grid-area: cv-tag;
+    text-align: center;
+}
+
+#cv {
+    grid-area: cv;
+    text-align:center;
+}
+
+#birthdate-tag {
+    grid-area: birthdate-tag;
+}
+
+#birthdate {
+    grid-area: birthdate;
+}
+
+hr.dotted-line {
+    margin: 1em;
+    border-top: 2px dotted rgb(17, 20, 48);
+}
+
+#about {
+    grid-area: about;
+}
+
+#about p{
+    margin: 1em;
+}
+
+#skill-header {
+    grid-area: skill-header;
+}
+
+#skill-list {
+    grid-area: skill-list;
+    margin: 0 0.5em 0.5em 0.5em;
+    padding-left: 0.3em;
+    background-color: rgb(232, 233, 247);
+    text-align: center;
+}
+
+#skill-list tbody td {
+    border: 2px solid white;
+}
+
+.sp-skill-img,
+.skill-img {
+    max-width: 40%;
+}
+
+.sub-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(17, 20, 48);
+    border-bottom-right-radius: 1em 1em;
+    min-height: 2.5em;
+}
+
+.sub-title h3 {
+    padding-left: 0.25em;
+}
+
+.sub-title h3 {
+    font-size: clamp(1.25em, 2vw, 1.75em);
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#skill-info .col-4, 
+#skill-info .col-8 {
+    padding-left: 0;
+    align-self: center;
+}
+
+#character-kazuma {
+    grid-area: img;
+    min-height: 300px;
+    background-image: url("/assets/img/kazuma.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    margin-left: 0.5em;
+}
+
+#card-gallery {
+    grid-area: card;
+}
+
+.card-modal-content {
+    display: grid;
+    grid-template: 
+        "cardImg cardImg" min-content
+        "cardStats cardStats" min-content
+        "cardSkill cardSkill" min-content / 1fr 1fr;
+}
+
+.card-modal-img {
+    grid-area: cardImg;
+}
+
+.card-modal-stats {
+    grid-area: cardStats;
+}
+
+.card-modal-skill-list {
+    grid-area: cardSkill;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.card-modal-skill {
+    display: grid;
+    grid-template:
+        "skill-name skill-name" min-content
+        "charge-time charge-time" min-content
+        "skill-img skill-img" min-content
+        "skill-desc skill-desc" min-content / 1fr 2fr;
+    border: 1px solid black;
+}
+
+.skill-name {
+    grid-area: skill-name;
+
+}
+
+.charge-time {
+    grid-area: charge-time;
+}
+
+.skill-img {
+    grid-area: skill-img;
+    justify-self: center;
+}
+
+.skill-desc {
+    grid-area: skill-desc;
+}
+
+/****************
+    Cards Page
+****************/
+#card-content {
+    display: grid;
+    grid-template: 
+        "character-filter" min-content
+        "element-filter" min-content
+        "rarity-filter" min-content
+        "table-content" min-content / 1fr;
+    grid-gap: 1em;
+}
+
+.character-checkbox-filter,
+.element-checkbox-filter,
+.rarity-checkbox-filter {
+    grid-row-gap: 1em;
+}
+
+#character-filter-header,
+#element-filter-header,
+#rarity-filter-header {
+    text-align: center;
+}
+
+#character-filter-item,
+#element-filter-item,
+#rarity-filter-item {
+    justify-self: center;
+}
+
+.character-checkbox-filter {
+    grid-area: character-filter;
+    display: grid;
+    grid-template: 
+        "character-filter-header" min-content 
+        "character-filter-item" auto;
+}
+
+#character-filter-header {
+    grid-area: character-filter-header;
+}
+
+#character-filter-item {
+    grid-area: character-filter-item;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1em;
+}
+
+.element-checkbox-filter {
+    grid-area: element-filter;
+    display: grid;
+    grid-template: 
+        "element-filter-header" min-content 
+        "element-filter-item" auto / 1fr;
+}
+
+#element-filter-header {
+    grid-area: element-filter-header;
+}
+
+#element-filter-item {
+    grid-area: element-filter-item;
+}
+
+.rarity-checkbox-filter {
+    grid-area: rarity-filter;
+    display: grid;
+    grid-template: 
+        "rarity-filter-header" min-content 
+        "rarity-filter-item" auto / 1fr;
+}
+
+#rarity-filter-header {
+    grid-area: rarity-filter-header;
+}
+
+#rarity-filter-item {
+    grid-area: rarity-filter-item;
+}
+
+#card-table {
+    grid-area: table-content;
+    background-color: rgb(17, 20, 48);
+}
+
+table.dataTable thead tr {
+    color: white;
+    border: none;
+}
+
+/*************** 
+    Carousel
+***************/
 .carousel-indicators li {
     width: 1em;
     height: 1em;
@@ -94,13 +477,15 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     right: -10%;
 }
 
-// Filters
-.character-checkbox-filter, 
-.element-checkbox-filter, 
+/**************
+    Filters
+**************/
+.character-checkbox-filter,
+.element-checkbox-filter,
 .rarity-checkbox-filter {
     border: solid;
     border-width: thin;
-    margin: 25px;
+    background-color: rgb(255, 255, 255);
 
     input[type="checkbox"] {
         display: none;
@@ -121,19 +506,8 @@ $font-family-sans-serif: $merriweather-sans, -apple-system, BlinkMacSystemFont, 
     width: 80%;
 }
 
-// Admin Page CSS
-// Misc Can be deleted?
-// Home Background Visual
-.background-visual {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url('../assets/img/bg_pc_top_02.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-}
-
-#home-top2 {
-    background: linear-gradient(135deg, #729dca 60%, white 60%);
-    background-size: cover;
-    min-width: 100vw;
+/******************
+    Screen Size
+******************/
+@media (min-width: 769px) {
 }
