@@ -304,15 +304,111 @@ hr.dotted-line {
     align-self: center;
 }
 
-#character-kazuma {
+#character-amy {
+    background-image: url("/assets/chara_img/amy.png");
+}
+
+#character-aqua {
     grid-area: img;
     min-height: 300px;
-    background-image: url("/assets/img/kazuma.png");
+    background-image: url("/assets/chara_img/aqua.png");
     background-repeat: no-repeat;
     background-position: top;
     margin-left: 0.5em;
 }
 
+// Use media queries to re-position image. background-postion: x y
+#character-arue,
+#character-cecily,
+#character-chris,
+#character-cielo,
+#character-darkness,
+#character-dust,
+#character-erika,
+#character-iris,
+#character-kazuma,
+#character-lia,
+#character-megumin,
+#character-melissa,
+#character-mia,
+#character-mitsurugi,
+#character-rin,
+#character-wiz,
+#character-yunyun {
+    grid-area: img;
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-position: top;
+    margin-left: 0.5em;
+}
+
+#character-arue {
+    background-image: url("/assets/chara_img/arue.png");
+}
+
+#character-cecily {
+    background-image: url("/assets/chara_img/cecily.png");
+}
+
+#character-chris {
+    background-image: url("/assets/chara_img/chris.png");
+}
+
+#character-cielo {
+    background-image: url("/assets/chara_img/cielo.png");
+}
+
+#character-darkness {
+    background-image: url("/assets/chara_img/darkness.png");
+}
+
+#character-dust {
+    background-image: url("/assets/chara_img/dust.png");
+}
+
+#character-erika {
+    background-image: url("/assets/chara_img/erika.png");
+}
+
+#character-iris {
+    background-image: url("/assets/chara_img/iris.png");
+}
+
+#character-kazuma {
+    background-image: url("/assets/chara_img/kazuma.png");
+}
+
+#character-lia {
+    background-image: url("/assets/chara_img/lia.png");
+}
+
+#character-megumin {
+    background-image: url("/assets/chara_img/megumin.png");
+}
+
+#character-melissa {
+    background-image: url("/assets/chara_img/melissa.png");
+}
+
+#character-mia {
+    background-image: url("/assets/chara_img/mia.png");
+}
+
+#character-mitsurugi {
+    background-image: url("/assets/chara_img/mitsurugi.png");
+}
+
+#character-rin {
+    background-image: url("/assets/chara_img/rin.png");
+}
+
+#character-wiz {
+    background-image: url("/assets/chara_img/wiz.png");
+}
+
+#character-yunyun {
+    background-image: url("/assets/chara_img/yunyun.png");
+}
 #card-gallery {
     grid-area: card;
 }
