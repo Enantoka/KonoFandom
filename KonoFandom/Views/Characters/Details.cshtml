@@ -69,13 +69,13 @@
                         <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="sp-skill-img img-fluid d-block mx-auto"></td>
                     </tr>
                     @*<tr>
-                        <td style="font-weight:bold">@Html.DisplayFor(model => model.Character.UltimateSkill.Name)</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</td>
-                        <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="sp-skill-img img-fluid d-block mx-auto"></td>
-                    </tr>*@
+                    <td style="font-weight:bold">@Html.DisplayFor(model => model.Character.UltimateSkill.Name)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Character.UltimateSkill.Description)</td>
+                    <td><img src=@Html.DisplayFor(model => model.Character.UltimateSkill.ImagePath) class="sp-skill-img img-fluid d-block mx-auto"></td>
+                </tr>*@
                 </tbody>
             </table>
 
@@ -83,24 +83,16 @@
             <div id="card-header" class="sub-title text-white">
                 <h3>@Html.DisplayNameFor(model => model.Character.Cards)</h3>
             </div>
-            <div id="card-gallery" class="row" data-toggle="modal" data-target="#cardModal">
-                @{
-                    if (Model.Character.Cards != null)
+            <div id="card-gallery" class="row">
+                @if (Model.Character.Cards != null)
+                {
+                    int count = 0;
+                    foreach (var item in cardByRarity)
                     {
-                        int count = 0;
-
-                        foreach (var item in cardByRarity)
-                        {
-                            @if (count % 4 == 0 && count != 0)
-                            {
-                            @:</div>
-                            @:<div class="row">
-                            }
-                            <div class="col-3">
-                                <img src=@item.ImagePath class="img-fluid" data-target="#cardCarousel" data-slide-to="@count" alt="@item.Name">
-                            </div>
-                            count++;
-                        }
+                        <div class="card-item" data-target="#cardModal" data-toggle="modal">
+                            <img src=@item.ImagePath class="img-fluid" data-target="#cardCarousel" data-slide-to="@count" alt="@item.Name">
+                        </div>
+                        count++;
                     }
                 }
             </div>

@@ -7339,7 +7339,8 @@ hr.news-separator {
 #biography,
 #character-header,
 #skill-header,
-#card-header {
+#card-header,
+#card-gallery {
   margin: 0.5rem; }
 
 #card-header {
@@ -7513,7 +7514,12 @@ hr.dotted-line {
   background-image: url("/assets/chara_img/yunyun.png"); }
 
 #card-gallery {
-  grid-area: card; }
+  grid-area: card;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: min-content;
+  grid-gap: 1em;
+  height: min-content; }
 
 .card-modal-content {
   display: grid;
