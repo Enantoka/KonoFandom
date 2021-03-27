@@ -305,8 +305,6 @@ hr.dotted-line {
     align-self: center;
 }
 
-
-// Use media queries to re-position image. background-postion: x y
 #character-amy,
 #character-aqua,
 #character-arue,
@@ -623,32 +621,8 @@ table.dataTable thead tr {
 /******************
     Screen Size
 ******************/
-@media (min-width: 320px) {
-    /* Character Details Page */
-    /*#character-amy {}*/
-    /*#character-aqua {
-        background-position: -9.25em 0em;
-    }*/
-    /*#character-arue,
-    #character-cecily,
-    #character-chris,
-    #character-cielo,
-    #character-darkness,
-    #character-dust,
-    #character-erika,
-    #character-iris,
-    #character-kazuma,
-    #character-lia,
-    #character-megumin,
-    #character-melissa,
-    #character-mia,
-    #character-mitsurugi,
-    #character-rin,
-    #character-wiz,
-    #character-yunyun*/
-}
-
 @media (min-width: 576px) {
+    // Character Details Page
     #character-arue {
         background-position-x: 60%;
     }
@@ -658,6 +632,7 @@ table.dataTable thead tr {
 }
 
 @media (min-width: 768px) {
+    // Character Details Page
     #character-chris {
         background-position-x: 75%;
     }
@@ -682,6 +657,7 @@ table.dataTable thead tr {
 }
 
 @media (min-width: 992px) {
+    // Character Details Page
     #character-amy {
         background-position-x: 40%;
     }
@@ -721,6 +697,7 @@ table.dataTable thead tr {
 }
 
 @media (min-width: 1200px) {
+    // Character Details Page
     #character-amy {
         background-position-x: 35%;
     }

@@ -7674,30 +7674,6 @@ table.dataTable thead tr {
 /******************
     Screen Size
 ******************/
-@media (min-width: 320px) {
-  /* Character Details Page */
-  /*#character-amy {}*/
-  /*#character-aqua {
-        background-position: -9.25em 0em;
-    }*/
-  /*#character-arue,
-    #character-cecily,
-    #character-chris,
-    #character-cielo,
-    #character-darkness,
-    #character-dust,
-    #character-erika,
-    #character-iris,
-    #character-kazuma,
-    #character-lia,
-    #character-megumin,
-    #character-melissa,
-    #character-mia,
-    #character-mitsurugi,
-    #character-rin,
-    #character-wiz,
-    #character-yunyun*/ }
-
 @media (min-width: 576px) {
   #character-arue {
     background-position-x: 60%; }
