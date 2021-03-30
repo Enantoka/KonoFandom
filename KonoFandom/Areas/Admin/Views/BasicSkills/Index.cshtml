@@ -35,7 +35,7 @@
     <tbody>
         @if (Model != null)
         {
-            @foreach (var item in Model)
+            @foreach (var item in Model.OrderBy(x => x.Name).ThenBy(x => x.Description)) // Sort in controller
             {
                 <tr data-url="@Url.Action("Details", "BasicSkills", new { id = item.SkillID })">
                     <td>
