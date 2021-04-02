@@ -5,7 +5,10 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h4>@ViewData["Title"]</h4>
+@*
+    The default identity download personal data page has been overwritten 
+    as accounts are created and deleted via admins only for the application.
+*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
