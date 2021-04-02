@@ -192,7 +192,8 @@ hr.news-separator {
 #biography, 
 #character-header, 
 #skill-header,
-#card-header {
+#card-header,
+#card-gallery {
     margin: 0.5rem;
 }
 
@@ -304,17 +305,128 @@ hr.dotted-line {
     align-self: center;
 }
 
-#character-kazuma {
+#character-amy,
+#character-aqua,
+#character-arue,
+#character-cecily,
+#character-chris,
+#character-cielo,
+#character-darkness,
+#character-dust,
+#character-erika,
+#character-iris,
+#character-kazuma,
+#character-lia,
+#character-megumin,
+#character-melissa,
+#character-mia,
+#character-mitsurugi,
+#character-rin,
+#character-wiz,
+#character-yunyun {
     grid-area: img;
     min-height: 300px;
-    background-image: url("/assets/img/kazuma.png");
     background-repeat: no-repeat;
     background-position: top;
     margin-left: 0.5em;
 }
 
+#character-amy {
+    background-image: url("/assets/chara_img/amy.png");
+    background-position-x: 48%;
+}
+
+#character-aqua {
+    background-image: url("/assets/chara_img/aqua.png");
+    background-position-x: 45%;
+}
+
+#character-arue {
+    background-image: url("/assets/chara_img/arue.png");
+    background-position-x: 55%;
+}
+
+#character-cecily {
+    background-image: url("/assets/chara_img/cecily.png");
+    background-position-x: 41%;
+}
+
+#character-chris {
+    background-image: url("/assets/chara_img/chris.png");
+    background-position-x: 70%;
+}
+
+#character-cielo {
+    background-image: url("/assets/chara_img/cielo.png");
+}
+
+#character-darkness {
+    background-image: url("/assets/chara_img/darkness.png");
+}
+
+#character-dust {
+    background-image: url("/assets/chara_img/dust.png");
+    background-position-x: 35%;
+}
+
+#character-erika {
+    background-image: url("/assets/chara_img/erika.png");
+    background-position-x: 45%;
+}
+
+#character-iris {
+    background-image: url("/assets/chara_img/iris.png");
+}
+
+#character-kazuma {
+    background-image: url("/assets/chara_img/kazuma.png");
+}
+
+#character-lia {
+    background-image: url("/assets/chara_img/lia.png");
+    background-position-x: 40%;
+}
+
+#character-megumin {
+    background-image: url("/assets/chara_img/megumin.png");
+    background-position-x: 33%;
+}
+
+#character-melissa {
+    background-image: url("/assets/chara_img/melissa.png");
+    background-position-x: 43%;
+}
+
+#character-mia {
+    background-image: url("/assets/chara_img/mia.png");
+    background-position-x: 32%;
+}
+
+#character-mitsurugi {
+    background-image: url("/assets/chara_img/mitsurugi.png");
+}
+
+#character-rin {
+    background-image: url("/assets/chara_img/rin.png");
+    background-position-x: 30%;
+}
+
+#character-wiz {
+    background-image: url("/assets/chara_img/wiz.png");
+    background-position-x: 38%;
+}
+
+#character-yunyun {
+    background-image: url("/assets/chara_img/yunyun.png");
+    background-position-x: 70%;
+}
 #card-gallery {
     grid-area: card;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: min-content;
+    grid-gap: 1em;
+    height: min-content;
 }
 
 .card-modal-content {
@@ -509,5 +621,117 @@ table.dataTable thead tr {
 /******************
     Screen Size
 ******************/
-@media (min-width: 769px) {
+@media (min-width: 576px) {
+    // Character Details Page
+    #character-arue {
+        background-position-x: 60%;
+    }
+    #character-mia {
+        background-position-x: 28%;
+    }
+}
+
+@media (min-width: 768px) {
+    // Character Details Page
+    #character-chris {
+        background-position-x: 75%;
+    }
+    #character-dust {
+        background-position-x: 20%;
+    }
+    #character-lia {
+        background-position-x: 30%;
+    }
+    #character-megumin {
+        background-position-x: 25%;
+    }
+    #character-melissa {
+        background-position-x: 36%;
+    }
+    #character-mia {
+        background-position-x: 18%;
+    }
+    #character-yunyun {
+        background-position-x: 80%;
+    }
+}
+
+@media (min-width: 992px) {
+    // Character Details Page
+    #character-amy {
+        background-position-x: 40%;
+    }
+    #character-arue {
+        background-position-x: 90%;
+    }
+    #character-cecily {
+        background-position-x: 25%;
+    }
+    #character-chris {
+        background-position-x: 85%;
+    }
+    #character-dust {
+        background-position-x: 300%;
+    }
+    #character-lia {
+        background-position-x: 10%;
+    }
+    #character-megumin {
+        background-position-x: 10%;
+    }
+    #character-melissa {
+        background-position-x: -30%;
+    }
+    #character-mia {
+        background-position-x: -20%;
+    }
+    #character-rin {
+        background-position-x: -50%;
+    }
+    #character-wiz {
+        background-position-x: 0%;
+    }
+    #character-yunyun {
+        background-position-x: 150%;
+    }
+}
+
+@media (min-width: 1200px) {
+    // Character Details Page
+    #character-amy {
+        background-position-x: 35%;
+    }
+    #character-arue {
+        background-position-x: 210%;
+    }
+    #character-cecily {
+        background-position-x: 5%;
+    }
+    #character-chris {
+        background-position-x: 260%;
+    }
+    #character-dust {
+        background-position-x: 80%;
+    }
+    #character-lia {
+        background-position-x: -120%;
+    }
+    #character-megumin {
+        background-position-x: -30%;
+    }
+    #character-melissa {
+        background-position-x: 280%;
+    }
+    #character-mia {
+        background-position-x: -260%;
+    }
+    #character-rin {
+        background-position-x: 80%;
+    }
+    #character-wiz {
+        background-position-x: 100%;
+    }
+    #character-yunyun {
+        background-position-x: -110%;
+    }
 }

@@ -12,7 +12,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-navy ">
         <div class="container">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">KF</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KF</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,10 +20,10 @@
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="characters-link" asp-controller="Characters" asp-action="Index">CHARACTERS</a>
+                        <a class="characters-link" asp-area="" asp-controller="Characters" asp-action="Index">CHARACTERS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="cards-link" asp-controller="Cards" asp-action="Index">CARDS</a>
+                        <a class="cards-link" asp-area="" asp-controller="Cards" asp-action="Index">CARDS</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="tutorial-link">TUTORIAL</a>
@@ -42,7 +42,8 @@
 
     <footer class="footer text-muted bg-navy">
         <div class="container text-light">
-            &copy; 2020 - KonoFandom - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - KonoFandom - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> -
+            <a asp-area="" asp-controller="Home" asp-action="Disclaimer">Disclaimer</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

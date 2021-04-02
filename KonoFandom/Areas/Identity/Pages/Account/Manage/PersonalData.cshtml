@@ -1,0 +1,15 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+@*
+    The default identity personal data page has been overwritten as accounts 
+    are created via admins only for the application.
+*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

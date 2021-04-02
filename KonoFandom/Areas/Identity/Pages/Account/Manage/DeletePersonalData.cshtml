@@ -1,0 +1,15 @@
+﻿@page
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Delete Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+@*
+    The default identity download personal data page has been overwritten
+    as accounts are created and deleted via admins only for the application.
+*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
