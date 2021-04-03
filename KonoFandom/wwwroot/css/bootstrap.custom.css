@@ -7671,6 +7671,12 @@ table.dataTable thead tr {
 .element-checkbox-filter img {
   width: 80%; }
 
+/*****************
+    Login Page
+*****************/
+.login {
+  align-self: center; }
+
 /******************
     Screen Size
 ******************/
