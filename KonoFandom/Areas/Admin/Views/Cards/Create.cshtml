@@ -123,9 +123,34 @@
                 <span asp-validation-for="DarkResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <table class="table table-borderless">
+                    <tr>
+                        @{
+                            int count = 0;
+                            List<KonoFandom.Models.AssignedElementData> elements = ViewBag.Elements;
+                            if (elements != null)
+                            {
+                                foreach (var element in elements)
+                                {
+                                    if (count++ % 5 == 0)
+                                    {
+                                    @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox" name="selectedElements" value="@element.ElementID"
+                                               @(Html.Raw(element.Assigned ? "checked=\"checked\"" : "")) />
+                                        @element.ElementID @: @element.Type
+                                    @:</td>
+                                }
+                            @:</tr>
+                        }
+                        }
+                    </table>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 

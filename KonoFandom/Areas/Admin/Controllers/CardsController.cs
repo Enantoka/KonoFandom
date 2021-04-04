@@ -55,7 +55,26 @@ namespace KonoFandom.Areas.Admin.Controllers
         {
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
+            PopulateCardElementData2();
             return View();
+        }
+
+        private void PopulateCardElementData2()
+        {
+            var elements = _context.Element;
+            var cardElements = new HashSet<int>();
+            var viewModel = new List<AssignedElementData>();
+
+            foreach (var element in elements)
+            {
+                viewModel.Add(new AssignedElementData
+                {
+                    ElementID = element.ElementID,
+                    Type = element.Name,
+                    Assigned = cardElements.Contains(element.ElementID)
+                });
+            }
+            ViewData["Elements"] = viewModel;
         }
 
         // POST: Cards/Create
@@ -63,7 +82,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
+        public async Task<IActionResult> Create(string[] selectedElements, [Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
                                                       "CharacterID, PassiveSkillID, HealthPoints, PhysicalAttack," +
                                                       "MagicAttack, PhysicalDefense, MagicDefense, Agility," +
                                                       "Dexterity, Luck, FireResistance, WaterResistance," +
@@ -77,6 +96,15 @@ namespace KonoFandom.Areas.Admin.Controllers
 
                 ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
                 ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+
+                // Update many to many relationship
+                var cardToUpdate = await _context.Card
+                                    .Include(c => c.CardElements)
+                                        .ThenInclude(c => c.Element)
+                                    .FirstOrDefaultAsync(m => m.CardID == card.CardID);
+
+                UpdateCardElements(selectedElements, cardToUpdate);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
