@@ -9,7 +9,7 @@
 <h4>BasicSkill</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="SkillID" />
@@ -41,7 +41,7 @@
                             List<KonoFandom.Models.AssignedBasicSkillData> cards = ViewBag.Cards;
                             if (cards != null)
                             {
-                                foreach (var card in cards)
+                                foreach (var card in cards.OrderBy(x => x.CardID)) // Temporary sort, move to controller
                                 {
                                     if (count++ % 5 == 0)
                                     {
