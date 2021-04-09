@@ -136,3 +136,38 @@ $('.rarity-checkbox-filter label').on('click', function () { fadeFilter(this) })
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+
+// Drag and Drop Test
+/*$(function () {
+    $("#div1").on("dragover", function (e) {
+        e.preventDefault();
+    });
+    $(".drag1").on("dragstart", function (e) {
+        e.dataTransfer.setData("text", e.target.id);
+    });
+    $("#div1").on("drop", function (e) {
+        e.preventDefault();
+        var data = e.dataTransfer.getData("text");
+        e.target.appendChild(document.getElementById(data));
+    });
+})*/
+
+
+$(function () {
+    $("#div1").on("dragover", function (e) {
+        e.preventDefault();
+    });
+
+    $("#skill-box").find("img").on("dragstart", function (e) {
+        e.originalEvent.dataTransfer.setData("text", e.target.id);
+        console.log($(this).attr("id"));
+    });
+
+    $("#div1").on("drop", function (e) {
+        e.preventDefault();
+        var data = e.originalEvent.dataTransfer.getData("text");
+        e.target.appendChild(document.getElementById(data));
+
+        $(this).off("dragover drop");
+    });
+})

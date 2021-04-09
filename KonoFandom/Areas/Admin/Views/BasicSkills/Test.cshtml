@@ -1,0 +1,21 @@
+﻿@model IEnumerable<KonoFandom.Models.BasicSkill>
+
+
+<div class="row">
+    <div class="col-12">
+        @if (Model != null)
+        {
+        <div id="skill-box">
+            @foreach (var item in Model.OrderBy(x => x.Name).ThenBy(x => x.Description)) // Sort in controller
+            {
+                <img draggable="true" style="width: 100px" src=@Html.DisplayFor(modelItem => item.ImagePath) data-toggle="tooltip"
+                     data-placement="bottom" title="@Html.DisplayFor(modelItem => item.Description)"
+                     class="img-fluid" id="@Html.DisplayFor(modelItem => item.SkillID)">
+            }
+        </div>
+        }
+    </div>
+</div>
+
+
+<div id="div1" style="border:1px solid black; width:200px; height:200px;"></div>

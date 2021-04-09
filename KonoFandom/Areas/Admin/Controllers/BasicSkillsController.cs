@@ -218,5 +218,12 @@ namespace KonoFandom.Areas.Admin.Controllers
         {
             return _context.BasicSkill.Any(e => e.SkillID == id);
         }
+
+        // TEST
+
+        public async Task<IActionResult> Test()
+        {
+            return View(await _context.BasicSkill.ToListAsync());
+        }
     }
 }
