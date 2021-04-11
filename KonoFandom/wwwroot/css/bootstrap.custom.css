@@ -7677,6 +7677,9 @@ table.dataTable thead tr {
 .login {
   align-self: center; }
 
+.gallery li {
+  float: left; }
+
 /******************
     Screen Size
 ******************/
