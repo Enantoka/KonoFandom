@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
 using KonoFandom.Data;
+using KonoFandom.Areas.Admin.ViewModels;
 
 namespace KonoFandom.Areas.Admin.Controllers
 {
@@ -56,7 +57,15 @@ namespace KonoFandom.Areas.Admin.Controllers
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
             PopulateCardElementData2();
-            return View();
+
+            var cards = _context.Card;
+            var passiveSkills = _context.PassiveSkill;
+
+            CardCreate vm = new();
+            vm.Cards = cards;
+            vm.PassiveSkills = passiveSkills;
+
+            return View(vm);
         }
 
         private void PopulateCardElementData2()

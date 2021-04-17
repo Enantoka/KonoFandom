@@ -158,6 +158,11 @@ $(function () {
 
             addSkill($(this), $item);
             sortReplacedSkill($(this), $item);
+
+            // Update the passive skill ID in create card
+            if ($(this).parent().children("input") !== undefined) {
+                $(this).parent().children("input").val($item.attr("id"));
+            }
         }
     });
 
