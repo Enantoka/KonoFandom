@@ -8,8 +8,8 @@
         <div id="skill-gallery">
             @foreach (var item in Model.OrderBy(x => x.SkillID)) // Sort in controller
             {
-                <img style="width: 100px" src=@Html.DisplayFor(modelItem => item.ImagePath)
-                     id="@Html.DisplayFor(modelItem => item.SkillID)">
+                <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
+                     id="@item.SkillID" title="@item.Description">
             }
         </div>
         }

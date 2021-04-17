@@ -137,88 +137,7 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 
-// Drag and Drop Test
-/*$(function () {
-    $("#div1").on("dragover", function (e) {
-        e.preventDefault();
-    });
-    $(".drag1").on("dragstart", function (e) {
-        e.dataTransfer.setData("text", e.target.id);
-    });
-    $("#div1").on("drop", function (e) {
-        e.preventDefault();
-        var data = e.dataTransfer.getData("text");
-        e.target.appendChild(document.getElementById(data));
-    });
-})*/
-
-/*function dragover(e) {
-        e.preventDefault();
-}
-$('#div1, #skill-box').on('dragover', function () { dragover(event) });
-
-function dragstart(e) {
-    e.dataTransfer.setData("text", e.target.id);
-    //console.log($(this).attr("id"));
-}
-$('#skill-box').find("img").on('dragstart', function () { dragstart(event) });
-$('#div1').find("img").on('dragstart', function () { dragstart(event) });
-
-function drop(e) {
-    e.preventDefault();
-    var data = e.dataTransfer.getData("text");
-    var tgt = document.getElementById("div1");
-
-    console.log(">: " + data);
-    console.log(">>: " + e.currentTarget.firstElementChild);
-    console.log(">>>: " + document.getElementById(data));
-    if (e.target.hasChildNodes()) {
-       tgt.replaceChild(document.getElementById(data), tgt.firstElementChild);
-    } else {
-        tgt.appendChild(document.getElementById(data));
-    }
-
-    
-    //e.target.appendChild(document.getElementById(data));
-}
-$('#div1, #skill-box').on('drop', function () { drop(event) });*/
-
-/*$(function () {
-    $("#div1").on("dragover", function (e) {
-        e.preventDefault();
-    });
-
-    $("#skill-box").find("img").on("dragstart", function (e) {
-        e.originalEvent.dataTransfer.setData("text", e.target.id);
-        console.log($(this).attr("id"));
-    });
-
-    $("#div1").on("drop", function (e) {
-        e.preventDefault();
-*//*        var data = e.originalEvent.dataTransfer.getData("text");
-
-        var test = document.getElementById(e.originalEvent.dataTransfer.getData("text"))
-
-        console.log(">>: " + e.currentTarget.firstElementChild);
-        if (e.target.hasChildNodes()) {
-            e.currentTarget.replaceChild(test, e.currentTarget.firstElementChild);
-        }
-        
-        e.target.appendChild(document.getElementById(data));*//*
-
-        var data = e.originalEvent.dataTransfer.getData("text");
-
-        console.log(">>: " + data);
-        console.log(">>: " + e.currentTarget.firstElementChild);
-        if (e.target.hasChildNodes()) {
-            e.currentTarget.removeChild(e.currentTarget.firstElementChild)
-            //e.currentTarget.replaceChild(document.getElementById(data), e.currentTarget.child);
-        }
-
-        e.target.appendChild(document.getElementById(data));
-   
-    });
-})*/
+// Drag and Drop
 
 $(function () {
     var $skillGallery = $("#skill-gallery"),
@@ -235,23 +154,10 @@ $(function () {
     $div1.droppable({
         accept: "#skill-gallery > img",
         drop: function (event, ui) {
-            //addSkill(ui.draggable);
             var $item = ui.draggable;
 
-            if ($(this).children().length > 0) {
-                var move = $(this).children().detach();
-                $item.parent().append(move);
-            }
-
-            $item.fadeOut(function () {
-                $item.appendTo($div1).fadeIn(function () {
-                    $item.find("img");
-                });
-            });
-
-            console.log($(this));
-            console.log($item);
-
+            addSkill($(this), $item);
+            sortReplacedSkill($(this), $item);
         }
     });
 
@@ -259,35 +165,54 @@ $(function () {
     $skillGallery.droppable({
         accept: "#div1 > img",
         drop: function (event, ui) {
-            removeSkill(ui.draggable);
+            $item = ui.draggable;
+            sortReturnedSkill($item);
         }
     });
 
-    // Add skill to div1
-    function addSkill($item) {
-
-        if ($(this).children().length > 0) {
-            var move = $(this).children().detach();
-            $item.parent().append(move);
-        }
-
+    // Add skill to droppable
+    function addSkill($droppable, $item) {
         $item.fadeOut(function () {
-            $item.appendTo($div1).fadeIn(function () {
+            $item.appendTo($droppable).fadeIn(function () {
                 $item.find("img");
             });
         });
-
-        console.log($(this));
-        console.log($item);
     }
 
-    // Add skill to skill gallery
-    function removeSkill($item) {
+    // Sort the skill replaced in droppable
+    function sortReplacedSkill($droppable, $item) {
+        if ($droppable.children().length > 0) {
+            var replace = $droppable.children().detach();
+            $item.parent().append(replace);
+
+            var $list = $item.parent().children("img");
+            $item.parent().append($list.sort(sortByNameThenTitle));
+        }
+    }
+
+    // Sort the skill returned to skill gallery
+    function sortReturnedSkill($item) {
         $item.fadeOut(function () {
+            // Return item
             $item.appendTo($skillGallery).fadeIn(function () {
                 $item.find("img");
             });
+
+            // Sort items
+            $list = $item.parent().children();
+            $(this).parent().append($list.sort(sortByNameThenTitle));
         });
     }
-    //console.log($(this).attr("id"));
+
+    function sortByNameThenTitle(a, b) {
+        if ($(a).data("name") === $(b).data("name")) {
+            a = $(a).attr("title");
+            b = $(b).attr("title");
+            return (a > b ? 1 : -1);
+        }
+
+        a = $(a).data("name");
+        b = $(b).data("name");
+        return (a > b ? 1 : -1);
+    }
 });
