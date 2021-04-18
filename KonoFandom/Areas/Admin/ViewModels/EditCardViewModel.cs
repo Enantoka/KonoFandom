@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace KonoFandom.Areas.Admin.ViewModels
 {
-    // View Model for GET create in Cards controller
-    public class CardCreate
+    // View Model for GET edit in Cards controller
+    public class EditCardViewModel
     {
-        public Card Card;
-
+        public IEnumerable<Card> Cards;
         public IEnumerable<PassiveSkill> PassiveSkills;
     }
 }

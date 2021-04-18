@@ -1,5 +1,5 @@
 ﻿@*@model KonoFandom.Models.Card*@
-@model KonoFandom.Areas.Admin.ViewModels.CardCreate
+@model KonoFandom.Areas.Admin.ViewModels.CreateCardViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -45,8 +45,8 @@
             <div id="passive-skill" class="form-group">
                 <label asp-for="@Model.Card.PassiveSkillID" class="control-label"></label>
                 <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden"/>
-                @*<select asp-for="@Model.Cards.FirstOrDefault().PassiveSkillID" class="form-control" asp-items="ViewBag.PassiveSkillID"></select>*@
                 <div id="div1" style="width: 100px; height: 100px; border:1px solid black;"></div>
+                <span asp-validation-for="@Model.Card.PassiveSkillID" class="text-danger"></span>
             </div>
             <h3>Stats</h3>
             <div class="form-group">

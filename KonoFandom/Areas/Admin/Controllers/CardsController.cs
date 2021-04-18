@@ -26,8 +26,8 @@ namespace KonoFandom.Areas.Admin.Controllers
         // GET: Cards
         public async Task<IActionResult> Index()
         {
-            var konoFandomContext = _context.Card;
-            return View(await konoFandomContext.ToListAsync());
+            var card = _context.Card;
+            return View(await card.ToListAsync());
         }
 
         // GET: Cards/Details/5
@@ -55,12 +55,11 @@ namespace KonoFandom.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
             PopulateCardElementData2();
 
             var passiveSkills = _context.PassiveSkill;
 
-            CardCreate vm = new();
+            CreateCardViewModel vm = new();
             vm.Card = new Card();
             vm.PassiveSkills = passiveSkills;
 
@@ -103,7 +102,6 @@ namespace KonoFandom.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
 
                 ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-                ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
 
                 // Update many to many relationship
                 var cardToUpdate = await _context.Card
@@ -128,9 +126,11 @@ namespace KonoFandom.Areas.Admin.Controllers
             }
 
             var card = await _context.Card
+                        .Include(c => c.PassiveSkill)
                         .Include(c => c.CardElements)
                             .ThenInclude(c => c.Element)
                         .FirstOrDefaultAsync(m => m.CardID == id);
+            var passiveSkills = _context.PassiveSkill;
 
             if (card == null)
             {
@@ -139,7 +139,12 @@ namespace KonoFandom.Areas.Admin.Controllers
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
             PopulateCardElementData(card);
-            return View(card);
+
+            CreateCardViewModel vm = new();
+            vm.Card = card;
+            vm.PassiveSkills = passiveSkills;
+
+            return View(vm);
         }
 
         private void PopulateCardElementData(Card card)
