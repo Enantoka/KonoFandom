@@ -172,6 +172,11 @@ $(function () {
         drop: function (event, ui) {
             $item = ui.draggable;
             sortReturnedSkill($item);
+
+            // Remove the passive skill ID in create card
+            if ($item.parent().parent().children("input") !== undefined) {
+                $item.parent().parent().children("input").val("");
+            }
         }
     });
 

@@ -9,7 +9,7 @@ namespace KonoFandom.Areas.Admin.ViewModels
     // View Model for GET create in Cards controller
     public class CardCreate
     {
-        public IEnumerable<Card> Cards;
+        public Card Card;
 
         public IEnumerable<PassiveSkill> PassiveSkills;
     }

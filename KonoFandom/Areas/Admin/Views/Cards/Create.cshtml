@@ -14,116 +14,116 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Name" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().Name" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Name" class="text-danger"></span>
+                <label asp-for="@Model.Card.Name" class="control-label"></label>
+                <input asp-for="@Model.Card.Name" class="form-control" />
+                <span asp-validation-for="@Model.Card.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Rarity" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().Rarity" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Rarity" class="text-danger"></span>
+                <label asp-for="@Model.Card.Rarity" class="control-label"></label>
+                <input asp-for="@Model.Card.Rarity" class="form-control" min="1" max="4"/>
+                <span asp-validation-for="@Model.Card.Rarity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().RarityImagePath" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().RarityImagePath" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().RarityImagePath" class="text-danger"></span>
+                <label asp-for="@Model.Card.RarityImagePath" class="control-label"></label>
+                <input asp-for="@Model.Card.RarityImagePath" class="form-control" />
+                <span asp-validation-for="@Model.Card.RarityImagePath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Weapon" class="control-label"></label>
-                <select asp-for="@Model.Cards.FirstOrDefault().Weapon" asp-items="Html.GetEnumSelectList<Weapon>()" class="form-control"></select>
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Weapon" class="text-danger"></span>
+                <label asp-for="@Model.Card.Weapon" class="control-label"></label>
+                <select asp-for="@Model.Card.Weapon" asp-items="Html.GetEnumSelectList<Weapon>()" class="form-control"></select>
+                <span asp-validation-for="@Model.Card.Weapon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().ImagePath" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().ImagePath" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().ImagePath" class="text-danger"></span>
+                <label asp-for="@Model.Card.ImagePath" class="control-label"></label>
+                <input asp-for="@Model.Card.ImagePath" class="form-control" />
+                <span asp-validation-for="@Model.Card.ImagePath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().CharacterID" class="control-label"></label>
-                <select asp-for="@Model.Cards.FirstOrDefault().CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
+                <label asp-for="@Model.Card.CharacterID" class="control-label"></label>
+                <select asp-for="@Model.Card.CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
             </div>
             <div id="passive-skill" class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().PassiveSkillID" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().PassiveSkillID" class="control-label" type="hidden"/>
+                <label asp-for="@Model.Card.PassiveSkillID" class="control-label"></label>
+                <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden"/>
                 @*<select asp-for="@Model.Cards.FirstOrDefault().PassiveSkillID" class="form-control" asp-items="ViewBag.PassiveSkillID"></select>*@
                 <div id="div1" style="width: 100px; height: 100px; border:1px solid black;"></div>
             </div>
             <h3>Stats</h3>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().HealthPoints" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().HealthPoints" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().HealthPoints" class="text-danger"></span>
+                <label asp-for="@Model.Card.HealthPoints" class="control-label"></label>
+                <input asp-for="@Model.Card.HealthPoints" class="form-control" />
+                <span asp-validation-for="@Model.Card.HealthPoints" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().PhysicalAttack" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().PhysicalAttack" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().PhysicalAttack" class="text-danger"></span>
+                <label asp-for="@Model.Card.PhysicalAttack" class="control-label"></label>
+                <input asp-for="@Model.Card.PhysicalAttack" class="form-control" />
+                <span asp-validation-for="@Model.Card.PhysicalAttack" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().MagicAttack" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().MagicAttack" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().MagicAttack" class="text-danger"></span>
+                <label asp-for="@Model.Card.MagicAttack" class="control-label"></label>
+                <input asp-for="@Model.Card.MagicAttack" class="form-control" />
+                <span asp-validation-for="@Model.Card.MagicAttack" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().PhysicalDefense" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().PhysicalDefense" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().PhysicalDefense" class="text-danger"></span>
+                <label asp-for="@Model.Card.PhysicalDefense" class="control-label"></label>
+                <input asp-for="@Model.Card.PhysicalDefense" class="form-control" />
+                <span asp-validation-for="@Model.Card.PhysicalDefense" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().MagicDefense" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().MagicDefense" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().MagicDefense" class="text-danger"></span>
+                <label asp-for="@Model.Card.MagicDefense" class="control-label"></label>
+                <input asp-for="@Model.Card.MagicDefense" class="form-control" />
+                <span asp-validation-for="@Model.Card.MagicDefense" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Agility" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().Agility" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Agility" class="text-danger"></span>
+                <label asp-for="@Model.Card.Agility" class="control-label"></label>
+                <input asp-for="@Model.Card.Agility" class="form-control" />
+                <span asp-validation-for="@Model.Card.Agility" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Dexterity" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().Dexterity" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Dexterity" class="text-danger"></span>
+                <label asp-for="@Model.Card.Dexterity" class="control-label"></label>
+                <input asp-for="@Model.Card.Dexterity" class="form-control" />
+                <span asp-validation-for="@Model.Card.Dexterity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().Luck" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().Luck" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().Luck" class="text-danger"></span>
+                <label asp-for="@Model.Card.Luck" class="control-label"></label>
+                <input asp-for="@Model.Card.Luck" class="form-control" />
+                <span asp-validation-for="@Model.Card.Luck" class="text-danger"></span>
             </div>
             <h3>Resistances</h3>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().FireResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().FireResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().FireResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.FireResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.FireResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.FireResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().WaterResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().WaterResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().WaterResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.WaterResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.WaterResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.WaterResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().LightningResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().LightningResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().LightningResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.LightningResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.LightningResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.LightningResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().EarthResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().EarthResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().EarthResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.EarthResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.EarthResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.EarthResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().WindResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().WindResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().WindResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.WindResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.WindResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.WindResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().LightResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().LightResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().LightResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.LightResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.LightResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.LightResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="@Model.Cards.FirstOrDefault().DarkResistance" class="control-label"></label>
-                <input asp-for="@Model.Cards.FirstOrDefault().DarkResistance" class="form-control" />
-                <span asp-validation-for="@Model.Cards.FirstOrDefault().DarkResistance" class="text-danger"></span>
+                <label asp-for="@Model.Card.DarkResistance" class="control-label"></label>
+                <input asp-for="@Model.Card.DarkResistance" class="form-control" />
+                <span asp-validation-for="@Model.Card.DarkResistance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <table class="table table-borderless">

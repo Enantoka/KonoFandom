@@ -58,11 +58,10 @@ namespace KonoFandom.Areas.Admin.Controllers
             ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID");
             PopulateCardElementData2();
 
-            var cards = _context.Card;
             var passiveSkills = _context.PassiveSkill;
 
             CardCreate vm = new();
-            vm.Cards = cards;
+            vm.Card = new Card();
             vm.PassiveSkills = passiveSkills;
 
             return View(vm);
