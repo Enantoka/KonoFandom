@@ -140,15 +140,34 @@ $(function () {
 // Drag and Drop
 $(function () {
     // Let skill-gallery and passive-skill items be draggable
-    $("#skill-gallery img, #passive-skill img").draggable({
+    $("#passive-skill-gallery img, #passive-skill img, " +
+        "#basic-skill-gallery img, #basic-one img").draggable({
         revert: "invalid",
         helper: "clone",
         cursor: "move"
     });
 
+    // Let passive-skill-gallery be droppable accepting passive-skill items
+    $("#passive-skill-gallery").droppable({
+        accept: "#passive-skill > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this);
+
+            // Sort the item dropped
+            sortReturnedSkill(droppable,item);
+
+            // Clear the input value in passive-skill
+            var inputElement = item.parent().parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val("");
+            }
+        }
+    });
+
     // Let passive skill be droppable accepting skill gallery items
     $("#passive-skill").droppable({
-        accept: "#skill-gallery > img",
+        accept: "#passive-skill-gallery > img",
         drop: function (event, ui) {
             var item = $(ui.draggable),
                 droppable = $(this);
@@ -156,25 +175,62 @@ $(function () {
             addSkill(droppable, item);
             sortReplacedSkill(droppable, item);
 
-            // Update the passive skill ID in create card
-            if (droppable.parent().children("input") !== undefined) {
-                droppable.parent().children("input").val(item.attr("id"));
+            // Update the input value in passive-skill
+            var inputElement = droppable.parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val(item.attr("id"));
             }
         }
     });
 
-    // Let skill-gallery be droppable accepting passive-skill items
-    $("#skill-gallery").droppable({
-        accept: "#passive-skill > img",
+    // Let basic-skill-gallery be droppable accepting basic-skill items
+    $("#basic-skill-gallery").droppable({
+        accept: "#basic-one > img, " +
+            "#basic-two > img, " +
+            "#basic-three > img",
         drop: function (event, ui) {
-            var item = $(ui.draggable);
+            var item = $(ui.draggable),
+                droppable = $(this);
 
             // Sort the item dropped
-            sortReturnedSkill(item);
+            sortReturnedSkill(droppable, item);
 
-            // Clear the value of the input in passive-skill 
-            if (item.parent().parent().children("input") !== undefined) {
-                item.parent().parent().children("input").val("");
+            // Clear the input value in passive-skill
+            var inputElement = item.parent().parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val("");
+            }
+        }
+    });
+
+    // Let basic-skill be droppable accepting basic-skill-gallery items
+    $("#basic-one, #basic-two, #basic-three").droppable({
+        accept: "#basic-skill-gallery > img, " +
+            "#basic-one > img, " +
+            "#basic-two > img, " + 
+            "#basic-three > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this),
+                inputElement,
+                basicAttributeId;
+
+            addSkill(droppable, item);
+
+            // Swap the input value when switching between basic skills 
+            inputElement = item.parent().parent().children("input");
+            basicAttributeId = droppable.children("img").attr("id");
+            if (inputElement !== undefined) {
+                inputElement.val(basicAttributeId);
+            }
+
+            sortReplacedSkill(droppable, item);
+
+            // Update the input value in basic-skill
+            inputElement = droppable.parent().children("input");
+            basicAttributeId = item.attr("id");
+            if (inputElement !== undefined) {
+                inputElement.val(basicAttributeId);
             }
         }
     });
@@ -202,18 +258,18 @@ $(function () {
         }
     }
 
-    // Sort the skill returned to skill-gallery
-    function sortReturnedSkill(item) {
+    // Sort the skill returned to the droppable
+    function sortReturnedSkill(droppable, item) {
         item.fadeOut(function () {
 
-            // Append the returned item to skill-gallery
-            item.appendTo($("#skill-gallery")).fadeIn(function () {
+            // Append the returned item to the droppable
+            item.appendTo(droppable).fadeIn(function () {
                 item.find("img");
             });
 
             // Sort the items
-            list = item.parent().children();
-            $(this).parent().append(list.sort(sortByNameThenTitle));
+            var list = item.parent().children();
+            droppable.append(list.sort(sortByNameThenTitle));
         });
     }
 
