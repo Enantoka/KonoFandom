@@ -138,79 +138,82 @@ $(function () {
 })
 
 // Drag and Drop
-
 $(function () {
-    var $skillGallery = $("#skill-gallery"),
-        $div1 = $("#div1");
-
-    // Let skill gallery and div1 items be draggable
-    $("#skill-gallery img, #div1 img").draggable({
+    // Let skill-gallery and passive-skill items be draggable
+    $("#skill-gallery img, #passive-skill img").draggable({
         revert: "invalid",
         helper: "clone",
         cursor: "move"
     });
 
-    // Let div1 be droppable accepting skill gallery items
-    $div1.droppable({
+    // Let passive skill be droppable accepting skill gallery items
+    $("#passive-skill").droppable({
         accept: "#skill-gallery > img",
         drop: function (event, ui) {
-            var $item = ui.draggable;
+            var item = $(ui.draggable),
+                droppable = $(this);
 
-            addSkill($(this), $item);
-            sortReplacedSkill($(this), $item);
+            addSkill(droppable, item);
+            sortReplacedSkill(droppable, item);
 
             // Update the passive skill ID in create card
-            if ($(this).parent().children("input") !== undefined) {
-                $(this).parent().children("input").val($item.attr("id"));
+            if (droppable.parent().children("input") !== undefined) {
+                droppable.parent().children("input").val(item.attr("id"));
             }
         }
     });
 
-    // Let skill gallery be droppable accepting added skills from div1
-    $skillGallery.droppable({
-        accept: "#div1 > img",
+    // Let skill-gallery be droppable accepting passive-skill items
+    $("#skill-gallery").droppable({
+        accept: "#passive-skill > img",
         drop: function (event, ui) {
-            $item = ui.draggable;
-            sortReturnedSkill($item);
+            var item = $(ui.draggable);
 
-            // Clear the passive skill ID in create card
-            if ($item.parent().parent().children("input") !== undefined) {
-                $item.parent().parent().children("input").val("");
+            // Sort the item dropped
+            sortReturnedSkill(item);
+
+            // Clear the value of the input in passive-skill 
+            if (item.parent().parent().children("input") !== undefined) {
+                item.parent().parent().children("input").val("");
             }
         }
     });
 
-    // Add skill to droppable
-    function addSkill($droppable, $item) {
-        $item.fadeOut(function () {
-            $item.appendTo($droppable).fadeIn(function () {
-                $item.find("img");
+    // Add skill to the droppable
+    function addSkill(droppable, item) {
+        item.fadeOut(function () {
+            item.appendTo(droppable).fadeIn(function () {
+                item.find("img");
             });
         });
     }
 
-    // Sort the skill replaced in droppable
-    function sortReplacedSkill($droppable, $item) {
-        if ($droppable.children().length > 0) {
-            var replace = $droppable.children().detach();
-            $item.parent().append(replace);
+    // Sort the item replaced in the droppable
+    function sortReplacedSkill(droppable, item) {
+        if (droppable.children().length > 0) {
 
-            var $list = $item.parent().children("img");
-            $item.parent().append($list.sort(sortByNameThenTitle));
+            // Replace item in the droppable with dropped item
+            var replace = droppable.children().detach();
+            item.parent().append(replace);
+
+            // Sort the items
+            var list = item.parent().children("img");
+            item.parent().append(list.sort(sortByNameThenTitle));
         }
     }
 
-    // Sort the skill returned to skill gallery
-    function sortReturnedSkill($item) {
-        $item.fadeOut(function () {
-            // Return item
-            $item.appendTo($skillGallery).fadeIn(function () {
-                $item.find("img");
+    // Sort the skill returned to skill-gallery
+    function sortReturnedSkill(item) {
+        item.fadeOut(function () {
+
+            // Append the returned item to skill-gallery
+            item.appendTo($("#skill-gallery")).fadeIn(function () {
+                item.find("img");
             });
 
-            // Sort items
-            $list = $item.parent().children();
-            $(this).parent().append($list.sort(sortByNameThenTitle));
+            // Sort the items
+            list = item.parent().children();
+            $(this).parent().append(list.sort(sortByNameThenTitle));
         });
     }
 

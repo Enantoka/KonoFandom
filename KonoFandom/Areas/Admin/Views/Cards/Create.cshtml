@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Card.Rarity" class="control-label"></label>
-                <input asp-for="@Model.Card.Rarity" class="form-control" min="1" max="4"/>
+                <input asp-for="@Model.Card.Rarity" class="form-control" min="1" max="4" />
                 <span asp-validation-for="@Model.Card.Rarity" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,12 +42,18 @@
                 <label asp-for="@Model.Card.CharacterID" class="control-label"></label>
                 <select asp-for="@Model.Card.CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
             </div>
-            <div id="passive-skill" class="form-group">
+            <div class="form-group">
                 <label asp-for="@Model.Card.PassiveSkillID" class="control-label"></label>
-                <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden"/>
-                <div id="div1" style="width: 100px; height: 100px; border:1px solid black;"></div>
+                <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden" />
+                <div id="passive-skill" style="width: 100px; height: 100px; border:1px solid black;"></div>
                 <span asp-validation-for="@Model.Card.PassiveSkillID" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="@Model.Card.CardBasicSkills" class="control-label"></label>
+                <input asp-for="@Model.Card.CardBasicSkills" class="form-control" name="Test" />
+                <span asp-validation-for="@Model.Card.CardBasicSkills" class="text-danger"></span>
+            </div>
+
             <h3>Stats</h3>
             <div class="form-group">
                 <label asp-for="@Model.Card.HealthPoints" class="control-label"></label>
@@ -155,19 +161,28 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
+    <div class="col-md-4">
+        <div id="skill-gallery">
             @{
                 var passives = Model.PassiveSkills;
-                <div id="skill-gallery">
-                    @foreach (var item in passives) // Sort in controller
-                    {
-                        <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
-                             id="@item.SkillID" title="@item.Description">
-                    }
-                </div>
+                @foreach (var item in passives) // Sort in controller
+                {
+                    <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
+                            id="@item.SkillID" title="@item.Description">
+                }
+            }
+            <hr />
+            @{
+            var basics = Model.BasicSkills;
+                @foreach (var item in basics) // Sort in controller
+                {
+                    <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
+                            id="@item.SkillID" title="@item.Description">
+                }
             }
         </div>
     </div>
+</div>
 
     <div>
         <a asp-action="Index">Back to List</a>

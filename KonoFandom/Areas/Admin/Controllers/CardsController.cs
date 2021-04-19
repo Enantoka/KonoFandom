@@ -58,10 +58,12 @@ namespace KonoFandom.Areas.Admin.Controllers
             PopulateCardElementData2();
 
             var passiveSkills = _context.PassiveSkill;
+            var basicSkills = _context.BasicSkill;
 
             CreateCardViewModel vm = new();
             vm.Card = new Card();
             vm.PassiveSkills = passiveSkills;
+            vm.BasicSkills = basicSkills;
 
             return View(vm);
         }
@@ -137,7 +139,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-            ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+            //ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
             PopulateCardElementData(card);
 
             CreateCardViewModel vm = new();
@@ -210,7 +212,7 @@ namespace KonoFandom.Areas.Admin.Controllers
                     }
                 }
                 ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID", card.CharacterID);
-                ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
+                //ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
 
                 return RedirectToAction(nameof(Index));
             }

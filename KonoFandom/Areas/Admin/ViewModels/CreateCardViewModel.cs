@@ -11,5 +11,6 @@ namespace KonoFandom.Areas.Admin.ViewModels
     {
         public Card Card;
         public IEnumerable<PassiveSkill> PassiveSkills;
+        public IEnumerable<BasicSkill> BasicSkills;
     }
 }

@@ -44,12 +44,12 @@
                 <select asp-for="@Model.Card.CharacterID" class="form-control" asp-items="ViewBag.CharacterID"></select>
                 <span asp-validation-for="@Model.Card.CharacterID" class="text-danger"></span>
             </div>
-            <div id="passive-skill" class="form-group">
+            <div class="form-group">
                 <label asp-for="@Model.Card.PassiveSkillID" class="control-label"></label>
                 <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden" />
-                <div id="div1" style="width: 100px; height: 100px; border:1px solid black;">
+                <div id="passive-skill" style="width: 100px; height: 100px; border:1px solid black;">
                     <img style="width: 100px" src="@Model.Card.PassiveSkill.ImagePath" data-name="@Model.Card.PassiveSkill.Name"
-                         id="@Model.Card.PassiveSkillID" title="@Model.Card.PassiveSkill.Description">
+                        id="@Model.Card.PassiveSkillID" title="@Model.Card.PassiveSkill.Description">
                 </div>
                 <span asp-validation-for="@Model.Card.PassiveSkillID" class="text-danger"></span>
             </div>
@@ -168,8 +168,8 @@
                     {
                         if (item.SkillID != @Model.Card.PassiveSkillID)
                         {
-                        <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
-                             id="@item.SkillID" title="@item.Description">
+                            <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
+                                id="@item.SkillID" title="@item.Description">
                         }
                     }
                 </div>
