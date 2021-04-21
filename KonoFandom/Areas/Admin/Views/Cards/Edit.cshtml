@@ -1,5 +1,4 @@
-﻿@*@model KonoFandom.Models.Card*@
-@model KonoFandom.Areas.Admin.ViewModels.CreateCardViewModel
+﻿@model KonoFandom.Areas.Admin.ViewModels.CharacterViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -49,10 +48,30 @@
                 <input asp-for="@Model.Card.PassiveSkillID" class="control-label" type="hidden" />
                 <div id="passive-skill" style="width: 100px; height: 100px; border:1px solid black;">
                     <img style="width: 100px" src="@Model.Card.PassiveSkill.ImagePath" data-name="@Model.Card.PassiveSkill.Name"
-                        id="@Model.Card.PassiveSkillID" title="@Model.Card.PassiveSkill.Description">
+                         id="@Model.Card.PassiveSkillID" title="@Model.Card.PassiveSkill.Description">
                 </div>
                 <span asp-validation-for="@Model.Card.PassiveSkillID" class="text-danger"></span>
             </div>
+            @{ 
+                var count = 0;
+                string[] id = { "basic-one", "basic-two", "basic-three" };
+                foreach (var item in Model.Card.CardBasicSkills)
+                {
+                    <div class="form-group">
+                        <label asp-for="@Model.Card.CardBasicSkills" class="control-label"></label>
+                        <input asp-for="@item.BasicSkill.SkillID" class="form-control" type="hidden" name="selectedSkills" />
+                        <div id="@id[count]" style="width: 100px; height: 100px; border:1px solid black;">
+                            <img style="width: 100px" src="@item.BasicSkill.ImagePath"
+                                 data-name="@item.BasicSkill.Name"
+                                 id="@item.BasicSkill.SkillID"
+                                 title="@item.BasicSkill.Description">
+                        </div>
+                        <span asp-validation-for="@item.BasicSkill.SkillID" class="text-danger"></span>
+                    </div>
+                    count++;
+                }
+            }
+
             <h3>Stats</h3>
             <div class="form-group">
                 <label asp-for="@Model.Card.HealthPoints" class="control-label"></label>
@@ -134,13 +153,13 @@
                 <table class="table table-borderless">
                     <tr>
                         @{
-                            int count = 0;
+                            var counter = 0;
                             List<KonoFandom.Models.AssignedElementData> elements = ViewBag.Elements;
                             if (elements != null)
                             {
                                 foreach (var element in elements)
                                 {
-                                    if (count++ % 5 == 0)
+                                    if (counter++ % 5 == 0)
                                     {
                                     @:</tr><tr>
                                     }
@@ -163,13 +182,25 @@
         <div class="col-md-4">
             @{
                 var passives = Model.PassiveSkills;
-                <div id="skill-gallery">
-                    @foreach (var item in passives) // Sort in controller
+                var basics = Model.BasicSkills;
+                <div id="passive-skill-gallery">
+                    @foreach (var item in passives)
                     {
                         if (item.SkillID != @Model.Card.PassiveSkillID)
                         {
                             <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
                                 id="@item.SkillID" title="@item.Description">
+                        }
+                    }
+                </div>
+                <hr />
+                <div id="basic-skill-gallery">
+                    @foreach (var item in basics)
+                    {
+                        if (@Model.Card.CardBasicSkills.All(x => x.BasicSkillID != item.SkillID))
+                        {
+                            <img style="width: 100px" src=@item.ImagePath data-name="@item.Name"
+                                 id="@item.SkillID" title="@item.Description">
                         }
                     }
                 </div>

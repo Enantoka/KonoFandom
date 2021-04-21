@@ -141,7 +141,8 @@ $(function () {
 $(function () {
     // Let skill-gallery and passive-skill items be draggable
     $("#passive-skill-gallery img, #passive-skill img, " +
-        "#basic-skill-gallery img, #basic-one img").draggable({
+        "#basic-skill-gallery img, #basic-one img, " +
+        "#basic-two img, #basic-three img").draggable({
         revert: "invalid",
         helper: "clone",
         cursor: "move"

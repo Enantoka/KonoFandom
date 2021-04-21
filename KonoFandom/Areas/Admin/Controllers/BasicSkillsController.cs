@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KonoFandom.Models;
 using KonoFandom.Data;
@@ -85,26 +82,7 @@ namespace KonoFandom.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            PopulateCardBasicSkillData(basicSkill);
             return View(basicSkill);
-        }
-
-        private void PopulateCardBasicSkillData(BasicSkill basicSkill)
-        {
-            var allCards = _context.Card;
-            var cardBasicSkills = new HashSet<int>(basicSkill.CardBasicSkills.Select(c => c.CardID));
-            var viewModel = new List<AssignedBasicSkillData>();
-            
-            foreach (var card in allCards)
-            {
-                viewModel.Add(new AssignedBasicSkillData
-                {
-                    CardID = card.CardID,
-                    Name = card.Name,
-                    Assigned = cardBasicSkills.Contains(card.CardID)
-                });
-            }
-            ViewData["Cards"] = viewModel;
         }
 
         // POST: BasicSkills/Edit/5
@@ -112,7 +90,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedCards, [Bind("SkillID,Name,Description,ImagePath,ChargeTime")] BasicSkill basicSkill)
+        public async Task<IActionResult> Edit(int id, [Bind("SkillID,Name,Description,ImagePath,ChargeTime")] BasicSkill basicSkill)
         {
             if (id != basicSkill.SkillID)
             {
@@ -124,14 +102,6 @@ namespace KonoFandom.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(basicSkill);
-
-                    // Update many to many relationship
-                    var skillToUpdate = await _context.BasicSkill
-                                        .Include(bs => bs.CardBasicSkills)
-                                            .ThenInclude(bs => bs.Card)
-                                        .FirstOrDefaultAsync(m => m.SkillID == id);
-
-                    UpdateCardBasicSkills(selectedCards, skillToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -148,41 +118,6 @@ namespace KonoFandom.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return BadRequest(ModelState);
-        }
-
-        private void UpdateCardBasicSkills(string[] selectedCards, BasicSkill basicSkillToUpdate)
-        {
-            if (selectedCards == null)
-            {
-                basicSkillToUpdate.CardBasicSkills = new List<CardBasicSkill>();
-                return;
-            }
-
-            var selectedCardsHS = new HashSet<string>(selectedCards);
-            var cardBasicSkills = new HashSet<int>(basicSkillToUpdate.CardBasicSkills.Select(c => c.Card.CardID));
-
-            foreach (var card in _context.Card)
-            {
-                if (selectedCardsHS.Contains(card.CardID.ToString()))
-                {
-                    if (!cardBasicSkills.Contains(card.CardID))
-                    {
-                        basicSkillToUpdate.CardBasicSkills.Add(new CardBasicSkill
-                        {
-                            CardID = card.CardID,
-                            BasicSkillID = basicSkillToUpdate.SkillID
-                        });
-                    }
-                }
-                else
-                {
-                    if (cardBasicSkills.Contains(card.CardID))
-                    {
-                        CardBasicSkill cardToRemove = basicSkillToUpdate.CardBasicSkills.FirstOrDefault(c => c.CardID == card.CardID);
-                        _context.Remove(cardToRemove);
-                    }
-                }
-            }
         }
 
         // GET: BasicSkills/Delete/5
@@ -217,13 +152,6 @@ namespace KonoFandom.Areas.Admin.Controllers
         private bool BasicSkillExists(int id)
         {
             return _context.BasicSkill.Any(e => e.SkillID == id);
-        }
-
-        // TEST
-
-        public async Task<IActionResult> Test()
-        {
-            return View(await _context.BasicSkill.ToListAsync());
         }
     }
 }

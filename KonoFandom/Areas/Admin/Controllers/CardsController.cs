@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -57,10 +56,14 @@ namespace KonoFandom.Areas.Admin.Controllers
             ViewData["CharacterID"] = new SelectList(_context.Character, "CharacterID", "CharacterID");
             PopulateCardElementData2();
 
-            var passiveSkills = _context.PassiveSkill;
-            var basicSkills = _context.BasicSkill;
+            var passiveSkills = _context.PassiveSkill
+                                .OrderBy(x => x.Name)
+                                    .ThenBy(x => x.Description);
+            var basicSkills = _context.BasicSkill
+                                .OrderBy(x => x.Name)
+                                    .ThenBy(x => x.Description);
 
-            CreateCardViewModel vm = new();
+            CharacterViewModel vm = new();
             vm.Card = new Card();
             vm.PassiveSkills = passiveSkills;
             vm.BasicSkills = basicSkills;
@@ -91,7 +94,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(string[] selectedElements, [Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
+        public async Task<IActionResult> Create(int[] selectedSkills, string[] selectedElements, [Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
                                                       "CharacterID, PassiveSkillID, HealthPoints, PhysicalAttack," +
                                                       "MagicAttack, PhysicalDefense, MagicDefense, Agility," +
                                                       "Dexterity, Luck, FireResistance, WaterResistance," +
@@ -107,11 +110,23 @@ namespace KonoFandom.Areas.Admin.Controllers
 
                 // Update many to many relationship
                 var cardToUpdate = await _context.Card
+                                    .Include(x => x.CardBasicSkills)
                                     .Include(c => c.CardElements)
                                         .ThenInclude(c => c.Element)
                                     .FirstOrDefaultAsync(m => m.CardID == card.CardID);
 
                 UpdateCardElements(selectedElements, cardToUpdate);
+
+                foreach (var skillId in selectedSkills)
+                {
+                    cardToUpdate.CardBasicSkills.Add(
+                        new CardBasicSkill
+                        {
+                            CardID = cardToUpdate.CardID,
+                            BasicSkillID = skillId
+                        });
+                }
+
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -128,11 +143,22 @@ namespace KonoFandom.Areas.Admin.Controllers
             }
 
             var card = await _context.Card
+                        .AsNoTracking()
                         .Include(c => c.PassiveSkill)
+                        .Include(c => c.CardBasicSkills)
+                            .ThenInclude(c => c.BasicSkill)
                         .Include(c => c.CardElements)
                             .ThenInclude(c => c.Element)
                         .FirstOrDefaultAsync(m => m.CardID == id);
-            var passiveSkills = _context.PassiveSkill;
+
+            var passiveSkills = _context.PassiveSkill
+                                .AsNoTracking()
+                                .OrderBy(x => x.Name)
+                                    .ThenBy(x => x.Description);
+            var basicSkills = _context.BasicSkill
+                                .AsNoTracking()
+                                .OrderBy(x => x.Name)
+                                    .ThenBy(x => x.Description);
 
             if (card == null)
             {
@@ -142,9 +168,10 @@ namespace KonoFandom.Areas.Admin.Controllers
             //ViewData["PassiveSkillID"] = new SelectList(_context.PassiveSkill, "SkillID", "SkillID", card.PassiveSkillID);
             PopulateCardElementData(card);
 
-            CreateCardViewModel vm = new();
+            CharacterViewModel vm = new();
             vm.Card = card;
             vm.PassiveSkills = passiveSkills;
+            vm.BasicSkills = basicSkills;
 
             return View(vm);
         }
@@ -172,7 +199,7 @@ namespace KonoFandom.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedElements, 
+        public async Task<IActionResult> Edit(int id, int[] selectedSkills, string[] selectedElements, 
                 [Bind("CardID, Name, Rarity, RarityImagePath, Weapon, ImagePath, " +
                 "CharacterID, PassiveSkillID, HealthPoints, PhysicalAttack," +
                 "MagicAttack, PhysicalDefense, MagicDefense, Agility," +
@@ -190,13 +217,30 @@ namespace KonoFandom.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(card);
-
+                    await _context.SaveChangesAsync();
                     // Update many to many relationship
                     var cardToUpdate = await _context.Card
+                                        .Include(x => x.CardBasicSkills)
                                         .Include(c => c.CardElements)
                                             .ThenInclude(c => c.Element)
                                         .FirstOrDefaultAsync(m => m.CardID == id);
 
+                    // Remove all skills
+                    foreach (var item in cardToUpdate.CardBasicSkills)
+                    {
+                        cardToUpdate.CardBasicSkills.Remove(item);
+                    }
+
+                    // Add skills
+                    foreach (var skillId in selectedSkills)
+                    {
+                        cardToUpdate.CardBasicSkills.Add(
+                            new CardBasicSkill
+                            {
+                                CardID = cardToUpdate.CardID,
+                                BasicSkillID = skillId
+                            });
+                    }
                     UpdateCardElements(selectedElements, cardToUpdate);
                     await _context.SaveChangesAsync();
                 }

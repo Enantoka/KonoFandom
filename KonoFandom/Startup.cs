@@ -33,7 +33,7 @@ namespace KonoFandom
             services.AddControllersWithViews();
             services.AddDbContext<KonoFandomContext>(options =>
                             options.UseNpgsql(Configuration["KonoFandom:ConnectionString"])
-                       .UseSnakeCaseNamingConvention());
+                       .UseSnakeCaseNamingConvention().EnableSensitiveDataLogging());
 
             services.AddDbContext<IdentityContext>(options =>
                             options.UseNpgsql(Configuration["KonoMegami:ConnectionString"])

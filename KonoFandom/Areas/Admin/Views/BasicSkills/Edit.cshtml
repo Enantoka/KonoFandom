@@ -33,31 +33,6 @@
                 <input asp-for="ChargeTime" class="form-control" />
                 <span asp-validation-for="ChargeTime" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <table class="table table-borderless">
-                    <tr>
-                        @{
-                            int count = 0;
-                            List<KonoFandom.Models.AssignedBasicSkillData> cards = ViewBag.Cards;
-                            if (cards != null)
-                            {
-                                foreach (var card in cards.OrderBy(x => x.CardID)) // Temporary sort, move to controller
-                                {
-                                    if (count++ % 5 == 0)
-                                    {
-                                    @:</tr><tr>
-                                    }
-                                    @:<td>
-                                        <input type="checkbox" name="selectedCards" value="@card.CardID"
-                                               @(Html.Raw(card.Assigned ? "checked=\"checked\"" : "")) />
-                                        @card.CardID @: @card.Name
-                                    @:</td>
-                                }
-                            @:</tr>
-                        }
-                        }
-                    </table>
-                </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
