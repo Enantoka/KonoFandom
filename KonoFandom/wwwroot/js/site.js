@@ -136,3 +136,153 @@ $('.rarity-checkbox-filter label').on('click', function () { fadeFilter(this) })
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+
+// Drag and Drop
+$(function () {
+    // Let skill-gallery and passive-skill items be draggable
+    $("#passive-skill-gallery img, #passive-skill img, " +
+        "#basic-skill-gallery img, #basic-one img, " +
+        "#basic-two img, #basic-three img").draggable({
+        revert: "invalid",
+        helper: "clone",
+        cursor: "move"
+    });
+
+    // Let passive-skill-gallery be droppable accepting passive-skill items
+    $("#passive-skill-gallery").droppable({
+        accept: "#passive-skill > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this);
+
+            // Sort the item dropped
+            sortReturnedSkill(droppable,item);
+
+            // Clear the input value in passive-skill
+            var inputElement = item.parent().parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val("");
+            }
+        }
+    });
+
+    // Let passive skill be droppable accepting skill gallery items
+    $("#passive-skill").droppable({
+        accept: "#passive-skill-gallery > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this);
+
+            addSkill(droppable, item);
+            sortReplacedSkill(droppable, item);
+
+            // Update the input value in passive-skill
+            var inputElement = droppable.parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val(item.attr("id"));
+            }
+        }
+    });
+
+    // Let basic-skill-gallery be droppable accepting basic-skill items
+    $("#basic-skill-gallery").droppable({
+        accept: "#basic-one > img, " +
+            "#basic-two > img, " +
+            "#basic-three > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this);
+
+            // Sort the item dropped
+            sortReturnedSkill(droppable, item);
+
+            // Clear the input value in passive-skill
+            var inputElement = item.parent().parent().children("input");
+            if (inputElement !== undefined) {
+                inputElement.val("");
+            }
+        }
+    });
+
+    // Let basic-skill be droppable accepting basic-skill-gallery items
+    $("#basic-one, #basic-two, #basic-three").droppable({
+        accept: "#basic-skill-gallery > img, " +
+            "#basic-one > img, " +
+            "#basic-two > img, " + 
+            "#basic-three > img",
+        drop: function (event, ui) {
+            var item = $(ui.draggable),
+                droppable = $(this),
+                inputElement,
+                basicAttributeId;
+
+            addSkill(droppable, item);
+
+            // Swap the input value when switching between basic skills 
+            inputElement = item.parent().parent().children("input");
+            basicAttributeId = droppable.children("img").attr("id");
+            if (inputElement !== undefined) {
+                inputElement.val(basicAttributeId);
+            }
+
+            sortReplacedSkill(droppable, item);
+
+            // Update the input value in basic-skill
+            inputElement = droppable.parent().children("input");
+            basicAttributeId = item.attr("id");
+            if (inputElement !== undefined) {
+                inputElement.val(basicAttributeId);
+            }
+        }
+    });
+
+    // Add skill to the droppable
+    function addSkill(droppable, item) {
+        item.fadeOut(function () {
+            item.appendTo(droppable).fadeIn(function () {
+                item.find("img");
+            });
+        });
+    }
+
+    // Sort the item replaced in the droppable
+    function sortReplacedSkill(droppable, item) {
+        if (droppable.children().length > 0) {
+
+            // Replace item in the droppable with dropped item
+            var replace = droppable.children().detach();
+            item.parent().append(replace);
+
+            // Sort the items
+            var list = item.parent().children("img");
+            item.parent().append(list.sort(sortByNameThenTitle));
+        }
+    }
+
+    // Sort the skill returned to the droppable
+    function sortReturnedSkill(droppable, item) {
+        item.fadeOut(function () {
+
+            // Append the returned item to the droppable
+            item.appendTo(droppable).fadeIn(function () {
+                item.find("img");
+            });
+
+            // Sort the items
+            var list = item.parent().children();
+            droppable.append(list.sort(sortByNameThenTitle));
+        });
+    }
+
+    function sortByNameThenTitle(a, b) {
+        if ($(a).data("name") === $(b).data("name")) {
+            a = $(a).attr("title");
+            b = $(b).attr("title");
+            return (a > b ? 1 : -1);
+        }
+
+        a = $(a).data("name");
+        b = $(b).data("name");
+        return (a > b ? 1 : -1);
+    }
+});

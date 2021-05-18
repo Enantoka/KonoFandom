@@ -3,7 +3,7 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "library": "bootstrap@4.5.3",
+      "library": "bootstrap@4.6.0",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
         "scss/mixins/_alert.scss",
@@ -99,8 +99,13 @@
     },
     {
       "provider": "cdnjs",
-      "library": "jquery@3.5.1",
+      "library": "jquery@3.6.0",
       "destination": "wwwroot/lib/jquery/dist"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
     }
   ]
 }

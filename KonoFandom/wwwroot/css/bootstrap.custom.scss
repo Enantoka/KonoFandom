@@ -618,6 +618,19 @@ table.dataTable thead tr {
     width: 80%;
 }
 
+/*****************
+    Login Page
+*****************/
+.login {
+    align-self: center;
+}
+
+// Test
+.gallery li {
+    float: left;
+}
+
+
 /******************
     Screen Size
 ******************/
@@ -629,6 +642,7 @@ table.dataTable thead tr {
     #character-mia {
         background-position-x: 28%;
     }
+
 }
 
 @media (min-width: 768px) {

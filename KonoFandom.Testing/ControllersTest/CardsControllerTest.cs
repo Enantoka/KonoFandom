@@ -43,7 +43,7 @@ namespace KonoFandom.Testing.ControllersTest
 
             // Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<CardIndex>(viewResult.ViewData.Model);
+            Assert.IsType<CardCreate>(viewResult.ViewData.Model);
         }
     }
 }
