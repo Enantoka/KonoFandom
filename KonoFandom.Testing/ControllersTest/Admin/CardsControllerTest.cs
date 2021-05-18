@@ -1,4 +1,5 @@
 ﻿using KonoFandom.Areas.Admin.Controllers;
+using KonoFandom.Areas.Admin.ViewModels;
 using KonoFandom.Data;
 using KonoFandom.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -123,7 +124,6 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["CharacterID"]);
-            Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["PassiveSkillID"]);
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             controller.ModelState.AddModelError("NewCard", "Invalid data input");
 
             // Act
-            var result = await controller.Create(null);
+            var result = await controller.Create(null, null, null);
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
@@ -160,9 +160,12 @@ namespace KonoFandom.Testing.ControllersTest.Admin
                     ImagePath = "Test"
                 };
 
+            string[] element = {"1", "2" };
+            int[] skill = { 1, 2 };
+
             // Act
             context.Database.BeginTransaction();
-            var result = await controller.Create(card);
+            var result = await controller.Create(skill, element, card);
             context.Database.RollbackTransaction();
 
             // Assert
@@ -184,7 +187,6 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
             //Assert
             Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["CharacterID"]);
-            Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["PassiveSkillID"]);
         }
 
         [Fact]
@@ -201,7 +203,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsType<Card>(viewResult.ViewData.Model);
+            Assert.IsType<CharacterViewModel>(viewResult.ViewData.Model);
         }
 
         [Fact]
@@ -235,7 +237,6 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["CharacterID"]);
-            Assert.IsAssignableFrom<SelectList>(viewResult.ViewData["PassiveSkillID"]);
             Assert.IsAssignableFrom<List<AssignedElementData>>(viewResult.ViewData["Elements"]);
         }
 
@@ -260,7 +261,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
                 };
 
             // Act
-            var result = await controller.Edit(Id, null, card);
+            var result = await controller.Edit(Id, null, null, card);
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
@@ -286,9 +287,12 @@ namespace KonoFandom.Testing.ControllersTest.Admin
                     ImagePath = "Test"
                 };
 
+            string[] element = { "1", "2" };
+            int[] skill = { 1, 2 };
+
             // Act
             context.Database.BeginTransaction();
-            var result = await controller.Edit(Id, null, card);
+            var result = await controller.Edit(Id, skill, element, card);
             context.Database.RollbackTransaction();
 
             // Assert

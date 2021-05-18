@@ -198,8 +198,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
             var result = await controller.Edit(Id);
 
             //Assert
-            var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsAssignableFrom<List<AssignedBasicSkillData>>(viewResult.ViewData["Cards"]);
+            Assert.IsType<ViewResult>(result);
         }
 
         [Fact]
@@ -223,7 +222,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
                 };
 
             // Act
-            var result = await controller.Edit(Id, null, basicSkill);
+            var result = await controller.Edit(Id, basicSkill);
 
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
@@ -250,7 +249,7 @@ namespace KonoFandom.Testing.ControllersTest.Admin
 
             // Act
             context.Database.BeginTransaction();
-            var result = await controller.Edit(Id, null, basicSkill);
+            var result = await controller.Edit(Id, basicSkill);
             context.Database.RollbackTransaction();
 
             // Assert
